@@ -16,7 +16,7 @@ import AppBar from './components/app-bar';
 import Drawer from './components/drawer';
 import CustomList from './components/custom-list';
 import { Tooltip } from '@mui/material';
-import { AuthService } from '@/services/auth';
+import { AuthService } from '@/services/client/auth.services.';
 import { useMutation } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 import { useAlert } from '@/contexts/alert.context';

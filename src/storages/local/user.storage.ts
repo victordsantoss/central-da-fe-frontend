@@ -1,4 +1,4 @@
-import { User } from '@/services/user/user.types';
+import { User } from '@/services/domain/user.types';
 
 export const UserStorage = {
   key: 'USER_DATA',

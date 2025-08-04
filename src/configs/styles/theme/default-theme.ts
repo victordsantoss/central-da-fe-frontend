@@ -7,7 +7,7 @@ import { TextFieldStyles } from './components/input-field';
 const defaultTheme = createTheme({
   palette: {
     primary: {
-      main: '#00003F',
+      main: '#111111',
       contrastText: '#EAEAEA',
     },
     secondary: {

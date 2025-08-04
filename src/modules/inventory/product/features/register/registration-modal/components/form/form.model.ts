@@ -1,11 +1,11 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { ProductService } from '@/services/product';
-import { ProductCategoryService } from '@/services/product/category';
+import { ProductService } from '@/services/client/product';
+import { ProductCategoryService } from '@/services/client/product/category';
 import { RegistrationProductSchema, RegistrationProductFormValues } from './form.schema';
 import { useAlert } from '@/contexts/alert.context';
 import { isAxiosError } from 'axios';
-import { Product } from '@/services/product/product.types';
-import { Category } from '@/services/product/category/category.types';
+import { Product } from '@/services/client/product/product.types';
+import { Category } from '@/services/client/product/category/category.types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { revalidateProductsDashboard } from '@/modules/inventory/product/actions/revalidate-dashboard.action';

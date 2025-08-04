@@ -1,7 +1,7 @@
 import React, { createContext, useContext, ReactNode, useEffect, useState } from 'react';
-import { UserService } from '@/services/user';
+import { UserService } from '@/services/client/user.services';
 import { UserStorage } from '@/storages/local/user.storage';
-import { User } from '@/services/user/user.types';
+import { User } from '@/services/domain/user.types';
 import { AuthCookie } from '@/storages/cookies/auth.cookies';
 
 interface AuthContextProps {

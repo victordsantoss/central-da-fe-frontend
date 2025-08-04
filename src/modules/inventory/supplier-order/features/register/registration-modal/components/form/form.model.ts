@@ -7,7 +7,7 @@ import { SupplierOrderSchema, SupplierOrderFormValues } from './form.schema';
 import { SupplierOrderService } from '@/services/supplier-order';
 import { SupplierOrder } from '@/services/supplier-order/supplier-order.types';
 import { revalidateSupplierOrderDashboard } from '@/modules/inventory/supplier-order/actions/revalidate-dashboard.action';
-import { ProductService } from '@/services/product';
+import { ProductService } from '@/services/client/product';
 import { SupplierService } from '@/services/supplier';
 
 interface RegistrationSupplierOrderFormViewModelProps {

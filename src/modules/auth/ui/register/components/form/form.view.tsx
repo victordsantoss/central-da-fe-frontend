@@ -12,6 +12,8 @@ import { formStyles } from '@/common/utils/styles';
 import { Controller, FormProvider, UseFormReturn } from 'react-hook-form';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { formatCPF } from '@/common/utils/document';
+import { Church } from '@/services/domain/church.types';
+import { Position } from '@/services/domain/position.types';
 
 interface IRegisterFormViewProps {
   push: (path: string) => void;
@@ -22,6 +24,8 @@ interface IRegisterFormViewProps {
   handleTogglePasswordVisibility: () => void;
   showConfirmPassword: boolean;
   handleToggleConfirmPasswordVisibility: () => void;
+  churchesData: Church.IListChurchesResponse;
+  positionsData: Position.IListPositionsResponse;
 }
 
 export const RegisterFormView = (props: IRegisterFormViewProps) => {
@@ -34,6 +38,8 @@ export const RegisterFormView = (props: IRegisterFormViewProps) => {
     showConfirmPassword,
     handleToggleConfirmPasswordVisibility,
     push,
+    churchesData,
+    positionsData,
   } = props;
 
   return (
@@ -171,7 +177,8 @@ export const RegisterFormView = (props: IRegisterFormViewProps) => {
           />
         </Box>
         <Box sx={formStyles.buttonContainer}>
-          <Tooltip title={`${!methods.formState.isValid ? 'Preencha todos os campos para continuar.' : 'Registrar'}`}
+          <Tooltip
+            title={`${!methods.formState.isValid ? 'Preencha todos os campos para continuar.' : 'Registrar'}`}
             placement="top"
           >
             <span style={{ width: '100%' }}>

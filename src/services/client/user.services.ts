@@ -1,5 +1,5 @@
 import { api } from '@/configs/api';
-import { User } from './user.types';
+import { User } from '../domain/user.types';
 
 export const UserService = {
   getAuthenticatedUser: async (): Promise<User.IAuthenticatedUserResponse> => {

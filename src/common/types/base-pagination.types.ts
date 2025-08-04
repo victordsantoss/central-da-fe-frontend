@@ -14,4 +14,5 @@ export interface IPaginatedRequest {
   orderBy?: string;
   sortBy?: 'asc' | 'desc';
   search?: string;
+  [key: string]: unknown;
 }

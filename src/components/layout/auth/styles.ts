@@ -19,5 +19,6 @@ export const authLayoutStyle: {
     flex: 1,
     height: '100%',
     width: '100%',
+    paddingBottom: { xs: '100px', md: '80px' },
   },
 };

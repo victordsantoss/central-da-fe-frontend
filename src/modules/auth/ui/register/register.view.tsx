@@ -2,11 +2,18 @@ import { Box, Typography } from '@mui/material';
 import { defaultContainerStyles } from '@/common/utils/styles';
 import { authFormStyles } from '../styles';
 import RegisterFormViewModel from './components/form';
+import { Church } from '@/services/domain/church.types';
+import { Position } from '@/services/domain/position.types';
 
 const title = 'Bem vindo(a) ao nosso sistema';
 const subTitle = 'Faça seu cadastro para continuar explorando nossos serviços.';
 
-const RegisterView = () => {
+interface RegisterViewProps {
+  churchesData: Church.IListChurchesResponse;
+  positionsData: Position.IListPositionsResponse;
+}
+
+const RegisterView = ({ churchesData, positionsData }: RegisterViewProps) => {
   return (
     <Box sx={{ ...defaultContainerStyles }}>
       <Box sx={{ ...authFormStyles.container, flexDirection: 'column' }}>
@@ -19,7 +26,7 @@ const RegisterView = () => {
           </Typography>
         </Box>
         <Box sx={{ ...authFormStyles.form.container }}>
-          <RegisterFormViewModel />
+          <RegisterFormViewModel churchesData={churchesData} positionsData={positionsData} />
         </Box>
       </Box>
     </Box>

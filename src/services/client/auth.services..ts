@@ -1,5 +1,5 @@
 import { api } from '@/configs/api';
-import { Auth } from './auth.types';
+import { Auth } from '../domain/auth.types';
 
 export const AuthService = {
   register: async (payload: Auth.IRegisterRequest): Promise<Auth.IRegisterResponse> => {
