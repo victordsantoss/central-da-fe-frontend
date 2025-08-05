@@ -16,8 +16,14 @@ interface RegisterViewProps {
 const RegisterView = ({ churchesData, positionsData }: RegisterViewProps) => {
   return (
     <Box sx={{ ...defaultContainerStyles }}>
-      <Box sx={{ ...authFormStyles.container, flexDirection: 'column' }}>
-        <Box>
+      <Box
+        sx={{
+          ...authFormStyles.container,
+          flexDirection: 'column',
+          overflowY: 'auto',
+        }}
+      >
+        <Box sx={{ flexShrink: 0 }}>
           <Typography variant="h3" sx={authFormStyles.form.title}>
             {title}
           </Typography>
@@ -25,7 +31,14 @@ const RegisterView = ({ churchesData, positionsData }: RegisterViewProps) => {
             {subTitle}
           </Typography>
         </Box>
-        <Box sx={{ ...authFormStyles.form.container }}>
+        <Box
+          sx={{
+            ...authFormStyles.form.container,
+            overflowY: 'auto',
+            flex: 1,
+            minHeight: 0,
+          }}
+        >
           <RegisterFormViewModel churchesData={churchesData} positionsData={positionsData} />
         </Box>
       </Box>

@@ -8,16 +8,16 @@ export const authFormStyles: {
 } = {
   container: {
     backgroundColor: defaultTheme.palette.background.default,
-    padding: 4,
+    padding: { xs: 2, md: 4 },
     borderRadius: 2,
     width: 'auto',
-    minWidth: { xs: '95%', md: '500px', lg: '700px' },
+    minWidth: { xs: '95%', md: '400px', lg: '600px' },
     maxWidth: '95%',
     height: 'auto',
-    maxHeight: '90%',
+    maxHeight: '70%',
     display: 'flex',
     justifyContent: 'center',
-    gap: 4,
+    gap: { xs: 2, md: 4 },
     boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.5)',
   },
 

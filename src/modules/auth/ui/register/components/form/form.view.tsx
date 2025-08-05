@@ -6,14 +6,17 @@ import {
   InputAdornment,
   TextField,
   Tooltip,
+  Autocomplete,
 } from '@mui/material';
 import { RegisterFormValues } from './form.schema';
 import { formStyles } from '@/common/utils/styles';
 import { Controller, FormProvider, UseFormReturn } from 'react-hook-form';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+import InfoIcon from '@mui/icons-material/Info';
 import { formatCPF } from '@/common/utils/document';
 import { Church } from '@/services/domain/church.types';
 import { Position } from '@/services/domain/position.types';
+import type { PositionModel } from '@/common/models/position.model';
 
 interface IRegisterFormViewProps {
   push: (path: string) => void;
@@ -43,7 +46,11 @@ export const RegisterFormView = (props: IRegisterFormViewProps) => {
   } = props;
 
   return (
-    <Box component="form" onSubmit={methods.handleSubmit(onSubmit)} sx={formStyles.container}>
+    <Box
+      component="form"
+      onSubmit={methods.handleSubmit(onSubmit)}
+      sx={{ ...formStyles.container, maxWidth: { xs: '100%', md: '600px' } }}
+    >
       <FormProvider {...methods}>
         <Box sx={formStyles.formContainer}>
           <Controller
@@ -94,12 +101,82 @@ export const RegisterFormView = (props: IRegisterFormViewProps) => {
                   const formatted = formatCPF(e.target.value);
                   field.onChange(formatted);
                 }}
-                inputProps={{
-                  maxLength: 14,
-                }}
               />
             )}
           />
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Controller
+              name="churchId"
+              control={methods.control}
+              render={({ field, fieldState }) => (
+                <Autocomplete
+                  id="church-select"
+                  value={churchesData.data?.find(church => church.id === field.value) || null}
+                  onChange={(_, newValue) => {
+                    field.onChange(newValue?.id || '');
+                  }}
+                  options={churchesData.data || []}
+                  getOptionLabel={option => option?.name || ''}
+                  isOptionEqualToValue={(option, value) => option.id === value.id}
+                  sx={{ width: '100%' }}
+                  renderInput={params => (
+                    <TextField
+                      {...params}
+                      label="Congregação *"
+                      error={!!fieldState.error}
+                      helperText={fieldState.error?.message}
+                    />
+                  )}
+                />
+              )}
+            />
+            <Tooltip
+              title="Selecione a congregação à qual você pertence ou deseja se filiar. Esta informação nos ajuda a organizar melhor os membros por congregação."
+              placement="right"
+              arrow
+            >
+              <InfoIcon sx={{ fontSize: 24, color: 'text.primary', cursor: 'pointer' }} />
+            </Tooltip>
+          </Box>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Controller
+              name="positionIds"
+              control={methods.control}
+              render={({ field, fieldState }) => (
+                <Autocomplete
+                  multiple
+                  id="position-select"
+                  value={
+                    (field.value || [])
+                      .map((id: string) => positionsData.data?.find(p => p.id === id))
+                      .filter(Boolean) as PositionModel[]
+                  }
+                  onChange={(_, newValue) => {
+                    field.onChange(newValue.map(position => position.id));
+                  }}
+                  options={positionsData.data || []}
+                  getOptionLabel={option => option?.name || ''}
+                  isOptionEqualToValue={(option, value) => option.id === value.id}
+                  sx={{ width: '100%' }}
+                  renderInput={params => (
+                    <TextField
+                      {...params}
+                      label="Cargo(s) *"
+                      error={!!fieldState.error}
+                      helperText={fieldState.error?.message}
+                    />
+                  )}
+                />
+              )}
+            />
+            <Tooltip
+              title="Selecione um ou mais cargos que você desempenha. Você pode escolher múltiplas opções conforme sua atuação."
+              placement="right"
+              arrow
+            >
+              <InfoIcon sx={{ fontSize: 24, color: 'text.primary', cursor: 'pointer' }} />
+            </Tooltip>
+          </Box>
           <Controller
             name="password"
             control={methods.control}
@@ -113,18 +190,20 @@ export const RegisterFormView = (props: IRegisterFormViewProps) => {
                   error={!!fieldState.error}
                   helperText={fieldState.error?.message}
                   variant="outlined"
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleTogglePasswordVisibility}
-                          edge="end"
-                        >
-                          {showPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
+                  slotProps={{
+                    input: {
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleTogglePasswordVisibility}
+                            edge="end"
+                          >
+                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    },
                   }}
                 />
               </Box>
@@ -143,18 +222,20 @@ export const RegisterFormView = (props: IRegisterFormViewProps) => {
                   error={!!fieldState.error}
                   helperText={fieldState.error?.message}
                   variant="outlined"
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleToggleConfirmPasswordVisibility}
-                          edge="end"
-                        >
-                          {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
+                  slotProps={{
+                    input: {
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleToggleConfirmPasswordVisibility}
+                            edge="end"
+                          >
+                            {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    },
                   }}
                   onChange={e => {
                     field.onChange(e);

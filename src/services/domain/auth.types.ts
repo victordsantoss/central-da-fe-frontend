@@ -10,6 +10,8 @@ export namespace Auth {
     email: string;
     cpf: string;
     password: string;
+    churchId: string;
+    positionIds: string[];
   };
   export type IRegisterResponse = UserModel & {};
 }

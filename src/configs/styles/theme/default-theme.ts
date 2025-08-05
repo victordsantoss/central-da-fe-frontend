@@ -3,6 +3,7 @@ import { createTheme } from '@mui/material/styles';
 import { ButtonStyles } from './components/button';
 import { TypographyStyles } from './components/typography';
 import { TextFieldStyles } from './components/input-field';
+import { TooltipStyles } from './components/tooltip';
 
 const defaultTheme = createTheme({
   palette: {
@@ -33,6 +34,7 @@ const defaultTheme = createTheme({
     ...TextFieldStyles,
     ...ButtonStyles,
     ...TypographyStyles,
+    ...TooltipStyles,
   },
 });
 

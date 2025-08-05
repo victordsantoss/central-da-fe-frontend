@@ -40,6 +40,7 @@ export const useRegisterFormModel = () => {
   });
 
   const onSubmit = (values: RegisterFormValues) => {
+    console.log(values);
     mutate(values);
   };
 

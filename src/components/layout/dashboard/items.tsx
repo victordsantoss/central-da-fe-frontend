@@ -1,10 +1,9 @@
 import { JSX } from 'react';
-import InventoryIcon from '@mui/icons-material/Inventory';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 
 import AssignmentIcon from '@mui/icons-material/Assignment';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import AutoGraphIcon from '@mui/icons-material/AutoGraph';
+import ChurchIcon from '@mui/icons-material/Church';
 import SettingsIcon from '@mui/icons-material/Settings';
 import PersonIcon from '@mui/icons-material/Person';
 
@@ -17,28 +16,24 @@ export interface IMenuItem {
 
 export const menuItems: IMenuItem[] = [
   {
-    text: 'Dashboard',
-    icon: <AutoGraphIcon />,
-    url: '/home',
-  },
-  {
-    text: 'Produtos e Estoque',
-    icon: <InventoryIcon />,
+    text: 'Programação',
+    icon: <CalendarMonthIcon />,
     url: '',
     items: [
-      { text: 'Fornecedores', url: '/supplier/dashboard' },
-      { text: 'Produtos', url: '/product/dashboard' },
-      { text: 'Pedidos', url: '/supplier-order/dashboard' },
-      { text: 'Estoque', url: '/stock/dashboard' },
+      { text: 'Programação', url: '/programation/dashboard' },
+      { text: 'Eventos', url: '/event/dashboard' },
+      { text: 'Cursos', url: '/course/dashboard' },
+      { text: 'Ministérios', url: '/ministry/dashboard' },
     ],
   },
   {
-    text: 'Controle de Vendas',
-    icon: <AddShoppingCartIcon />,
+    text: 'Igreja',
+    icon: <ChurchIcon />,
     url: '',
     items: [
-      { text: 'Relatórios', icon: <AssignmentIcon />, url: '/reports' },
-      { text: 'Vendas', icon: <AttachMoneyIcon />, url: '/sales' },
+      { text: 'Membros', icon: <AttachMoneyIcon />, url: '/members' },
+      { text: 'Congregações', icon: <AssignmentIcon />, url: '/churches' },
+      { text: 'Cargos', icon: <AttachMoneyIcon />, url: '/positions' },
     ],
   },
   {

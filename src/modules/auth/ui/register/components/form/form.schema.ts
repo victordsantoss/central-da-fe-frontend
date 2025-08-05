@@ -21,6 +21,8 @@ export const RegisterSchema = z
       .min(6, { message: 'A senha deve ter no mínimo 6 caracteres' })
       .max(50, { message: 'A senha deve ter no máximo 50 caracteres' }),
     confirmPassword: z.string({ required_error: 'A confirmação de senha é obrigatória' }),
+    churchId: z.string({ required_error: 'A igreja é obrigatória' }),
+    positionIds: z.array(z.string()).min(1, { message: 'Selecione pelo menos uma posição' }),
   })
   .refine(
     data => {

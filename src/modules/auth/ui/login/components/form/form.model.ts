@@ -35,7 +35,7 @@ export const useLoginFormModel = () => {
       AuthCookie.setToken(token, 30);
       persistUser(token);
       showAlert('Usuário autenticado com sucesso!', 'success');
-      push('home');
+      push('event/dashboard');
     },
   });
 

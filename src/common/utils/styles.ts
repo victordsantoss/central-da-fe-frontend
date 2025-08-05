@@ -24,10 +24,11 @@ const formStyles: {
     display: 'flex',
     flexDirection: 'column',
     gap: { xs: 1, md: 2 },
+    paddingTop: { xs: 1 },
   },
   buttonContainer: {
     width: '100%',
-    maxWidth: { xs: '100%', md: '400px' },
+    maxWidth: { xs: '100%', md: '500px' },
     display: 'flex',
     flexDirection: { xs: 'column', md: 'row' },
     gap: { xs: 1, md: 2 },
