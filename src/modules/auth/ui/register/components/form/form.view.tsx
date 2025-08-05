@@ -135,7 +135,7 @@ export const RegisterFormView = (props: IRegisterFormViewProps) => {
               placement="right"
               arrow
             >
-              <InfoIcon sx={{ fontSize: 24, color: 'text.primary', cursor: 'pointer' }} />
+              <InfoIcon sx={{ fontSize: 24, color: 'info.main', cursor: 'pointer' }} />
             </Tooltip>
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
@@ -174,7 +174,7 @@ export const RegisterFormView = (props: IRegisterFormViewProps) => {
               placement="right"
               arrow
             >
-              <InfoIcon sx={{ fontSize: 24, color: 'text.primary', cursor: 'pointer' }} />
+              <InfoIcon sx={{ fontSize: 24, color: 'info.main', cursor: 'pointer' }} />
             </Tooltip>
           </Box>
           <Controller

@@ -16,30 +16,32 @@ interface RegisterViewProps {
 const RegisterView = ({ churchesData, positionsData }: RegisterViewProps) => {
   return (
     <Box sx={{ ...defaultContainerStyles }}>
-      <Box
-        sx={{
-          ...authFormStyles.container,
-          flexDirection: 'column',
-          overflowY: 'auto',
-        }}
-      >
-        <Box sx={{ flexShrink: 0 }}>
-          <Typography variant="h3" sx={authFormStyles.form.title}>
-            {title}
-          </Typography>
-          <Typography variant="body2" sx={authFormStyles.form.subTitle}>
-            {subTitle}
-          </Typography>
-        </Box>
+      <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
         <Box
           sx={{
-            ...authFormStyles.form.container,
+            ...authFormStyles.container,
+            flexDirection: 'column',
             overflowY: 'auto',
-            flex: 1,
-            minHeight: 0,
           }}
         >
-          <RegisterFormViewModel churchesData={churchesData} positionsData={positionsData} />
+          <Box sx={{ flexShrink: 0 }}>
+            <Typography variant="h3" sx={authFormStyles.form.title}>
+              {title}
+            </Typography>
+            <Typography variant="body2" sx={authFormStyles.form.subTitle}>
+              {subTitle}
+            </Typography>
+          </Box>
+          <Box
+            sx={{
+              ...authFormStyles.form.container,
+              overflowY: 'auto',
+              flex: 1,
+              minHeight: 0,
+            }}
+          >
+            <RegisterFormViewModel churchesData={churchesData} positionsData={positionsData} />
+          </Box>
         </Box>
       </Box>
     </Box>

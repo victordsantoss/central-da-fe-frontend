@@ -14,7 +14,7 @@ export const authFormStyles: {
     minWidth: { xs: '95%', md: '400px', lg: '600px' },
     maxWidth: '95%',
     height: 'auto',
-    maxHeight: '70%',
+    maxHeight: { xs: '70%', md: '80%' },
     display: 'flex',
     justifyContent: 'center',
     gap: { xs: 2, md: 4 },

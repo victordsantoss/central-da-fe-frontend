@@ -8,7 +8,7 @@ import { TooltipStyles } from './components/tooltip';
 const defaultTheme = createTheme({
   palette: {
     primary: {
-      main: '#111111',
+      main: '#464044',
       contrastText: '#EAEAEA',
     },
     secondary: {
