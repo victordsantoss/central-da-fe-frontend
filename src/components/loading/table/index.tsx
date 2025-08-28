@@ -27,7 +27,7 @@ export default function TableSkeleton() {
         />
       </Stack>
       <Stack
-        gap={{ xs: 1, md: 2 }}
+        gap={{ xs: 2, md: 3 }}
         display="flex"
         sx={{
           flexDirection: { xs: 'column', md: 'row' },
@@ -48,9 +48,9 @@ export default function TableSkeleton() {
         />
       </Stack>
 
-      <Stack gap={{ xs: 1, md: 2 }}>
+      <Stack gap={{ xs: 2, md: 3 }}>
         {Array.from({ length: rows }).map((_, row) => (
-          <Stack key={row} direction="row" gap={{ xs: 1, md: 2 }}>
+          <Stack key={row} direction="row" gap={{ xs: 2, md: 3 }}>
             {Array.from({ length: columns }).map((_, col) => (
               <Skeleton
                 key={col}
@@ -65,7 +65,7 @@ export default function TableSkeleton() {
       </Stack>
 
       <Stack justifyContent="center" direction="row">
-        <Stack direction="row" gap={{ xs: 1, md: 2 }}>
+        <Stack direction="row" gap={{ xs: 2, md: 3 }}>
           {Array.from({ length: 2 }).map((_, i) => (
             <Skeleton
               key={i}

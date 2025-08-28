@@ -9,7 +9,7 @@ export const loginFormStyles: {
       width: '100%',
       display: 'flex',
       flexDirection: 'column',
-      gap: { xs: 1, md: 2 },
+      gap: { xs: 2, md: 3 },
       [defaultTheme.breakpoints.down('md')]: {
         width: '100%',
       },

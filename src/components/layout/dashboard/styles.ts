@@ -35,7 +35,7 @@ export const miniDrawerStyles: {
   },
 
   logoutButton: (open: boolean) => theme => ({
-    color: theme.palette.secondary.main,
+    color: theme.palette.error.main,
     position: 'absolute',
     bottom: 16,
     left: '50%',
@@ -46,16 +46,17 @@ export const miniDrawerStyles: {
     alignItems: 'center',
     paddingX: 2,
     paddingY: 1,
-    border: `1px solid ${theme.palette.secondary.main}`,
+    border: `1px solid ${theme.palette.error.main}`,
     borderRadius: theme.spacing(1),
   }),
 
-  logoutText: (open: boolean) => ({
+  logoutText: (open: boolean) => theme => ({
     marginLeft: 1,
     display: open ? 'flex' : 'none',
     justifyContent: 'end',
     mr: 'auto',
     fontWeight: 600,
+    color: theme.palette.error.main,
   }),
 
   main: {

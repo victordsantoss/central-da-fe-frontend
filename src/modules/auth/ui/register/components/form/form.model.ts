@@ -2,7 +2,7 @@ import { useRouter } from 'next/navigation';
 import { RegisterFormValues, RegisterSchema } from './form.schema';
 import { useAlert } from '@/contexts/alert.context';
 import { useMutation } from '@tanstack/react-query';
-import { AuthService } from '@/services/client/auth.services.';
+import { AuthService } from '@/services/client/auth.services';
 import { isAxiosError } from 'axios';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';

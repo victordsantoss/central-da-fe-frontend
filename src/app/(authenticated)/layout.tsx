@@ -7,8 +7,11 @@ import { MenuProvider } from '@/contexts/menu.context';
 import { withAuth } from '@/hoc/with-auth.hoc';
 import TanstackProvider from '@/providers/tanstack.provider';
 import React from 'react';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import 'dayjs/locale/pt-br';
 
-export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+export default function DashboardLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const WrappedComponent = withAuth(() => <>{children}</>);
   return (
     <AlertProvider>
@@ -16,7 +19,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <MenuProvider>
           <TanstackProvider>
             <DashboardLayoutComponent>
-              <WrappedComponent />
+              <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="pt-br">
+                <WrappedComponent />
+              </LocalizationProvider>
             </DashboardLayoutComponent>
           </TanstackProvider>
         </MenuProvider>

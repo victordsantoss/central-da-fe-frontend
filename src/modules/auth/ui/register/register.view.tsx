@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material';
-import { defaultContainerStyles } from '@/common/utils/styles';
+import { defaultContainerStyles, formStyles } from '@/common/utils/styles';
 import { authFormStyles } from '../styles';
 import RegisterFormViewModel from './components/form';
 import { Church } from '@/services/domain/church.types';
@@ -25,10 +25,10 @@ const RegisterView = ({ churchesData, positionsData }: RegisterViewProps) => {
           }}
         >
           <Box sx={{ flexShrink: 0 }}>
-            <Typography variant="h3" sx={authFormStyles.form.title}>
+            <Typography variant="h3" sx={formStyles.title}>
               {title}
             </Typography>
-            <Typography variant="body2" sx={authFormStyles.form.subTitle}>
+            <Typography variant="body2" sx={formStyles.subTitle}>
               {subTitle}
             </Typography>
           </Box>

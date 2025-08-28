@@ -3,12 +3,12 @@ import defaultTheme from '@/configs/styles/theme/default-theme';
 
 export const authFormStyles: {
   container: SxProps<Theme>;
-  form: Record<'title' | 'subTitle' | 'container' | 'action', SxProps<Theme>>;
+  form: Record<'container' | 'action', SxProps<Theme>>;
   divider: Record<'section' | 'icon', SxProps<Theme>>;
 } = {
   container: {
     backgroundColor: defaultTheme.palette.background.default,
-    padding: { xs: 2, md: 4 },
+    padding: { xs: 2, md: 3 },
     borderRadius: 2,
     width: 'auto',
     minWidth: { xs: '95%', md: '400px', lg: '600px' },
@@ -17,24 +17,15 @@ export const authFormStyles: {
     maxHeight: { xs: '70%', md: '80%' },
     display: 'flex',
     justifyContent: 'center',
-    gap: { xs: 2, md: 4 },
+    gap: { xs: 2, md: 3 },
     boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.5)',
   },
 
   form: {
-    title: {
-      textAlign: 'center',
-      fontWeight: 'bold',
-      color: defaultTheme.palette.primary.main,
-    },
-    subTitle: {
-      textAlign: 'center',
-      color: defaultTheme.palette.primary.main,
-    },
     container: {
       display: 'flex',
       flexDirection: 'column',
-      gap: { xs: 1, md: 2 },
+      gap: { xs: 2, md: 3 },
     },
     action: {
       color: 'primary.main',

@@ -54,7 +54,7 @@ const TableView = <T,>({
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        gap: { xs: 1, md: 2 },
+        gap: { xs: 2, md: 3 },
       }}
     >
       {/* Controles de paginação */}
@@ -63,7 +63,7 @@ const TableView = <T,>({
           display: 'flex',
           justifyContent: { xs: 'center', md: 'space-between' },
           alignItems: 'center',
-          gap: { xs: 1, md: 2 },
+          gap: { xs: 2, md: 3 },
         }}
       >
         <Button
@@ -79,7 +79,7 @@ const TableView = <T,>({
         <Box
           sx={{
             display: { xs: 'none', md: 'flex' },
-            gap: { xs: 1, md: 2 },
+            gap: { xs: 2, md: 3 },
             flexWrap: 'wrap',
           }}
         >
@@ -130,7 +130,7 @@ const TableView = <T,>({
       <Box
         sx={{
           display: { xs: 'flex', md: 'none' },
-          gap: { xs: 1, md: 2 },
+          gap: { xs: 2, md: 3 },
           flexWrap: 'wrap',
           mx: 'auto',
         }}

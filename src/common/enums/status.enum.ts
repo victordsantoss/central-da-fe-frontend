@@ -1,4 +1,4 @@
 export enum BaseStatusModel {
-  ACTIVE = 'ATIVO',
-  INACTIVE = 'INATIVO',
+  ACTIVE = 'Ativo',
+  INACTIVE = 'Inativo',
 }

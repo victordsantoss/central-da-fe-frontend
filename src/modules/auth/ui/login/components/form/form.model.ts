@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useAlert } from '@/contexts/alert.context';
 import { isAxiosError } from 'axios';
 import { useMutation } from '@tanstack/react-query';
-import { AuthService } from '@/services/client/auth.services.';
+import { AuthService } from '@/services/client/auth.services';
 import { useAuth } from '@/contexts/auth.context';
 import { AuthCookie } from '@/storages/cookies/auth.cookies';
 export const useLoginFormModel = () => {

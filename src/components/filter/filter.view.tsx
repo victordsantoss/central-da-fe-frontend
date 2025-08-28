@@ -48,12 +48,12 @@ export const FilterView = ({
   AdvancedFilter,
 }: IFilterViewProps) => {
   return (
-    <Box width="100%" display="flex" flexDirection={'column'} gap={{ xs: 1, md: 2 }}>
+    <Box width="100%" display="flex" flexDirection={'column'} gap={{ xs: 2, md: 3 }}>
       <Box
         width="100%"
         display="flex"
         alignItems="center"
-        gap={{ xs: 1, md: 2 }}
+        gap={{ xs: 2, md: 3 }}
         sx={{
           flexDirection: { xs: 'column', md: 'row' },
         }}
@@ -129,7 +129,7 @@ export const FilterView = ({
           }}
           renderOption={(props, option) => (
             <li {...props} key={option.value}>
-              <Box display={'flex'} alignItems={'center'} gap={{ xs: 1, md: 2 }}>
+              <Box display={'flex'} alignItems={'center'} gap={{ xs: 2, md: 3 }}>
                 {option.value === SortOptionsValues.ASC ? (
                   <ArrowUpwardIcon color="primary" />
                 ) : (
@@ -172,7 +172,7 @@ export const FilterView = ({
             sx={{
               display: 'flex',
               alignItems: 'center',
-              gap: { xs: 1, md: 2 },
+              gap: { xs: 2, md: 3 },
               '&:hover': {
                 borderRadius: 1,
                 backgroundColor: 'action.hover',
@@ -185,7 +185,7 @@ export const FilterView = ({
         </Box>
       </Divider>
       <Collapse in={showAdvancedFilters} timeout="auto">
-        <Box display="flex" alignItems="center" gap={{ xs: 1, md: 2 }}>
+        <Box display="flex" alignItems="center" gap={{ xs: 2, md: 3 }}>
           {AdvancedFilter}
         </Box>
       </Collapse>

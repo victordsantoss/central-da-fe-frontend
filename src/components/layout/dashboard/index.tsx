@@ -16,7 +16,7 @@ import AppBar from './components/app-bar';
 import Drawer from './components/drawer';
 import CustomList from './components/custom-list';
 import { Tooltip } from '@mui/material';
-import { AuthService } from '@/services/client/auth.services.';
+import { AuthService } from '@/services/client/auth.services';
 import { useMutation } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 import { useAlert } from '@/contexts/alert.context';
@@ -29,7 +29,7 @@ import { AuthCookie } from '@/storages/cookies/auth.cookies';
 
 const drawerWidth = 240;
 
-export default function MiniDrawer({ children }: { children: React.ReactNode }) {
+export default function MiniDrawer({ children }: Readonly<{ children: React.ReactNode }>) {
   const { current } = useMenu();
   const { push } = useRouter();
   const theme = useTheme();

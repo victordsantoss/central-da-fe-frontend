@@ -1,5 +1,5 @@
 import { Box, Divider, Typography } from '@mui/material';
-import { defaultContainerStyles } from '@/common/utils/styles';
+import { defaultContainerStyles, formStyles } from '@/common/utils/styles';
 
 import { loginFormStyles } from './styles';
 
@@ -17,10 +17,10 @@ export const LoginView = () => {
       <Box sx={authFormStyles.container}>
         <Box sx={loginFormStyles.sections.form}>
           <Box>
-            <Typography variant="h3" sx={authFormStyles.form.title}>
+            <Typography variant="h3" sx={formStyles.title}>
               {title}
             </Typography>
-            <Typography variant="body2" sx={authFormStyles.form.subTitle}>
+            <Typography variant="body2" sx={formStyles.subTitle}>
               {subTitle}
             </Typography>
           </Box>
