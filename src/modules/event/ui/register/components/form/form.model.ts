@@ -32,7 +32,6 @@ export const useRegisterEventFormModel = (churchesData: Church.IListChurchesResp
         city: '',
         state: '',
         zipCode: '',
-        country: 'Brasil',
       },
     },
   });
@@ -44,7 +43,7 @@ export const useRegisterEventFormModel = (churchesData: Church.IListChurchesResp
     },
     onSuccess: async () => {
       showAlert('Evento cadastrado com sucesso!', 'success');
-      push('event/dashboard');
+      push('/event/dashboard');
     },
   });
 

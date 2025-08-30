@@ -32,10 +32,10 @@ export const useRegisterFormModel = () => {
     },
     onSuccess: () => {
       showAlert(
-        'Usuário registrado com sucesso! Você será redirecionado para a página de login.',
+        'Usuário registrado com sucesso!',
         'success'
       );
-      wait(2000).then(() => push('/login'));
+      wait(2000).then(() => push('/success'));
     },
   });
 
