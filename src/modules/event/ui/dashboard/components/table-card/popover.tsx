@@ -51,7 +51,6 @@ export const EventTableCardPopover = ({
       >
         <ListItemButton
           onClick={() => onView(item.id)}
-          disabled
           sx={{
             '&:hover': {
               backgroundColor: 'action.hover',

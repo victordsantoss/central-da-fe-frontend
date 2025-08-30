@@ -7,6 +7,7 @@ import { Dayjs } from 'dayjs';
 export namespace Event {
   export type IListEventsRequest = IPaginatedRequest;
   export type IListEventsResponse = IPaginatedResponse<EventModel>;
+  export type IGetEventResponse = EventModel;
   export type IRegisterEventRequest = {
     name: string;
     description: string;

@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export const useEventTableCardModel = () => {
+  const router = useRouter();
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
@@ -14,8 +16,10 @@ export const useEventTableCardModel = () => {
   };
 
   const onView = (id: string) => {
-    console.log(id);
+    router.push(`/event/detail/${id}`);
+    handleClosePopover();
   };
+  
   const onEdit = (id: string) => {
     console.log(id);
   };

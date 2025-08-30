@@ -17,3 +17,16 @@ export async function listEvents(filters: Event.IListEventsRequest) {
     filters
   );
 }
+
+export async function getEventById(id: string) {
+  return await apiFetch<IFetchSuccessResponse<Event.IGetEventResponse>>(
+    `/event/${id}`,
+    {
+      method: 'GET',
+      next: {
+        tags: ['get-event', id],
+      },
+      cache: 'no-cache',
+    }
+  );
+}

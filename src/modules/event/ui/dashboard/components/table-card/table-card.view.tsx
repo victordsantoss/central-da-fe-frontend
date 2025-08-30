@@ -125,7 +125,7 @@ const EventTableCardView = ({
           >
             <Stack direction="row" spacing={1} alignItems="center">
               <EventIcon color="info" />
-              <Typography variant="body2">{formatDateAndTime(item.startDate)}</Typography>
+              <Typography variant="body2">{formatDateAndTime(new Date(item.startDate))}</Typography>
             </Stack>
 
             <Stack direction="row" spacing={1} alignItems="center">

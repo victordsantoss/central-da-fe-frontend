@@ -11,6 +11,7 @@ export type EventModel = {
   status: EventStatus;
   type: EventType;
   category: EventCategory;
+  price?: number;
   churchId: string;
   churchName: string;
   addressName: string;
