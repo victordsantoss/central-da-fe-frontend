@@ -18,7 +18,7 @@ export const authFormStyles: {
     display: 'flex',
     justifyContent: 'center',
     gap: { xs: 2, md: 3 },
-    boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.5)',
+    border: `1px solid ${defaultTheme.palette.secondary.main}`,
   },
 
   form: {
@@ -28,7 +28,7 @@ export const authFormStyles: {
       gap: { xs: 2, md: 3 },
     },
     action: {
-      color: 'primary.main',
+      color: defaultTheme.palette.text.primary,
       textDecoration: 'underline',
       cursor: 'pointer',
     },
