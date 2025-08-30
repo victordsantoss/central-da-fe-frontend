@@ -20,10 +20,10 @@ export const menuItems: IMenuItem[] = [
     icon: <CalendarMonthIcon />,
     url: '',
     items: [
-      { text: 'Programação', url: '/programation/dashboard' },
+      // { text: 'Programação', url: '/programation/dashboard' },
       { text: 'Eventos', url: '/event/dashboard' },
-      { text: 'Cursos', url: '/course/dashboard' },
-      { text: 'Ministérios', url: '/ministry/dashboard' },
+      // { text: 'Cursos', url: '/course/dashboard' },
+      // { text: 'Ministérios', url: '/ministry/dashboard' },
     ],
   },
   {
@@ -31,15 +31,15 @@ export const menuItems: IMenuItem[] = [
     icon: <ChurchIcon />,
     url: '',
     items: [
-      { text: 'Membros', icon: <AttachMoneyIcon />, url: '/members' },
-      { text: 'Congregações', icon: <AssignmentIcon />, url: '/churches' },
-      { text: 'Cargos', icon: <AttachMoneyIcon />, url: '/positions' },
+      // { text: 'Membros', icon: <AttachMoneyIcon />, url: '/members' },
+      // { text: 'Congregações', icon: <AssignmentIcon />, url: '/churches' },
+      // { text: 'Cargos', icon: <AttachMoneyIcon />, url: '/positions' },
     ],
   },
   {
     text: 'Configurações',
     icon: <SettingsIcon />,
     url: '',
-    items: [{ text: 'Meu Perfil', icon: <PersonIcon />, url: '/perfil' }],
+    // items: [{ text: 'Meu Perfil', icon: <PersonIcon />, url: '/perfil' }],
   },
 ];

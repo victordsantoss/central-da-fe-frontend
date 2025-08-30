@@ -16,6 +16,7 @@ export async function listEvents(filters: Event.IListEventsRequest) {
     },
     filters
   );
+<<<<<<< Updated upstream
 }
 
 export async function getEventById(id: string) {
@@ -30,3 +31,6 @@ export async function getEventById(id: string) {
     }
   );
 }
+=======
+}
+>>>>>>> Stashed changes
