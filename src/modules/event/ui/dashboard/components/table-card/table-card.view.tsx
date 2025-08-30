@@ -73,29 +73,11 @@ const EventTableCardView = ({
                 <Typography variant="h6" fontWeight={700}>
                   {item.name}
                 </Typography>
-                <Chip
-                  label={item.category || EventCategory.EVENT}
-                  color={getEventCategoryColor(item.category || EventCategory.EVENT)}
-                  variant="outlined"
-                  size="small"
-                />
-                <Chip
-                  label={item.type || EventType.FREE}
-                  color={getEventTypeColor(item.type || EventType.FREE)}
-                  variant="outlined"
-                  size="small"
-                />
               </Box>
               <Typography variant="body2">{item.description}</Typography>
             </Box>
           </Box>
           <Box sx={{ alignItems: 'center', display: { xs: 'none', md: 'flex' } }}>
-            <Chip
-              label={item.status}
-              color={getEventStatusColor(item.status)}
-              size="small"
-              variant="outlined"
-            />
             <CardActions sx={{ justifyContent: 'flex-end' }}>
               <IconButton
                 color="inherit"
@@ -139,9 +121,24 @@ const EventTableCardView = ({
             </Stack>
           </Stack>
           <Stack direction="row" spacing={2} alignItems="center">
-            <Chip label={`Inscritos: 10`} color={'error'} variant="outlined" size="small" />
-            <Chip label={`Pagos: 10`} color={'error'} variant="outlined" size="small" />
-            <Chip label={`Total: R$ 1000,00`} color={'success'} variant="outlined" size="small" />
+            <Chip
+              label={item.category || EventCategory.EVENT}
+              color={getEventCategoryColor(item.category || EventCategory.EVENT)}
+              variant="outlined"
+              size="small"
+            />
+            <Chip
+              label={item.type || EventType.FREE}
+              color={getEventTypeColor(item.type || EventType.FREE)}
+              variant="outlined"
+              size="small"
+            />
+            <Chip
+              label={item.status}
+              color={getEventStatusColor(item.status)}
+              size="small"
+              variant="outlined"
+            />
           </Stack>
         </Stack>
       </CardContent>
@@ -154,7 +151,7 @@ const EventTableCardView = ({
         onEdit={onEdit}
         onDelete={onDelete}
       />
-    </Box>
+    </Box >
   );
 };
 

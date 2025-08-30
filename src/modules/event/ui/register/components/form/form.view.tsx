@@ -379,6 +379,7 @@ const RegisterEventFormView: React.FC<IRegisterEventFormProps> = ({
                   <Button
                     type="submit"
                     variant="contained"
+                    disabled={isPending}
                     sx={{ ml: 'auto', width: { xs: '100%', sm: 'auto' } }}
                   >
                     {isPending ? <CircularProgress size={20} /> : 'Cadastrar Evento'}

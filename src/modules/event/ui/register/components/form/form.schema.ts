@@ -10,7 +10,6 @@ const addressSchema = z.object({
   city: z.string().min(1, 'A cidade é obrigatória'),
   state: z.string().min(1, 'O estado é obrigatório'),
   zipCode: z.string().min(1, 'O CEP é obrigatório'),
-  country: z.string().default('Brasil'),
 });
 
 const RegisterEventSchema = z
