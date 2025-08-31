@@ -9,8 +9,6 @@ export const useEventDashboardModel = () => {
 
   const orderOptions: Option[] = [
     { value: 'name', label: 'Nome' },
-    { value: 'registereds', label: 'Inscritos' },
-    { value: 'startDate', label: 'Data Início' },
   ];
 
   return {

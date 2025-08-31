@@ -1,9 +1,9 @@
 'use client';
 
-import { SuccessView } from "../ui/success"
+import { SuccessView } from '../ui/success';
 
 export function SuccessPage() {
-  return <SuccessView />
+  return <SuccessView />;
 }
 
-export default SuccessPage
+export default SuccessPage;

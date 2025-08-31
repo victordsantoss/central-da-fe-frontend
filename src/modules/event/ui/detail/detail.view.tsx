@@ -23,6 +23,7 @@ import {
   getEventTypeColor,
 } from '@/modules/event/mappers/event.mapper';
 import { EventCategory, EventType } from '@/common/enums/event.enum';
+import { formStyles } from '@/common/utils/styles';
 
 interface IEventDetailViewProps {
   eventData: Event.IGetEventResponse;
@@ -30,23 +31,20 @@ interface IEventDetailViewProps {
   onEditClick: (id: string) => void;
 }
 
-export const EventDetailView = ({
-  eventData,
-  onBackClick,
-  onEditClick,
-}: IEventDetailViewProps) => {
+export const EventDetailView = ({ eventData, onBackClick, onEditClick }: IEventDetailViewProps) => {
   return (
-    <Box display="flex" flexDirection="column" gap={1}>
+    <Box display="flex" flexDirection="column" gap={2}>
       <Box display="flex" alignItems="center" gap={2}>
-        <IconButton onClick={onBackClick} color="primary">
-          <ArrowBackIcon />
+        <IconButton onClick={onBackClick} sx={{ backgroundColor: 'secondary.main' }}>
+          <ArrowBackIcon sx={{ color: 'text.primary' }} />
         </IconButton>
-        <Typography variant="h3" fontWeight={700}>
+        <Typography variant="h3" sx={{ ...formStyles.title, textAlign: 'left' }}>
           Detalhes do Evento
         </Typography>
         <Box sx={{ ml: 'auto' }}>
           <Button
             variant="contained"
+            color="secondary"
             startIcon={<EditIcon />}
             onClick={() => onEditClick(eventData.id)}
           >
@@ -99,8 +97,7 @@ export const EventDetailView = ({
               >
                 {eventData.price && eventData.price > 0
                   ? `R$ ${eventData.price.toFixed(2)}`
-                  : 'Gratuito'
-                }
+                  : 'Gratuito'}
               </Typography>
             </Box>
           </Box>
@@ -112,7 +109,7 @@ export const EventDetailView = ({
               <Stack spacing={3}>
                 <Box>
                   <Box display="flex" alignItems="center" gap={1} mb={1}>
-                    <DescriptionIcon color="primary" />
+                    <DescriptionIcon sx={{ color: 'text.secondary' }} />
                     <Typography variant="h6" fontWeight={600}>
                       Descrição
                     </Typography>
@@ -124,7 +121,7 @@ export const EventDetailView = ({
 
                 <Box>
                   <Box display="flex" alignItems="center" gap={1} mb={1}>
-                    <EventIcon color="primary" />
+                    <EventIcon sx={{ color: 'text.secondary' }} />
                     <Typography variant="h6" fontWeight={600}>
                       Data e Hora
                     </Typography>
@@ -145,7 +142,7 @@ export const EventDetailView = ({
               <Stack spacing={3}>
                 <Box>
                   <Box display="flex" alignItems="center" gap={1} mb={1}>
-                    <ChurchIcon color="primary" />
+                    <ChurchIcon sx={{ color: 'text.secondary' }} />
                     <Typography variant="h6" fontWeight={600}>
                       Igreja
                     </Typography>
@@ -157,7 +154,7 @@ export const EventDetailView = ({
 
                 <Box>
                   <Box display="flex" alignItems="center" gap={1} mb={1}>
-                    <LocationOnIcon color="primary" />
+                    <LocationOnIcon sx={{ color: 'text.secondary' }} />
                     <Typography variant="h6" fontWeight={600}>
                       Localização
                     </Typography>
@@ -173,4 +170,4 @@ export const EventDetailView = ({
       </Card>
     </Box>
   );
-}; 
+};

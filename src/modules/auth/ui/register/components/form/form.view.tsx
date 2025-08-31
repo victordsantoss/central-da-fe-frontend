@@ -263,13 +263,7 @@ export const RegisterFormView = (props: IRegisterFormViewProps) => {
             placement="top"
           >
             <span style={{ width: '100%' }}>
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                fullWidth
-                disabled={isPending || !methods.formState.isValid}
-              >
+              <Button type="submit" variant="contained" color="secondary" fullWidth>
                 {isPending ? <CircularProgress size={20} /> : 'Registrar'}
               </Button>
             </span>

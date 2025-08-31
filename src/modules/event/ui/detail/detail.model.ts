@@ -15,4 +15,4 @@ export const useEventDetailModel = () => {
     onBackClick,
     onEditClick,
   };
-}; 
+};

@@ -60,7 +60,11 @@ const RegisterEventFormView: React.FC<IRegisterEventFormProps> = ({
           <Stack spacing={{ xs: 2, md: 3 }} width="100%">
             <Card>
               <CardContent>
-                <Typography variant="h6" mb={{ xs: 2, md: 3 }} sx={{ ...formStyles.title, textAlign: 'left' }}>
+                <Typography
+                  variant="h6"
+                  mb={{ xs: 2, md: 3 }}
+                  sx={{ ...formStyles.title, textAlign: 'left' }}
+                >
                   Dados Básicos
                 </Typography>
                 <Stack spacing={{ xs: 2, md: 3 }}>
@@ -369,17 +373,27 @@ const RegisterEventFormView: React.FC<IRegisterEventFormProps> = ({
                 </Stack>
               </CardContent>
             </Card>
-            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 2, md: 3 }} justifyContent="space-between">
-              <Button type="button" variant="outlined" onClick={() => push('/event/dashboard')}>
+            <Stack
+              direction={{ xs: 'column', sm: 'row' }}
+              spacing={{ xs: 2, md: 3 }}
+              justifyContent="space-between"
+            >
+              <Button
+                type="button"
+                variant="outlined"
+                onClick={() => push('/event/dashboard')}
+                color="primary"
+              >
                 Voltar
               </Button>
 
               <Tooltip title="Cadastrar Evento" placement="top" sx={{ width: '100%' }}>
-                <span >
+                <span>
                   <Button
                     type="submit"
                     variant="contained"
                     disabled={isPending}
+                    color="secondary"
                     sx={{ ml: 'auto', width: { xs: '100%', sm: 'auto' } }}
                   >
                     {isPending ? <CircularProgress size={20} /> : 'Cadastrar Evento'}

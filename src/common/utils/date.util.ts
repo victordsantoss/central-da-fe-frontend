@@ -5,13 +5,13 @@ export const formatDateAndTime = (date: Date) => {
     year: 'numeric',
     timeZone: 'America/Sao_Paulo',
   });
-  
+
   const timeStr = date.toLocaleTimeString('pt-BR', {
     hour: '2-digit',
     minute: '2-digit',
     timeZone: 'America/Sao_Paulo',
   });
-  
+
   return `${dateStr} às ${timeStr}`;
 };
 

@@ -8,4 +8,4 @@ interface IPageProps {
 
 export default async function Page({ params }: IPageProps) {
   return <EventDetailPage params={params} />;
-} 
+}

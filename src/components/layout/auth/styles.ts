@@ -9,7 +9,7 @@ export const authLayoutStyle: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#EAEAEA',
+    backgroundColor: defaultTheme.palette.background.default,
     minHeight: '100vh',
     height: '100%',
     width: '100vw',

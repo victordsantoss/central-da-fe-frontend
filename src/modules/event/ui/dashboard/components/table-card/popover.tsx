@@ -1,4 +1,4 @@
-import { Popover, List, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import { Popover, List, ListItemButton, ListItemIcon, ListItemText, alpha } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -42,7 +42,8 @@ export const EventTableCardPopover = ({
         sx={{
           width: '100%',
           maxWidth: 360,
-          bgcolor: 'background.paper',
+          bgcolor: 'text.secondary',
+          color: 'text.primary',
           borderRadius: 1,
           boxShadow: 3,
         }}
@@ -53,17 +54,17 @@ export const EventTableCardPopover = ({
           onClick={() => onView(item.id)}
           sx={{
             '&:hover': {
-              backgroundColor: 'action.hover',
+              backgroundColor: theme => alpha(theme.palette.secondary.main, 0.5),
             },
           }}
         >
           <ListItemIcon>
-            <VisibilityIcon />
+            <VisibilityIcon sx={{ color: 'text.primary' }} />
           </ListItemIcon>
           <ListItemText
             primary="Visualizar"
             sx={{
-              color: 'primary.main',
+              color: 'text.primary',
             }}
           />
         </ListItemButton>
@@ -72,17 +73,17 @@ export const EventTableCardPopover = ({
           disabled
           sx={{
             '&:hover': {
-              backgroundColor: 'action.hover',
+              backgroundColor: theme => alpha(theme.palette.secondary.main, 0.5),
             },
           }}
         >
           <ListItemIcon>
-            <EditIcon />
+            <EditIcon sx={{ color: 'text.primary' }} />
           </ListItemIcon>
           <ListItemText
             primary="Editar"
             sx={{
-              color: 'primary.main',
+              color: 'text.primary',
             }}
           />
         </ListItemButton>
@@ -91,17 +92,17 @@ export const EventTableCardPopover = ({
           disabled
           sx={{
             '&:hover': {
-              backgroundColor: 'error.light',
+              backgroundColor: theme => alpha(theme.palette.secondary.main, 0.5),
             },
           }}
         >
           <ListItemIcon>
-            <DeleteIcon color="error" />
+            <DeleteIcon sx={{ color: 'text.primary' }} />
           </ListItemIcon>
           <ListItemText
             primary="Excluir"
             sx={{
-              color: 'error.main',
+              color: 'text.primary',
             }}
           />
         </ListItemButton>

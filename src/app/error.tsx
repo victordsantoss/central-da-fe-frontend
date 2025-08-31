@@ -3,6 +3,7 @@
 import { Box, Typography, Button, Stack } from '@mui/material';
 import Link from 'next/link';
 import { useEffect } from 'react';
+import Image from 'next/image';
 
 export default function ErrorPage({
   error,
@@ -27,9 +28,7 @@ export default function ErrorPage({
         p: 4,
       }}
     >
-      <Typography variant="h2" color="error.main" fontWeight={700} gutterBottom>
-        Ops!
-      </Typography>
+      <Image src="/assets/gifs/error.gif" alt="logo" width={128} height={128} />
 
       <Typography variant="h5" gutterBottom textAlign="center">
         Algo inesperado aconteceu.

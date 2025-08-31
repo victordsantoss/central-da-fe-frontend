@@ -1,35 +1,37 @@
-import { Box, Button, Card, CardContent, CircularProgress, TextField, Typography } from "@mui/material"
-import { Controller, FormProvider } from "react-hook-form"
-import { useEventInscriptionFormModel } from "./form.model"
-import Image from "next/image"
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  CircularProgress,
+  TextField,
+  Typography,
+} from '@mui/material';
+import { Controller, FormProvider } from 'react-hook-form';
+import { useEventInscriptionFormModel } from './form.model';
+import Image from 'next/image';
 
 interface IEventInscriptionFormViewProps {
-  readonly id: string
+  readonly id: string;
 }
 
 export function EventInscriptionFormView({ id }: IEventInscriptionFormViewProps) {
-
-
   if (isLoadingEvent) {
     return (
-      <Box sx={{ display: "flex", justifyContent: "center" }}>
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <CircularProgress />
       </Box>
-    )
+    );
   }
 
   if (!eventData) {
-    return (
-      <Typography color="error">
-        Evento não encontrado
-      </Typography>
-    )
+    return <Typography color="error">Evento não encontrado</Typography>;
   }
 
   return (
     <Card>
       <CardContent>
-        <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
           <Typography variant="h3" component="h1">
             NOME TESTE
           </Typography>
@@ -37,15 +39,9 @@ export function EventInscriptionFormView({ id }: IEventInscriptionFormViewProps)
             <Typography variant="subtitle1" fontWeight="bold">
               Detalhes do Evento TESTE
             </Typography>
-            <Typography>
-              Data: TESTE
-            </Typography>
-            <Typography>
-              Local: TESTE
-            </Typography>
-            <Typography>
-              Valor: TESTE
-            </Typography>
+            <Typography>Data: TESTE</Typography>
+            <Typography>Local: TESTE</Typography>
+            <Typography>Valor: TESTE</Typography>
           </Box>
 
           {/* <FormProvider {...methods}>
@@ -105,5 +101,5 @@ export function EventInscriptionFormView({ id }: IEventInscriptionFormViewProps)
         </Box>
       </CardContent>
     </Card>
-  )
+  );
 }

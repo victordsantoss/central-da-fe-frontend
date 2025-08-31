@@ -9,6 +9,9 @@ import {
   InputAdornment,
   TextField,
   Tooltip,
+  FormControlLabel,
+  Checkbox,
+  Typography,
 } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Controller, FormProvider, UseFormReturn } from 'react-hook-form';
@@ -21,6 +24,7 @@ interface ILoginFormProps {
   methods: UseFormReturn<LoginFormValues>;
   showPassword: boolean;
   handleTogglePasswordVisibility: () => void;
+  onForgotPassword?: () => void;
 }
 
 const LoginFormView: React.FC<ILoginFormProps> = ({
@@ -29,6 +33,7 @@ const LoginFormView: React.FC<ILoginFormProps> = ({
   methods,
   showPassword,
   handleTogglePasswordVisibility,
+  onForgotPassword,
 }) => {
   return (
     <Box component="form" onSubmit={methods.handleSubmit(onSubmit)} sx={formStyles.container}>
@@ -70,6 +75,7 @@ const LoginFormView: React.FC<ILoginFormProps> = ({
                             aria-label="toggle password visibility"
                             onClick={handleTogglePasswordVisibility}
                             edge="end"
+                            sx={{ color: 'text.primary' }}
                           >
                             {showPassword ? <VisibilityOff /> : <Visibility />}
                           </IconButton>
@@ -81,6 +87,49 @@ const LoginFormView: React.FC<ILoginFormProps> = ({
               </Box>
             )}
           />
+
+          {onForgotPassword && (
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <Typography
+                component="span"
+                variant="body2"
+                onClick={onForgotPassword}
+                sx={{
+                  color: 'text.primary',
+                  cursor: 'pointer',
+                  textDecoration: 'underline',
+                  '&:hover': {
+                    color: 'text.secondary',
+                  },
+                }}
+              >
+                Esqueci minha senha
+              </Typography>
+            </Box>
+          )}
+
+          <Controller
+            name="rememberMe"
+            control={methods.control}
+            render={({ field }) => (
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    {...field}
+                    checked={field.value}
+                    onChange={e => field.onChange(e.target.checked)}
+                    sx={{
+                      color: 'text.primary',
+                      '&.Mui-checked': {
+                        color: 'text.primary',
+                      },
+                    }}
+                  />
+                }
+                label="Lembrar login"
+              />
+            )}
+          />
         </Box>
         <Box sx={formStyles.buttonContainer}>
           <Tooltip
@@ -88,13 +137,7 @@ const LoginFormView: React.FC<ILoginFormProps> = ({
             placement="top"
           >
             <span style={{ width: '100%' }}>
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                fullWidth
-                disabled={isPending || !methods.formState.isValid}
-              >
+              <Button type="submit" variant="contained" fullWidth color="secondary">
                 {isPending ? <CircularProgress size={20} /> : 'Entrar'}
               </Button>
             </span>

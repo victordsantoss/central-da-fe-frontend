@@ -72,7 +72,7 @@ export const FilterView = ({
             input: {
               startAdornment: (
                 <InputAdornment position="start">
-                  <SearchIcon />
+                  <SearchIcon sx={{ color: 'text.primary' }} />
                 </InputAdornment>
               ),
               endAdornment: filterState.search ? (
@@ -83,7 +83,7 @@ export const FilterView = ({
                       debouncedUpdateQueryParam('search', null);
                     }}
                   >
-                    <CloseIcon />
+                    <CloseIcon sx={{ color: 'text.primary' }} />
                   </IconButton>
                 </InputAdornment>
               ) : (
@@ -102,7 +102,7 @@ export const FilterView = ({
           }}
           renderOption={(props, option) => (
             <li {...props} key={option.value}>
-              <Typography color="primary">{option.label}</Typography>
+              <Typography color="primary.main">{option.label}</Typography>
             </li>
           )}
           renderInput={params => (
@@ -111,8 +111,8 @@ export const FilterView = ({
               label="Ordenar por"
               variant="outlined"
               sx={{
-                '& .MuiInputBase-input': { color: 'primary.main' },
-                '& .MuiSvgIcon-root': { color: 'primary.main' },
+                '& .MuiInputBase-input': { color: 'text.primary' },
+                '& .MuiSvgIcon-root': { color: 'text.primary' },
               }}
             />
           )}
@@ -131,11 +131,11 @@ export const FilterView = ({
             <li {...props} key={option.value}>
               <Box display={'flex'} alignItems={'center'} gap={{ xs: 2, md: 3 }}>
                 {option.value === SortOptionsValues.ASC ? (
-                  <ArrowUpwardIcon color="primary" />
+                  <ArrowUpwardIcon sx={{ color: 'primary.main' }} />
                 ) : (
-                  <ArrowDownwardIcon color="primary" />
+                  <ArrowDownwardIcon sx={{ color: 'primary.main' }} />
                 )}
-                <Typography color="primary">{option.label}</Typography>
+                <Typography color="primary.main">{option.label}</Typography>
               </Box>
             </li>
           )}
@@ -145,8 +145,8 @@ export const FilterView = ({
               label="Ordem"
               variant="outlined"
               sx={{
-                '& .MuiInputBase-input': { color: 'primary.main' },
-                '& .MuiSvgIcon-root': { color: 'primary.main' },
+                '& .MuiInputBase-input': { color: 'text.primary' },
+                '& .MuiSvgIcon-root': { color: 'text.primary' },
               }}
             />
           )}
@@ -156,7 +156,7 @@ export const FilterView = ({
         <Button
           type="button"
           variant="contained"
-          color="primary"
+          color="secondary"
           onClick={onRegisterClick}
           sx={{ marginLeft: 'auto', width: { xs: '100%', md: '20%' }, height: '56px' }}
         >
@@ -179,8 +179,8 @@ export const FilterView = ({
               },
             }}
           >
-            <FilterListIcon />
-            <Typography>Filtros Avançados</Typography>
+            <FilterListIcon sx={{ color: 'text.primary' }} />
+            <Typography color="text.primary">Filtros Avançados</Typography>
           </IconButton>
         </Box>
       </Divider>

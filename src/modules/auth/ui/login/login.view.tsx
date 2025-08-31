@@ -26,7 +26,7 @@ export const LoginView = () => {
           </Box>
           <Box sx={authFormStyles.form.container}>
             <LoginFormViewModel />
-            <Divider orientation="horizontal" variant="middle" flexItem>
+            <Divider orientation="horizontal" variant="middle" flexItem color="primary">
               ou
             </Divider>
             <Typography variant="body2" textAlign="center" flex={1} component="div">

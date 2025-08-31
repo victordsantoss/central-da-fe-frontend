@@ -7,6 +7,7 @@ import {
   Typography,
   Chip,
   Divider,
+  Card,
 } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import EventIcon from '@mui/icons-material/Event';
@@ -45,22 +46,7 @@ const EventTableCardView = ({
   onDelete,
 }: IEventTableCardViewProps) => {
   return (
-    <Box
-      width="100%"
-      bgcolor="background.paper"
-      sx={{
-        borderRadius: 2,
-        boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-        border: '1px solid',
-        borderColor: 'divider',
-        transition: 'all 0.2s ease-in-out',
-        color: 'black',
-        '&:hover': {
-          boxShadow: '0 4px 16px rgba(0,0,0,0.15)',
-          transform: 'translateY(-2px)',
-        },
-      }}
-    >
+    <Card>
       <CardContent>
         <Stack
           direction={{ xs: 'column', md: 'row' }}
@@ -106,17 +92,17 @@ const EventTableCardView = ({
             alignItems={{ xs: 'flex-start', md: 'center' }}
           >
             <Stack direction="row" spacing={1} alignItems="center">
-              <EventIcon color="info" />
+              <EventIcon sx={{ color: 'text.secondary' }} />
               <Typography variant="body2">{formatDateAndTime(new Date(item.startDate))}</Typography>
             </Stack>
 
             <Stack direction="row" spacing={1} alignItems="center">
-              <ChurchIcon color="info" />
+              <ChurchIcon sx={{ color: 'text.secondary' }} />
               <Typography variant="body2">{item.churchName}</Typography>
             </Stack>
 
             <Stack direction="row" spacing={1} alignItems="center">
-              <LocationOnIcon color="info" />
+              <LocationOnIcon sx={{ color: 'text.secondary' }} />
               <Typography variant="body2">{item.addressName}</Typography>
             </Stack>
           </Stack>
@@ -151,7 +137,7 @@ const EventTableCardView = ({
         onEdit={onEdit}
         onDelete={onDelete}
       />
-    </Box >
+    </Card>
   );
 };
 

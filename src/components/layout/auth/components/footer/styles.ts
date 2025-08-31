@@ -1,4 +1,5 @@
 import { SxProps, Theme } from '@mui/material';
+import defaultTheme from '@/configs/styles/theme/default-theme';
 
 export const footerStyles: {
   container: SxProps<Theme>;
@@ -14,9 +15,8 @@ export const footerStyles: {
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    backgroundColor: defaultTheme.palette.secondary.main,
     backdropFilter: 'blur(10px)',
-    borderTop: '1px solid rgba(255, 255, 255, 0.1)',
     zIndex: 1000,
   },
   content: {

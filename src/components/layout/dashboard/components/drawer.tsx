@@ -13,6 +13,7 @@ const openedMixin = (theme: Theme, drawerWidth: number): CSSObject => ({
     duration: theme.transitions.duration.enteringScreen,
   }),
   overflowX: 'hidden',
+  backgroundColor: theme.palette.secondary.main,
 });
 
 const closedMixin = (theme: Theme): CSSObject => ({
@@ -22,6 +23,7 @@ const closedMixin = (theme: Theme): CSSObject => ({
   }),
   overflowX: 'hidden',
   width: `calc(${theme.spacing(7)} + 1px)`,
+  backgroundColor: theme.palette.secondary.main,
   [theme.breakpoints.up('sm')]: {
     width: `calc(${theme.spacing(8)} + 1px)`,
   },

@@ -14,4 +14,4 @@ const EventDetailViewModel = ({ eventData }: IEventDetailViewModelProps) => {
   return <EventDetailView eventData={eventData} {...methods} />;
 };
 
-export default EventDetailViewModel; 
+export default EventDetailViewModel;

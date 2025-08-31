@@ -21,7 +21,7 @@ const formStyles: {
     display: 'flex',
     flexDirection: 'column',
     gap: { xs: 2, md: 3 },
-    color: 'black',
+    color: defaultTheme.palette.text.primary,
   },
   formContainer: {
     display: 'flex',
@@ -41,11 +41,11 @@ const formStyles: {
   title: {
     textAlign: 'center',
     fontWeight: 'bold',
-    color: defaultTheme.palette.primary.main,
+    color: defaultTheme.palette.text.primary,
   },
   subTitle: {
     textAlign: 'center',
-    color: defaultTheme.palette.primary.main,
+    color: defaultTheme.palette.text.secondary,
   },
 };
 

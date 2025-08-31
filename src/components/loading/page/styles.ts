@@ -8,7 +8,7 @@ export const containerStyles: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: defaultTheme.palette.primary.main,
+    backgroundColor: defaultTheme.palette.background.default,
     height: '100vh',
   },
 };

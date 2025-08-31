@@ -31,16 +31,12 @@ export const useRegisterFormModel = () => {
       if (isAxiosError(error)) showAlert(error.response?.data.message, 'error');
     },
     onSuccess: () => {
-      showAlert(
-        'Usuário registrado com sucesso!',
-        'success'
-      );
+      showAlert('Usuário registrado com sucesso!', 'success');
       wait(2000).then(() => push('/success'));
     },
   });
 
   const onSubmit = (values: RegisterFormValues) => {
-    console.log(values);
     mutate(values);
   };
 

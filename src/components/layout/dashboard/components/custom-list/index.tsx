@@ -47,9 +47,9 @@ const CustomList: React.FC<ICustomListProps> = ({ open, setOpen }) => {
   const renderArrowIcon = (hasItems: boolean) => {
     if (!hasItems) return null;
     return expandedCategory ? (
-      <ArrowDropUpIcon sx={{ color: 'primary.main' }} />
+      <ArrowDropUpIcon sx={theme => ({ color: theme.palette.text.secondary })} />
     ) : (
-      <ArrowDropDownIcon sx={{ color: 'primary.main' }} />
+      <ArrowDropDownIcon sx={theme => ({ color: theme.palette.text.secondary })} />
     );
   };
 
@@ -57,6 +57,7 @@ const CustomList: React.FC<ICustomListProps> = ({ open, setOpen }) => {
     <List>
       {menuItems.map((category: IMenuItem) => {
         const hasActiveItem = category.items?.some(item => item.url === pathname);
+
         return (
           <div key={category.text}>
             <ListItem disablePadding sx={customListStyles.listItem}>
@@ -64,12 +65,11 @@ const CustomList: React.FC<ICustomListProps> = ({ open, setOpen }) => {
                 onClick={() => handleToggleCategory(category)}
                 sx={{
                   ...customListStyles.listItemButton(open),
+                  color: theme => theme.palette.text.primary,
                   bgcolor: theme =>
-                    hasActiveItem && !expandedCategory
-                      ? alpha(theme.palette.primary.contrastText, 1)
-                      : 'transparent',
+                    hasActiveItem ? alpha(theme.palette.primary.main, 0.3) : 'transparent',
                   '&:hover': {
-                    backgroundColor: theme => alpha(theme.palette.primary.contrastText, 0.2),
+                    backgroundColor: theme => alpha(theme.palette.primary.main, 1),
                   },
                 }}
               >
@@ -83,7 +83,7 @@ const CustomList: React.FC<ICustomListProps> = ({ open, setOpen }) => {
               </ListItemButton>
             </ListItem>
             <Collapse in={expandedCategory === category.text} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
+              <List component="div" sx={{ paddingX: 2 }}>
                 {category?.items?.map((item, index) => (
                   <ListItem
                     key={`${item.text}-${index}`}
@@ -92,10 +92,10 @@ const CustomList: React.FC<ICustomListProps> = ({ open, setOpen }) => {
                       ...customListStyles.listItem,
                       bgcolor: theme =>
                         getActive(item.url)
-                          ? alpha(theme.palette.primary.contrastText, 1)
+                          ? alpha(theme.palette.primary.main, 0.3)
                           : 'transparent',
                       '&:hover': {
-                        backgroundColor: theme => alpha(theme.palette.primary.contrastText, 0.2),
+                        backgroundColor: theme => alpha(theme.palette.background.default, 1),
                       },
                     }}
                     onClick={() => handleToggleItem(item)}

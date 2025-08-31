@@ -1,7 +1,7 @@
 'use client';
 
-import { EventInscriptionView } from "./inscription.view";
-import { Event } from "@/services/domain/event.types";
+import { EventInscriptionView } from './inscription.view';
+import { Event } from '@/services/domain/event.types';
 
 interface IEventInscriptionViewModelProps {
   readonly id: string;
@@ -12,4 +12,4 @@ const EventInscriptionViewModel = ({ id, eventData }: IEventInscriptionViewModel
   return <EventInscriptionView id={id} eventData={eventData} />;
 };
 
-export default EventInscriptionViewModel; 
+export default EventInscriptionViewModel;

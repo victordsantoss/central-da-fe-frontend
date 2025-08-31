@@ -22,7 +22,7 @@ export const getEventCategoryColor = (
 ): 'primary' | 'secondary' | 'success' | 'error' | 'warning' | 'info' => {
   switch (category) {
     case EventCategory.CONFERENCE:
-      return 'primary';
+      return 'info';
     case EventCategory.WORKSHOP:
       return 'secondary';
     case EventCategory.CONGRESS:

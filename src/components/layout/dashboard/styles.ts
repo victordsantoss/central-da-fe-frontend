@@ -11,6 +11,9 @@ export const miniDrawerStyles: {
 } = {
   root: {
     display: 'flex',
+    backgroundColor: theme => theme.palette.background.default,
+    minHeight: '100vh',
+    paddingBottom: '50px',
   },
 
   menuButton: (open: boolean) => ({
@@ -19,7 +22,7 @@ export const miniDrawerStyles: {
   }),
 
   drawerHeader: (theme: Theme) => ({
-    color: theme.palette.primary.main,
+    color: theme.palette.text.primary,
     pl: 2.5,
     display: 'flex',
     justifyContent: 'space-between',

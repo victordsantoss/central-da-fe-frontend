@@ -14,7 +14,6 @@ export function withAuth<T extends Record<string, unknown>>(Component: Component
         // Aguarda um pouco para garantir que o cookie foi definido
         await new Promise(resolve => setTimeout(resolve, 100));
         const token = AuthCookie.getToken();
-        console.log('withAuth.token', token);
         if (!token) {
           UserStorage.removeUser();
           AuthCookie.removeToken();

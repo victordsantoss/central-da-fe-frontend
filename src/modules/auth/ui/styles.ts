@@ -7,7 +7,7 @@ export const authFormStyles: {
   divider: Record<'section' | 'icon', SxProps<Theme>>;
 } = {
   container: {
-    backgroundColor: defaultTheme.palette.background.default,
+    backgroundColor: defaultTheme.palette.secondary.main,
     padding: { xs: 2, md: 3 },
     borderRadius: 2,
     width: 'auto',
@@ -18,7 +18,9 @@ export const authFormStyles: {
     display: 'flex',
     justifyContent: 'center',
     gap: { xs: 2, md: 3 },
-    border: `1px solid ${defaultTheme.palette.secondary.main}`,
+    border: `2px solid ${defaultTheme.palette.auxiliaryColors.line}`,
+    color: defaultTheme.palette.text.primary,
+    boxShadow: '10px 10px 10px 0px rgba(0, 0, 0, 0.1)',
   },
 
   form: {
@@ -41,7 +43,7 @@ export const authFormStyles: {
       },
     },
     icon: {
-      color: defaultTheme.palette.primary.main,
+      color: defaultTheme.palette.text.primary,
       fontSize: 32,
     },
   },

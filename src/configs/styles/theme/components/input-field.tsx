@@ -1,4 +1,4 @@
-import { ComponentsOverrides, Theme } from '@mui/material';
+import { ComponentsOverrides, Theme, alpha } from '@mui/material';
 
 interface TextFieldOverrides {
   MuiInputBase: {
@@ -18,57 +18,90 @@ interface TextFieldOverrides {
 export const TextFieldStyles: TextFieldOverrides = {
   MuiInputBase: {
     styleOverrides: {
-      input: {
-        color: 'black !important', // Texto digitado sempre preto
+      input: ({ theme }) => ({
+        color: 'text.primary !important', // Texto digitado sempre text.primary
         '&::placeholder': {
-          color: 'rgba(0, 0, 0, 0.6) !important', // Placeholder preto com 60% transparência
+          color: `${alpha(theme.palette.text.primary, 0.6)} !important`, // Placeholder text.primary com 60% transparência
           opacity: '1 !important',
         },
-      },
+      }),
     },
   },
   MuiFilledInput: {
     styleOverrides: {
-      root: {
-        backgroundColor: 'rgba(255, 255, 255, 0.8)',
+      root: ({ theme }) => ({
+        backgroundColor: 'text.primary',
         '&:hover': {
           backgroundColor: 'rgba(255, 255, 255, 0.9)',
         },
         '&.Mui-focused': {
           backgroundColor: 'rgba(255, 255, 255, 1)',
+          borderBottomColor: `${theme.palette.auxiliaryColors.line} !important`, // Borda inferior auxiliaryColors.line quando focado
         },
-      },
-      input: {
-        color: 'black !important', // Garante que o texto no filled input seja preto
+        '&:after': {
+          borderBottomColor: `${theme.palette.auxiliaryColors.line} !important`, // Linha de foco auxiliaryColors.line
+        },
+      }),
+      input: ({ theme }) => ({
+        color: 'text.primary !important', // Garante que o texto no filled input seja text.primary
         '&::placeholder': {
-          color: 'rgba(0, 0, 0, 0.6) !important', // Placeholder específico para filled
+          color: `${alpha(theme.palette.text.primary, 0.6)} !important`, // Placeholder text.primary com 60% transparência
           opacity: '1 !important',
         },
-      },
+      }),
     },
   },
   MuiOutlinedInput: {
     styleOverrides: {
-      input: {
-        color: 'black !important', // Garante que o texto no outlined input seja preto
+      root: ({ theme }) => ({
+        '& .MuiOutlinedInput-notchedOutline': {
+          borderColor: `${theme.palette.auxiliaryColors.line} !important`, // Borda sempre auxiliaryColors.line
+        },
+        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+          borderColor: `${theme.palette.auxiliaryColors.line} !important`, // Borda auxiliaryColors.line quando focado
+        },
+        '&:hover .MuiOutlinedInput-notchedOutline': {
+          borderColor: `${theme.palette.auxiliaryColors.line} !important`, // Borda auxiliaryColors.line no hover
+        },
+      }),
+      input: ({ theme }) => ({
+        color: 'text.primary !important', // Garante que o texto no outlined input seja text.primary
         '&::placeholder': {
-          color: 'rgba(0, 0, 0, 0.6) !important', // Placeholder específico para outlined
+          color: `${alpha(theme.palette.text.primary, 0.6)} !important`, // Placeholder text.primary com 60% transparência
           opacity: '1 !important',
         },
-      },
+      }),
     },
   },
   MuiInputLabel: {
     styleOverrides: {
-      root: {
-        color: 'rgba(0, 0, 0, 0.7)', // Label em estado normal
+      root: ({ theme }) => ({
+        color: `${theme.palette.text.primary} !important`, // Label sempre text.primary
         '&.Mui-focused': {
-          color: 'black', // Label quando focado
+          color: `${theme.palette.text.primary} !important`, // Label quando focado
         },
         '&.MuiFormLabel-filled': {
-          color: 'black', // Label quando preenchido
+          color: `${theme.palette.text.primary} !important`, // Label quando preenchido
         },
-      },
+        '&.Mui-error': {
+          color: `${theme.palette.text.primary} !important`, // Label em estado de erro
+        },
+        '&.Mui-disabled': {
+          color: `${theme.palette.text.primary} !important`, // Label quando desabilitado
+        },
+        '&.MuiInputLabel-shrink': {
+          color: `${theme.palette.text.primary} !important`, // Label quando encolhido (ao clicar)
+        },
+        '&.MuiInputLabel-outlined': {
+          color: `${theme.palette.text.primary} !important`, // Label para outlined input
+        },
+        '&.MuiInputLabel-filled': {
+          color: `${theme.palette.text.primary} !important`, // Label para filled input
+        },
+        '&.MuiInputLabel-standard': {
+          color: `${theme.palette.text.primary} !important`, // Label para standard input
+        },
+      }),
     },
   },
 };

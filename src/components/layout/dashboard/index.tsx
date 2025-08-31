@@ -26,6 +26,7 @@ import { useAuth } from '@/contexts/auth.context';
 import { miniDrawerStyles } from './styles';
 import { useMenu } from '@/contexts/menu.context';
 import { AuthCookie } from '@/storages/cookies/auth.cookies';
+import Image from 'next/image';
 
 const drawerWidth = 240;
 
@@ -94,12 +95,22 @@ export default function MiniDrawer({ children }: Readonly<{ children: React.Reac
           <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
             {current.text}
           </Typography>
+
+          <Box display="flex" alignItems="center" gap={2}>
+            <Typography variant="h6" noWrap component="div" fontSize={12}>
+              Igreja Assembléia de Deus Central da Fé - CDMOR
+            </Typography>
+            <Image src="/logo.jpg" alt="logo" width={32} height={32} style={{ borderRadius: '50%' }} />
+          </Box>
+
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open} drawerWidth={drawerWidth}>
         <Box sx={miniDrawerStyles.drawerHeader(theme)}>
           <Box sx={miniDrawerStyles.userInfoContainer}>
-            <AccountCircleIcon sx={{ fontSize: 40, color: 'primary.main' }} />
+            <AccountCircleIcon
+              sx={theme => ({ fontSize: 40, color: theme.palette.text.primary })}
+            />
             <Box>
               <Typography variant="h6" fontWeight="bold">
                 {user && getFirstAndLastName(user.user.name)}
@@ -112,7 +123,12 @@ export default function MiniDrawer({ children }: Readonly<{ children: React.Reac
         <CustomList open={open} setOpen={setOpen} />
         <Divider />
         <Tooltip title={`${!open ? 'Sair' : ''}`} placement="right">
-          <Box component="button" onClick={() => mutate()} sx={miniDrawerStyles.logoutButton(open)}>
+          <Box
+            component="button"
+            onClick={() => mutate()}
+            sx={miniDrawerStyles.logoutButton(open)}
+            maxWidth={'90%'}
+          >
             <Typography sx={miniDrawerStyles.logoutText(open)}>Sair</Typography>
             <LogoutIcon />
           </Box>

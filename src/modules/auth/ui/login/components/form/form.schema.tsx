@@ -5,6 +5,7 @@ const LoginSchema = z.object({
   password: z
     .string({ required_error: 'A senha é obrigatória' })
     .min(6, 'A senha deve ter pelo menos 6 caracteres'),
+  rememberMe: z.boolean().optional().default(false),
 });
 
 type LoginFormValues = z.infer<typeof LoginSchema>;
