@@ -16,6 +16,9 @@ interface TextFieldOverrides {
   MuiAutocomplete: {
     styleOverrides: ComponentsOverrides<Theme>['MuiAutocomplete'];
   };
+  MuiSwitch: {
+    styleOverrides: ComponentsOverrides<Theme>['MuiSwitch'];
+  };
 }
 
 export const TextFieldStyles: TextFieldOverrides = {
@@ -139,6 +142,36 @@ export const TextFieldStyles: TextFieldOverrides = {
         '& .MuiAutocomplete-option': {
           minHeight: 48, // Altura mínima das opções
           padding: theme.spacing(1, 2), // Padding interno das opções
+        },
+      }),
+    },
+  },
+  MuiSwitch: {
+    styleOverrides: {
+      root: ({ theme }) => ({
+        '& .MuiSwitch-switchBase': {
+          color: `${theme.palette.text.primary} !important`, // Thumb inativo
+          '&.Mui-checked': {
+            color: `${theme.palette.text.secondary} !important`, // Thumb ativo
+            '& + .MuiSwitch-track': {
+              backgroundColor: `${alpha(theme.palette.text.secondary, 0.5)} !important`, // Track ativo
+            },
+          },
+          '&:hover': {
+            backgroundColor: `${alpha(theme.palette.text.primary, 0.04)} !important`, // Background hover inativo
+          },
+          '&.Mui-checked:hover': {
+            backgroundColor: `${alpha(theme.palette.text.secondary, 0.04)} !important`, // Background hover ativo
+          },
+          '&.Mui-disabled': {
+            color: `${alpha(theme.palette.text.primary, 0.3)} !important`, // Thumb desabilitado
+            '& + .MuiSwitch-track': {
+              backgroundColor: `${alpha(theme.palette.text.primary, 0.12)} !important`, // Track desabilitado
+            },
+          },
+        },
+        '& .MuiSwitch-track': {
+          backgroundColor: `${alpha(theme.palette.text.primary, 0.3)} !important`, // Track inativo
         },
       }),
     },

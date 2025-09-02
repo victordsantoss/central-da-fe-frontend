@@ -17,6 +17,10 @@ import {
   Switch,
 } from '@mui/material';
 import InfoIcon from '@mui/icons-material/Info';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import LinkIcon from '@mui/icons-material/Link';
 import { Controller, FormProvider, UseFormReturn } from 'react-hook-form';
 import { RegisterEventFormValues } from './form.schema';
 import { EventCategory } from '@/common/enums/event.enum';
@@ -96,6 +100,21 @@ const RegisterEventFormView: React.FC<IRegisterEventFormProps> = ({
                       />
                     )}
                   />
+                  <Controller
+                    name="content"
+                    control={methods.control}
+                    render={({ field, fieldState }) => (
+                      <TextField
+                        {...field}
+                        label="Conteúdo ou Mais Informações *"
+                        fullWidth
+                        multiline
+                        rows={4}
+                        error={!!fieldState.error}
+                        helperText={fieldState.error?.message}
+                      />
+                    )}
+                  />
                   <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 2, md: 3 }}>
                     <Controller
                       name="category"
@@ -162,7 +181,7 @@ const RegisterEventFormView: React.FC<IRegisterEventFormProps> = ({
                       />
                       <Tooltip title="Eventos pagos requerem preço." placement="right">
                         <IconButton size="small" color="primary">
-                          <InfoIcon fontSize="small" />
+                          <InfoIcon fontSize="small" sx={theme => ({ color: theme.palette.info.main })} />
                         </IconButton>
                       </Tooltip>
                     </Stack>
@@ -370,6 +389,95 @@ const RegisterEventFormView: React.FC<IRegisterEventFormProps> = ({
                       />
                     </Stack>
                   </Stack>
+                </Stack>
+              </CardContent>
+            </Card>
+
+            {/* Social Media and Sharing Card */}
+            <Card>
+              <CardContent>
+                <Typography variant="h6" mb={3} sx={{ ...formStyles.title, textAlign: 'left' }}>
+                  Divulgação e Compartilhamento
+                </Typography>
+                <Stack spacing={{ xs: 2, md: 3 }}>
+                  <Controller
+                    name="customLink"
+                    control={methods.control}
+                    render={({ field, fieldState }) => (
+                      <TextField
+                        {...field}
+                        label="Link Personalizado"
+                        fullWidth
+                        placeholder="https://exemplo.com"
+                        error={!!fieldState.error}
+                        helperText={fieldState.error?.message || "Link personalizado para divulgação do evento"}
+                        slotProps={{
+                          input: {
+                            startAdornment: <LinkIcon sx={{ mr: 1, color: 'action.active' }} />,
+                          },
+                        }}
+                      />
+                    )}
+                  />
+                  <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 2, md: 3 }}>
+                    <Controller
+                      name="facebookLink"
+                      control={methods.control}
+                      render={({ field, fieldState }) => (
+                        <TextField
+                          {...field}
+                          label="Facebook"
+                          fullWidth
+                          placeholder="https://facebook.com/evento"
+                          error={!!fieldState.error}
+                          helperText={fieldState.error?.message}
+                          slotProps={{
+                            input: {
+                              startAdornment: <FacebookIcon sx={{ mr: 1, color: '#1877F2' }} />,
+                            },
+                          }}
+                        />
+                      )}
+                    />
+                    <Controller
+                      name="instagramLink"
+                      control={methods.control}
+                      render={({ field, fieldState }) => (
+                        <TextField
+                          {...field}
+                          label="Instagram"
+                          fullWidth
+                          placeholder="https://instagram.com/evento"
+                          error={!!fieldState.error}
+                          helperText={fieldState.error?.message}
+                          slotProps={{
+                            input: {
+                              startAdornment: <InstagramIcon sx={{ mr: 1, color: '#E4405F' }} />,
+                            },
+                          }}
+                        />
+                      )}
+                    />
+                  </Stack>
+                  <Controller
+                    name="youtubeLink"
+                    control={methods.control}
+                    render={({ field, fieldState }) => (
+                      <TextField
+                        {...field}
+                        label="YouTube"
+                        fullWidth
+                        placeholder="https://youtube.com/evento"
+                        error={!!fieldState.error}
+                        helperText={fieldState.error?.message}
+                        slotProps={{
+                          input: {
+                            startAdornment: <YouTubeIcon sx={{ mr: 1, color: '#FF0000' }} />,
+                          },
+                        }}
+                      />
+                    )}
+                  />
                 </Stack>
               </CardContent>
             </Card>

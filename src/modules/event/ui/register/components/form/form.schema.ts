@@ -16,6 +16,7 @@ const RegisterEventSchema = z
   .object({
     name: z.string().min(1, 'O nome do evento é obrigatório'),
     description: z.string().min(1, 'A descrição é obrigatória'),
+    content: z.string().min(1, 'O conteúdo é obrigatório'),
     category: z.nativeEnum(EventCategory, {
       message: 'A categoria é obrigatória',
     }),
@@ -37,6 +38,10 @@ const RegisterEventSchema = z
       .optional(),
     address: addressSchema,
     churchId: z.string({ message: 'A igreja é obrigatória' }),
+    customLink: z.string().url('URL inválida').optional().or(z.literal('')),
+    facebookLink: z.string().url('URL inválida').optional().or(z.literal('')),
+    instagramLink: z.string().url('URL inválida').optional().or(z.literal('')),
+    youtubeLink: z.string().url('URL inválida').optional().or(z.literal('')),
   })
   .refine(
     data => {
