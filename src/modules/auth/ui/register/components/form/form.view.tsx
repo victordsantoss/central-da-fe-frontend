@@ -198,6 +198,7 @@ export const RegisterFormView = (props: IRegisterFormViewProps) => {
                             aria-label="toggle password visibility"
                             onClick={handleTogglePasswordVisibility}
                             edge="end"
+                            sx={theme => ({ color: theme.palette.text.primary })}
                           >
                             {showPassword ? <VisibilityOff /> : <Visibility />}
                           </IconButton>
@@ -230,6 +231,7 @@ export const RegisterFormView = (props: IRegisterFormViewProps) => {
                             aria-label="toggle password visibility"
                             onClick={handleToggleConfirmPasswordVisibility}
                             edge="end"
+                            sx={theme => ({ color: theme.palette.text.primary })}
                           >
                             {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
                           </IconButton>

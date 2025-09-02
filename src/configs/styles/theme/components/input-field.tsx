@@ -13,6 +13,9 @@ interface TextFieldOverrides {
   MuiInputLabel: {
     styleOverrides: ComponentsOverrides<Theme>['MuiInputLabel'];
   };
+  MuiAutocomplete: {
+    styleOverrides: ComponentsOverrides<Theme>['MuiAutocomplete'];
+  };
 }
 
 export const TextFieldStyles: TextFieldOverrides = {
@@ -100,6 +103,42 @@ export const TextFieldStyles: TextFieldOverrides = {
         },
         '&.MuiInputLabel-standard': {
           color: `${theme.palette.text.primary} !important`, // Label para standard input
+        },
+      }),
+    },
+  },
+  MuiAutocomplete: {
+    styleOverrides: {
+      root: ({ theme }) => ({
+        '& .MuiAutocomplete-popupIndicator': {
+          color: `${theme.palette.text.primary} !important`, // Seta do dropdown sempre text.primary
+        },
+        '& .MuiAutocomplete-clearIndicator': {
+          color: `${theme.palette.text.primary} !important`, // Ícone de limpar sempre text.primary
+        },
+      }),
+      option: ({ theme }) => ({
+        color: `${theme.palette.primary.main} !important`, // Texto das opções sempre primary.main
+        '&:hover': {
+          backgroundColor: `${alpha(theme.palette.primary.main, 0.1)} !important`, // Background hover com primary.main transparente
+        },
+        '&.Mui-focused': {
+          backgroundColor: `${alpha(theme.palette.primary.main, 0.1)} !important`, // Background quando focado
+        },
+        '&[aria-selected="true"]': {
+          backgroundColor: `${alpha(theme.palette.primary.main, 0.2)} !important`, // Background quando selecionado
+          color: `${theme.palette.primary.main} !important`,
+        },
+      }),
+      paper: ({ theme }) => ({
+        backgroundColor: `${theme.palette.background.paper} !important`, // Background do dropdown
+        boxShadow: theme.shadows[8], // Sombra do dropdown
+      }),
+      listbox: ({ theme }) => ({
+        padding: 0, // Remove padding padrão
+        '& .MuiAutocomplete-option': {
+          minHeight: 48, // Altura mínima das opções
+          padding: theme.spacing(1, 2), // Padding interno das opções
         },
       }),
     },

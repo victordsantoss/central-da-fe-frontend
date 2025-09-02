@@ -10,7 +10,7 @@ export const TooltipStyles: MyTooltipOverrides = {
   MuiTooltip: {
     styleOverrides: {
       tooltip: ({ theme }) => ({
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: theme.palette.info.main,
         fontSize: '0.875rem',
       }),
       arrow: ({ theme }) => ({

@@ -75,7 +75,7 @@ const LoginFormView: React.FC<ILoginFormProps> = ({
                             aria-label="toggle password visibility"
                             onClick={handleTogglePasswordVisibility}
                             edge="end"
-                            sx={{ color: 'text.primary' }}
+                            sx={theme => ({ color: theme.palette.text.primary })}
                           >
                             {showPassword ? <VisibilityOff /> : <Visibility />}
                           </IconButton>
