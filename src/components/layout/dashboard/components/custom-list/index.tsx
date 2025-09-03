@@ -6,7 +6,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
 import { IMenuItem, menuItems } from '../../items';
-import { alpha, Tooltip } from '@mui/material';
+import { Tooltip } from '@mui/material';
 import { customListStyles } from './styles';
 import { useMenu } from '@/contexts/menu.context';
 import { usePathname, useRouter } from 'next/navigation';
@@ -47,9 +47,9 @@ const CustomList: React.FC<ICustomListProps> = ({ open, setOpen }) => {
   const renderArrowIcon = (hasItems: boolean) => {
     if (!hasItems) return null;
     return expandedCategory ? (
-      <ArrowDropUpIcon sx={theme => ({ color: theme.palette.text.secondary })} />
+      <ArrowDropUpIcon sx={theme => ({ color: theme.palette.primary.contrastText })} />
     ) : (
-      <ArrowDropDownIcon sx={theme => ({ color: theme.palette.text.secondary })} />
+      <ArrowDropDownIcon sx={theme => ({ color: theme.palette.primary.contrastText })} />
     );
   };
 
@@ -65,11 +65,10 @@ const CustomList: React.FC<ICustomListProps> = ({ open, setOpen }) => {
                 onClick={() => handleToggleCategory(category)}
                 sx={{
                   ...customListStyles.listItemButton(open),
-                  color: theme => theme.palette.text.primary,
-                  bgcolor: theme =>
-                    hasActiveItem ? alpha(theme.palette.primary.main, 0.3) : 'transparent',
+                  color: theme => theme.palette.primary.contrastText,
+                  bgcolor: theme => (hasActiveItem ? theme.palette.primary.dark : 'transparent'),
                   '&:hover': {
-                    backgroundColor: theme => alpha(theme.palette.primary.main, 1),
+                    backgroundColor: theme => theme.palette.primary.dark,
                   },
                 }}
               >
@@ -91,11 +90,9 @@ const CustomList: React.FC<ICustomListProps> = ({ open, setOpen }) => {
                     sx={{
                       ...customListStyles.listItem,
                       bgcolor: theme =>
-                        getActive(item.url)
-                          ? alpha(theme.palette.primary.main, 0.3)
-                          : 'transparent',
+                        getActive(item.url) ? theme.palette.primary.dark : 'transparent',
                       '&:hover': {
-                        backgroundColor: theme => alpha(theme.palette.background.default, 1),
+                        backgroundColor: theme => theme.palette.primary.dark,
                       },
                     }}
                     onClick={() => handleToggleItem(item)}

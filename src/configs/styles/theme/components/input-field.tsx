@@ -25,9 +25,9 @@ export const TextFieldStyles: TextFieldOverrides = {
   MuiInputBase: {
     styleOverrides: {
       input: ({ theme }) => ({
-        color: 'text.primary !important', // Texto digitado sempre text.primary
+        color: 'text.primary !important',
         '&::placeholder': {
-          color: `${alpha(theme.palette.text.primary, 0.6)} !important`, // Placeholder text.primary com 60% transparência
+          color: `${alpha(theme.palette.text.primary, 0.6)} !important`,
           opacity: '1 !important',
         },
       }),
@@ -42,16 +42,16 @@ export const TextFieldStyles: TextFieldOverrides = {
         },
         '&.Mui-focused': {
           backgroundColor: 'rgba(255, 255, 255, 1)',
-          borderBottomColor: `${theme.palette.auxiliaryColors.line} !important`, // Borda inferior auxiliaryColors.line quando focado
+          borderBottomColor: `${theme.palette.line.primary} !important`,
         },
         '&:after': {
-          borderBottomColor: `${theme.palette.auxiliaryColors.line} !important`, // Linha de foco auxiliaryColors.line
+          borderBottomColor: `${theme.palette.line.primary} !important`,
         },
       }),
       input: ({ theme }) => ({
-        color: 'text.primary !important', // Garante que o texto no filled input seja text.primary
+        color: 'text.primary !important',
         '&::placeholder': {
-          color: `${alpha(theme.palette.text.primary, 0.6)} !important`, // Placeholder text.primary com 60% transparência
+          color: `${alpha(theme.palette.text.primary, 0.6)} !important`,
           opacity: '1 !important',
         },
       }),
@@ -61,19 +61,19 @@ export const TextFieldStyles: TextFieldOverrides = {
     styleOverrides: {
       root: ({ theme }) => ({
         '& .MuiOutlinedInput-notchedOutline': {
-          borderColor: `${theme.palette.auxiliaryColors.line} !important`, // Borda sempre auxiliaryColors.line
+          borderColor: `${theme.palette.line.secondary} !important`,
         },
         '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-          borderColor: `${theme.palette.auxiliaryColors.line} !important`, // Borda auxiliaryColors.line quando focado
+          borderColor: `${theme.palette.line.secondary} !important`,
         },
         '&:hover .MuiOutlinedInput-notchedOutline': {
-          borderColor: `${theme.palette.auxiliaryColors.line} !important`, // Borda auxiliaryColors.line no hover
+          borderColor: `${theme.palette.line.secondary} !important`,
         },
       }),
       input: ({ theme }) => ({
-        color: 'text.primary !important', // Garante que o texto no outlined input seja text.primary
+        color: 'text.primary !important',
         '&::placeholder': {
-          color: `${alpha(theme.palette.text.primary, 0.6)} !important`, // Placeholder text.primary com 60% transparência
+          color: `${alpha(theme.palette.text.primary, 0.6)} !important`,
           opacity: '1 !important',
         },
       }),
@@ -82,30 +82,30 @@ export const TextFieldStyles: TextFieldOverrides = {
   MuiInputLabel: {
     styleOverrides: {
       root: ({ theme }) => ({
-        color: `${theme.palette.text.primary} !important`, // Label sempre text.primary
+        color: `${theme.palette.text.primary} !important`,
         '&.Mui-focused': {
-          color: `${theme.palette.text.primary} !important`, // Label quando focado
+          color: `${theme.palette.text.primary} !important`,
         },
         '&.MuiFormLabel-filled': {
-          color: `${theme.palette.text.primary} !important`, // Label quando preenchido
+          color: `${theme.palette.text.primary} !important`,
         },
         '&.Mui-error': {
-          color: `${theme.palette.text.primary} !important`, // Label em estado de erro
+          color: `${theme.palette.text.primary} !important`,
         },
         '&.Mui-disabled': {
-          color: `${theme.palette.text.primary} !important`, // Label quando desabilitado
+          color: `${theme.palette.text.primary} !important`,
         },
         '&.MuiInputLabel-shrink': {
-          color: `${theme.palette.text.primary} !important`, // Label quando encolhido (ao clicar)
+          color: `${theme.palette.text.primary} !important`,
         },
         '&.MuiInputLabel-outlined': {
-          color: `${theme.palette.text.primary} !important`, // Label para outlined input
+          color: `${theme.palette.text.primary} !important`,
         },
         '&.MuiInputLabel-filled': {
-          color: `${theme.palette.text.primary} !important`, // Label para filled input
+          color: `${theme.palette.text.primary} !important`,
         },
         '&.MuiInputLabel-standard': {
-          color: `${theme.palette.text.primary} !important`, // Label para standard input
+          color: `${theme.palette.text.primary} !important`,
         },
       }),
     },
@@ -114,34 +114,34 @@ export const TextFieldStyles: TextFieldOverrides = {
     styleOverrides: {
       root: ({ theme }) => ({
         '& .MuiAutocomplete-popupIndicator': {
-          color: `${theme.palette.text.primary} !important`, // Seta do dropdown sempre text.primary
+          color: `${theme.palette.text.primary} !important`,
         },
         '& .MuiAutocomplete-clearIndicator': {
-          color: `${theme.palette.text.primary} !important`, // Ícone de limpar sempre text.primary
+          color: `${theme.palette.text.primary} !important`,
         },
       }),
       option: ({ theme }) => ({
-        color: `${theme.palette.primary.main} !important`, // Texto das opções sempre primary.main
+        color: `${theme.palette.text.primary} !important`,
         '&:hover': {
-          backgroundColor: `${alpha(theme.palette.primary.main, 0.1)} !important`, // Background hover com primary.main transparente
+          backgroundColor: theme.palette.background.default,
         },
         '&.Mui-focused': {
-          backgroundColor: `${alpha(theme.palette.primary.main, 0.1)} !important`, // Background quando focado
+          backgroundColor: theme.palette.background.default,
         },
         '&[aria-selected="true"]': {
-          backgroundColor: `${alpha(theme.palette.primary.main, 0.2)} !important`, // Background quando selecionado
-          color: `${theme.palette.primary.main} !important`,
+          backgroundColor: `${theme.palette.background.default} !important`,
+          color: `${theme.palette.text.primary} !important`,
         },
       }),
       paper: ({ theme }) => ({
-        backgroundColor: `${theme.palette.background.paper} !important`, // Background do dropdown
-        boxShadow: theme.shadows[8], // Sombra do dropdown
+        backgroundColor: `${theme.palette.background.default} !important`,
+        boxShadow: theme.shadows[8],
       }),
       listbox: ({ theme }) => ({
-        padding: 0, // Remove padding padrão
+        padding: 0,
         '& .MuiAutocomplete-option': {
-          minHeight: 48, // Altura mínima das opções
-          padding: theme.spacing(1, 2), // Padding interno das opções
+          minHeight: 48,
+          padding: theme.spacing(1, 2),
         },
       }),
     },
@@ -150,28 +150,28 @@ export const TextFieldStyles: TextFieldOverrides = {
     styleOverrides: {
       root: ({ theme }) => ({
         '& .MuiSwitch-switchBase': {
-          color: `${theme.palette.text.primary} !important`, // Thumb inativo
+          color: `${theme.palette.text.primary} !important`,
           '&.Mui-checked': {
-            color: `${theme.palette.text.secondary} !important`, // Thumb ativo
+            color: `${theme.palette.text.primary} !important`,
             '& + .MuiSwitch-track': {
-              backgroundColor: `${alpha(theme.palette.text.secondary, 0.5)} !important`, // Track ativo
+              backgroundColor: `${alpha(theme.palette.text.primary, 0.5)} !important`,
             },
           },
           '&:hover': {
-            backgroundColor: `${alpha(theme.palette.text.primary, 0.04)} !important`, // Background hover inativo
+            backgroundColor: `${alpha(theme.palette.text.primary, 0.04)} !important`,
           },
           '&.Mui-checked:hover': {
-            backgroundColor: `${alpha(theme.palette.text.secondary, 0.04)} !important`, // Background hover ativo
+            backgroundColor: `${alpha(theme.palette.text.primary, 0.04)} !important`,
           },
           '&.Mui-disabled': {
-            color: `${alpha(theme.palette.text.primary, 0.3)} !important`, // Thumb desabilitado
+            color: `${alpha(theme.palette.text.primary, 0.3)} !important`,
             '& + .MuiSwitch-track': {
-              backgroundColor: `${alpha(theme.palette.text.primary, 0.12)} !important`, // Track desabilitado
+              backgroundColor: `${alpha(theme.palette.text.primary, 0.12)} !important`,
             },
           },
         },
         '& .MuiSwitch-track': {
-          backgroundColor: `${alpha(theme.palette.text.primary, 0.3)} !important`, // Track inativo
+          backgroundColor: `${alpha(theme.palette.text.primary, 0.3)} !important`,
         },
       }),
     },

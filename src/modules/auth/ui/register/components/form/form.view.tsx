@@ -260,16 +260,6 @@ export const RegisterFormView = (props: IRegisterFormViewProps) => {
           />
         </Box>
         <Box sx={formStyles.buttonContainer}>
-          <Tooltip
-            title={`${!methods.formState.isValid ? 'Preencha todos os campos para continuar.' : 'Registrar'}`}
-            placement="top"
-          >
-            <span style={{ width: '100%' }}>
-              <Button type="submit" variant="contained" color="secondary" fullWidth>
-                {isPending ? <CircularProgress size={20} /> : 'Registrar'}
-              </Button>
-            </span>
-          </Tooltip>
           <Button
             type="button"
             variant="outlined"
@@ -279,6 +269,23 @@ export const RegisterFormView = (props: IRegisterFormViewProps) => {
           >
             Voltar
           </Button>
+          <Tooltip
+            title={`${!methods.formState.isValid ? 'Preencha todos os campos para continuar.' : 'Registrar'}`}
+            placement="top"
+          >
+            <span style={{ width: '100%' }}>
+              <Button type="submit" variant="contained" color="primary" fullWidth>
+                {isPending ? (
+                  <CircularProgress
+                    size={20}
+                    sx={theme => ({ color: theme.palette.primary.contrastText })}
+                  />
+                ) : (
+                  'Registrar'
+                )}
+              </Button>
+            </span>
+          </Tooltip>
         </Box>
       </FormProvider>
     </Box>

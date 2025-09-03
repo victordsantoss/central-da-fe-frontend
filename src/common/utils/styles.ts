@@ -31,9 +31,9 @@ const formStyles: {
   },
   buttonContainer: {
     width: '100%',
-    maxWidth: { xs: '100%', md: '500px' },
+    maxWidth: { xs: '100%' },
     display: 'flex',
-    flexDirection: { xs: 'column', md: 'row' },
+    flexDirection: { xs: 'column-reverse', md: 'row' },
     gap: { xs: 2, md: 3 },
     justifyContent: 'center',
     marginX: 'auto',
@@ -45,7 +45,7 @@ const formStyles: {
   },
   subTitle: {
     textAlign: 'center',
-    color: defaultTheme.palette.text.secondary,
+    color: defaultTheme.palette.text.primary,
   },
 };
 

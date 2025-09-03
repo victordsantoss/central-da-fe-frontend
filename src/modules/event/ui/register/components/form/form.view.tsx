@@ -181,7 +181,10 @@ const RegisterEventFormView: React.FC<IRegisterEventFormProps> = ({
                       />
                       <Tooltip title="Eventos pagos requerem preço." placement="right">
                         <IconButton size="small" color="primary">
-                          <InfoIcon fontSize="small" sx={theme => ({ color: theme.palette.info.main })} />
+                          <InfoIcon
+                            fontSize="small"
+                            sx={theme => ({ color: theme.palette.info.main })}
+                          />
                         </IconButton>
                       </Tooltip>
                     </Stack>
@@ -410,10 +413,18 @@ const RegisterEventFormView: React.FC<IRegisterEventFormProps> = ({
                         fullWidth
                         placeholder="https://exemplo.com"
                         error={!!fieldState.error}
-                        helperText={fieldState.error?.message || "Link personalizado para divulgação do evento"}
+                        helperText={
+                          fieldState.error?.message ||
+                          'Link personalizado para divulgação do evento'
+                        }
+                        sx={{
+                          '& .MuiFormHelperText-root': {
+                            color: theme => theme.palette.text.primary,
+                          },
+                        }}
                         slotProps={{
                           input: {
-                            startAdornment: <LinkIcon sx={{ mr: 1, color: 'action.active' }} />,
+                            startAdornment: <LinkIcon sx={{ mr: 1, color: 'text.primary' }} />,
                           },
                         }}
                       />
@@ -482,7 +493,7 @@ const RegisterEventFormView: React.FC<IRegisterEventFormProps> = ({
               </CardContent>
             </Card>
             <Stack
-              direction={{ xs: 'column', sm: 'row' }}
+              direction={{ xs: 'column-reverse', sm: 'row' }}
               spacing={{ xs: 2, md: 3 }}
               justifyContent="space-between"
             >
@@ -501,7 +512,7 @@ const RegisterEventFormView: React.FC<IRegisterEventFormProps> = ({
                     type="submit"
                     variant="contained"
                     disabled={isPending}
-                    color="secondary"
+                    color="primary"
                     sx={{ ml: 'auto', width: { xs: '100%', sm: 'auto' } }}
                   >
                     {isPending ? <CircularProgress size={20} /> : 'Cadastrar Evento'}

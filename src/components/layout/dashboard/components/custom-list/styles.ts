@@ -9,7 +9,6 @@ export const customListStyles: {
 } = {
   listItem: {
     display: 'flex',
-    borderBottom: theme => `1px solid ${theme.palette.auxiliaryColors.line}`,
   },
 
   listItemButton: (open: boolean) => ({
@@ -27,15 +26,15 @@ export const customListStyles: {
   listItemIcon: (open: boolean) => (theme: Theme) => ({
     minWidth: 0,
     justifyContent: 'center',
-    color: theme.palette.text.secondary,
+    color: theme.palette.primary.contrastText,
     mr: open ? theme.spacing(1) : 'auto',
   }),
 
   listItemText: (open: boolean) => (theme: Theme) => ({
     opacity: open ? 1 : 0,
-    color: theme.palette.text.secondary,
+    color: theme.palette.primary.contrastText,
     '&:hover': {
-      color: theme => theme.palette.text.secondary,
+      color: theme => theme.palette.primary.contrastText,
     },
   }),
 };

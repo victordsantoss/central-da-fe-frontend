@@ -9,24 +9,28 @@ import { CardStyles } from './components/card';
 const defaultTheme = createTheme({
   palette: {
     primary: {
-      main: '#121212',
-      contrastText: '#FFFFFF',
+      light: '#3D7068',
+      main: '#14453D',
+      dark: '#132E29',
+      contrastText: '#FAFAFA',
     },
     secondary: {
-      main: '#171717',
-      contrastText: '#FFFFFF',
-    },
-    text: {
-      primary: '#fafafa',
-      secondary: '#278f60',
+      light: '#415A77',
+      main: '#1B263B',
+      dark: '#0D1B2A',
+      contrastText: '#FAFAFA',
     },
     background: {
-      default: '#121212',
-      paper: '#EAEAEA',
+      default: '#FFFFFF',
+      paper: '#E5E5E5',
     },
-    auxiliaryColors: {
-      blue: '#010466B',
-      line: '#2d2d2d',
+    text: {
+      primary: '#1D2433',
+      secondary: '#FAFAFA',
+    },
+    line: {
+      primary: '#E6E6E6',
+      secondary: '#3E5A80',
     },
   },
   typography: {

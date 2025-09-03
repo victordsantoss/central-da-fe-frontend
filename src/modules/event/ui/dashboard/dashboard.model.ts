@@ -7,9 +7,7 @@ export const useEventDashboardModel = () => {
     router.push('/event/register');
   };
 
-  const orderOptions: Option[] = [
-    { value: 'name', label: 'Nome' },
-  ];
+  const orderOptions: Option[] = [{ value: 'name', label: 'Nome' }];
 
   return {
     onRegisterClick,

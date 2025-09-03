@@ -14,7 +14,7 @@ import EventIcon from '@mui/icons-material/Event';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ChurchIcon from '@mui/icons-material/Church';
 import { EventModel } from '@/common/models/event.model';
-
+import CategoryIcon from '@mui/icons-material/Category';
 import { EventTableCardPopover } from './popover';
 import { formatDateAndTime } from '@/common/utils/date.util';
 import {
@@ -80,7 +80,7 @@ const EventTableCardView = ({
             </CardActions>
           </Box>
         </Stack>
-        <Divider sx={{ my: 2 }} />
+        <Divider sx={{ my: 2, width: '100%', marginX: 'auto' }}></Divider>
         <Stack
           direction={{ xs: 'column', sm: 'row' }}
           spacing={2}
@@ -92,17 +92,17 @@ const EventTableCardView = ({
             alignItems={{ xs: 'flex-start', md: 'center' }}
           >
             <Stack direction="row" spacing={1} alignItems="center">
-              <EventIcon sx={{ color: 'text.secondary' }} />
+              <EventIcon sx={{ color: 'primary.main' }} />
               <Typography variant="body2">{formatDateAndTime(new Date(item.startDate))}</Typography>
             </Stack>
 
             <Stack direction="row" spacing={1} alignItems="center">
-              <ChurchIcon sx={{ color: 'text.secondary' }} />
+              <ChurchIcon sx={{ color: 'primary.main' }} />
               <Typography variant="body2">{item.churchName}</Typography>
             </Stack>
 
             <Stack direction="row" spacing={1} alignItems="center">
-              <LocationOnIcon sx={{ color: 'text.secondary' }} />
+              <LocationOnIcon sx={{ color: 'primary.main' }} />
               <Typography variant="body2">{item.addressName}</Typography>
             </Stack>
           </Stack>
@@ -116,14 +116,14 @@ const EventTableCardView = ({
             <Chip
               label={item.type || EventType.FREE}
               color={getEventTypeColor(item.type || EventType.FREE)}
-              variant="outlined"
+              variant="filled"
               size="small"
             />
             <Chip
               label={item.status}
               color={getEventStatusColor(item.status)}
               size="small"
-              variant="outlined"
+              variant="filled"
             />
           </Stack>
         </Stack>

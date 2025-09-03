@@ -118,7 +118,7 @@ const TableView = <T,>({
                 lg: itemSize.lg ?? defaultItemSize.lg,
                 xl: itemSize.xl ?? defaultItemSize.xl,
               },
-              p: theme.spacing(0.5),
+              p: { xs: theme.spacing(0.5), md: theme.spacing(1) },
             })}
           >
             {renderItem(item)}

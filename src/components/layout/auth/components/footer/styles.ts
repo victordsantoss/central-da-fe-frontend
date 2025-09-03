@@ -15,7 +15,7 @@ export const footerStyles: {
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: defaultTheme.palette.secondary.main,
+    backgroundColor: defaultTheme.palette.primary.dark,
     backdropFilter: 'blur(10px)',
     zIndex: 1000,
   },
@@ -49,8 +49,8 @@ export const footerStyles: {
     padding: 1,
     borderRadius: 1,
     '&:hover': {
-      backgroundColor: 'rgba(255, 255, 255, 0.1)',
-      transform: 'translateY(-1px)',
+      backgroundColor: defaultTheme.palette.primary.main,
+      transform: 'translateY(-2px)',
     },
   },
   contactText: {

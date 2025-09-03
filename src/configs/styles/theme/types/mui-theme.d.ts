@@ -2,16 +2,16 @@ import '@mui/material/styles';
 
 declare module '@mui/material/styles' {
   interface Palette {
-    auxiliaryColors: {
-      blue: string;
-      line: string;
+    line: {
+      primary: string;
+      secondary: string;
     };
   }
 
   interface PaletteOptions {
-    auxiliaryColors: {
-      blue: string;
-      line: string;
+    line: {
+      primary: string;
+      secondary: string;
     };
   }
 }

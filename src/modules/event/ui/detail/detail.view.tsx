@@ -34,9 +34,19 @@ interface IEventDetailViewProps {
 export const EventDetailView = ({ eventData, onBackClick, onEditClick }: IEventDetailViewProps) => {
   return (
     <Box display="flex" flexDirection="column" gap={2}>
-      <Box display="flex" alignItems="center" gap={2}>
-        <IconButton onClick={onBackClick} sx={{ backgroundColor: 'secondary.main' }}>
-          <ArrowBackIcon sx={{ color: 'text.primary' }} />
+      <Stack
+        direction={{ xs: 'column', sm: 'row' }}
+        alignItems={{ xs: 'flex-start', sm: 'center' }}
+        gap={2}
+      >
+        <IconButton onClick={onBackClick} sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          <ArrowBackIcon sx={theme => ({ color: theme.palette.primary.main })} />
+          <Typography
+            variant="body1"
+            sx={{ ...formStyles.title, textAlign: 'left', display: { xs: 'block', sm: 'none' } }}
+          >
+            Voltar
+          </Typography>
         </IconButton>
         <Typography variant="h3" sx={{ ...formStyles.title, textAlign: 'left' }}>
           Detalhes do Evento
@@ -51,8 +61,7 @@ export const EventDetailView = ({ eventData, onBackClick, onEditClick }: IEventD
             Editar
           </Button>
         </Box>
-      </Box>
-
+      </Stack>
       <Card sx={{ boxShadow: 3 }}>
         <CardContent sx={{ p: 2 }}>
           <Box
@@ -71,16 +80,19 @@ export const EventDetailView = ({ eventData, onBackClick, onEditClick }: IEventD
                 label={eventData.category || EventCategory.EVENT}
                 color={getEventCategoryColor(eventData.category || EventCategory.EVENT)}
                 variant="outlined"
+                size="small"
               />
               <Chip
                 label={eventData.type || EventType.FREE}
                 color={getEventTypeColor(eventData.type || EventType.FREE)}
-                variant="outlined"
+                variant="filled"
+                size="small"
               />
               <Chip
                 label={eventData.status}
                 color={getEventStatusColor(eventData.status)}
-                variant="outlined"
+                variant="filled"
+                size="small"
               />
             </Box>
 

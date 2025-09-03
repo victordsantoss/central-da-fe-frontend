@@ -13,15 +13,21 @@ export const RegisterEventView = ({ churchesData }: IRegisterEventViewProps) => 
   return (
     <Box display={'flex'} flexDirection={'column'} gap={1}>
       <Stack
-        direction={{ xs: 'column-reverse', sm: 'row' }}
+        direction={{ xs: 'column', sm: 'row' }}
         alignItems={{ xs: 'flex-start', sm: 'center' }}
         gap={2}
       >
         <IconButton
           onClick={() => push('/event/dashboard')}
-          sx={{ backgroundColor: 'secondary.main' }}
+          sx={{ display: 'flex', alignItems: 'center', gap: 1 }}
         >
-          <ArrowBackIcon sx={{ color: 'text.primary' }} />
+          <ArrowBackIcon sx={theme => ({ color: theme.palette.primary.main })} />
+          <Typography
+            variant="body1"
+            sx={{ ...formStyles.title, textAlign: 'left', display: { xs: 'block', sm: 'none' } }}
+          >
+            Voltar
+          </Typography>
         </IconButton>
         <Typography variant="h3" sx={{ ...formStyles.title, textAlign: 'left' }}>
           Cadastrar novo evento

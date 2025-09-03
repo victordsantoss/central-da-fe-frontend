@@ -11,7 +11,7 @@ export const miniDrawerStyles: {
 } = {
   root: {
     display: 'flex',
-    backgroundColor: theme => theme.palette.background.default,
+    backgroundColor: theme => theme.palette.background.paper,
     minHeight: '100vh',
     paddingBottom: '50px',
   },
@@ -22,7 +22,7 @@ export const miniDrawerStyles: {
   }),
 
   drawerHeader: (theme: Theme) => ({
-    color: theme.palette.text.primary,
+    color: theme.palette.primary.contrastText,
     pl: 2.5,
     display: 'flex',
     justifyContent: 'space-between',
@@ -38,7 +38,7 @@ export const miniDrawerStyles: {
   },
 
   logoutButton: (open: boolean) => theme => ({
-    color: theme.palette.error.main,
+    color: theme.palette.primary.contrastText,
     position: 'absolute',
     bottom: 16,
     left: '50%',
@@ -49,8 +49,13 @@ export const miniDrawerStyles: {
     alignItems: 'center',
     paddingX: 2,
     paddingY: 1,
-    border: `1px solid ${theme.palette.error.main}`,
+    border: `1px solid ${theme.palette.line.primary}`,
     borderRadius: theme.spacing(1),
+    '&:hover': {
+      backgroundColor: theme.palette.primary.dark,
+      transition: 'all 0.3s ease',
+      border: 'none',
+    },
   }),
 
   logoutText: (open: boolean) => theme => ({
@@ -59,7 +64,7 @@ export const miniDrawerStyles: {
     justifyContent: 'end',
     mr: 'auto',
     fontWeight: 600,
-    color: theme.palette.error.main,
+    color: theme.palette.primary.contrastText,
   }),
 
   main: {

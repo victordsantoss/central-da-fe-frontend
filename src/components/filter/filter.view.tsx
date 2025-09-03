@@ -72,7 +72,7 @@ export const FilterView = ({
             input: {
               startAdornment: (
                 <InputAdornment position="start">
-                  <SearchIcon sx={{ color: 'text.primary' }} />
+                  <SearchIcon sx={theme => ({ color: theme.palette.text.primary })} />
                 </InputAdornment>
               ),
               endAdornment: filterState.search ? (
@@ -156,7 +156,7 @@ export const FilterView = ({
         <Button
           type="button"
           variant="contained"
-          color="secondary"
+          color="primary"
           onClick={onRegisterClick}
           sx={{ marginLeft: 'auto', width: { xs: '100%', md: '20%' }, height: '56px' }}
         >

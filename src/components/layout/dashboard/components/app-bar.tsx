@@ -9,6 +9,8 @@ interface IAppBarProps extends MuiAppBarProps {
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: prop => prop !== 'open' && prop !== 'drawerWidth',
 })<IAppBarProps>(({ theme, open, drawerWidth }) => ({
+  backgroundColor: theme.palette.primary.main,
+  color: theme.palette.primary.contrastText,
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(['width', 'margin'], {
     easing: theme.transitions.easing.sharp,

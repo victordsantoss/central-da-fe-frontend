@@ -10,14 +10,13 @@ interface MyCardOverrides {
 export const CardStyles: MyCardOverrides = {
   MuiCard: {
     styleOverrides: {
-      root: ({ ownerState }) => ({
-        backgroundColor: defaultTheme.palette.secondary.main,
-        border: `1px solid ${defaultTheme.palette.auxiliaryColors.line}`,
+      root: () => ({
+        backgroundColor: defaultTheme.palette.background.default,
         transition: 'all 0.2s ease-in-out',
         color: defaultTheme.palette.text.primary,
+        boxShadow: '0px 0px 20px 0px rgba(0, 0, 0, 0.1)',
         '&:hover': {
           transform: 'translateY(-2px)',
-          boxShadow: ownerState.variant === 'elevation' ? defaultTheme.shadows[8] : 'none',
         },
       }),
     },

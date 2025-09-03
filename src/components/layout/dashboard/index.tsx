@@ -100,16 +100,21 @@ export default function MiniDrawer({ children }: Readonly<{ children: React.Reac
             <Typography variant="h6" noWrap component="div" fontSize={12}>
               Igreja Assembléia de Deus Central da Fé - CDMOR
             </Typography>
-            <Image src="/logo.jpg" alt="logo" width={32} height={32} style={{ borderRadius: '50%' }} />
+            <Image
+              src="/logo.jpg"
+              alt="logo"
+              width={32}
+              height={32}
+              style={{ borderRadius: '50%' }}
+            />
           </Box>
-
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open} drawerWidth={drawerWidth}>
         <Box sx={miniDrawerStyles.drawerHeader(theme)}>
           <Box sx={miniDrawerStyles.userInfoContainer}>
             <AccountCircleIcon
-              sx={theme => ({ fontSize: 40, color: theme.palette.text.primary })}
+              sx={theme => ({ fontSize: 40, color: theme.palette.primary.contrastText })}
             />
             <Box>
               <Typography variant="h6" fontWeight="bold">

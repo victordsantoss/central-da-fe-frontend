@@ -137,8 +137,15 @@ const LoginFormView: React.FC<ILoginFormProps> = ({
             placement="top"
           >
             <span style={{ width: '100%' }}>
-              <Button type="submit" variant="contained" fullWidth color="secondary">
-                {isPending ? <CircularProgress size={20} /> : 'Entrar'}
+              <Button type="submit" variant="contained" fullWidth color="primary">
+                {isPending ? (
+                  <CircularProgress
+                    size={20}
+                    sx={theme => ({ color: theme.palette.primary.contrastText })}
+                  />
+                ) : (
+                  'Entrar'
+                )}
               </Button>
             </span>
           </Tooltip>
