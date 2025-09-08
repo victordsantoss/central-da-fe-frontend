@@ -11,13 +11,9 @@ export const footerStyles: {
   icon: SxProps<Theme>;
 } = {
   container: {
-    position: 'fixed',
-    bottom: 0,
-    left: 0,
-    right: 0,
+    width: '100vw',
     backgroundColor: defaultTheme.palette.primary.dark,
     backdropFilter: 'blur(10px)',
-    zIndex: 1000,
   },
   content: {
     display: 'flex',

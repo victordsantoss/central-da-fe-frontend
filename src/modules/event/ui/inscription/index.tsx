@@ -4,12 +4,11 @@ import { EventInscriptionView } from './inscription.view';
 import { Event } from '@/services/domain/event.types';
 
 interface IEventInscriptionViewModelProps {
-  readonly id: string;
   readonly eventData: Event.IGetEventResponse;
 }
 
-const EventInscriptionViewModel = ({ id, eventData }: IEventInscriptionViewModelProps) => {
-  return <EventInscriptionView id={id} eventData={eventData} />;
+const EventInscriptionViewModel = ({ eventData }: IEventInscriptionViewModelProps) => {
+  return <EventInscriptionView eventData={eventData} />;
 };
 
 export default EventInscriptionViewModel;

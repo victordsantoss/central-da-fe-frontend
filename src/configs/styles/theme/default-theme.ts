@@ -32,6 +32,9 @@ const defaultTheme = createTheme({
       primary: '#E6E6E6',
       secondary: '#3E5A80',
     },
+    auxiliares: {
+      free: '#52a800',
+    },
   },
   typography: {
     fontFamily: 'Roboto, Arial, sans-serif',

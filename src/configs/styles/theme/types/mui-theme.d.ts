@@ -6,12 +6,18 @@ declare module '@mui/material/styles' {
       primary: string;
       secondary: string;
     };
+    auxiliares: {
+      free: string;
+    };
   }
 
   interface PaletteOptions {
     line: {
       primary: string;
       secondary: string;
+    };
+    auxiliares: {
+      free: string;
     };
   }
 }

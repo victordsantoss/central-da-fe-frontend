@@ -12,5 +12,5 @@ export default async function Page({ params }: IPageProps) {
   const event = await getEventById(id);
   const eventData = handleApiError<Event.IGetEventResponse>(event);
 
-  return <EventInscriptionPage id={id} eventData={eventData} />;
+  return <EventInscriptionPage eventData={eventData} />;
 }

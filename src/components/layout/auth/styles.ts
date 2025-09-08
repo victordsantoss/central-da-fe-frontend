@@ -7,6 +7,7 @@ export const authLayoutStyle: {
 } = {
   container: {
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: defaultTheme.palette.background.default,
@@ -20,8 +21,10 @@ export const authLayoutStyle: {
   main: {
     display: 'flex',
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
     height: '100%',
     width: '100%',
-    paddingBottom: { xs: '200px', md: '80px' },
+    paddingBottom: '80px',
   },
 };
