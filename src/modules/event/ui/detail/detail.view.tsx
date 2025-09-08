@@ -8,6 +8,7 @@ import {
   IconButton,
   Divider,
   Button,
+  Link,
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import EditIcon from '@mui/icons-material/Edit';
@@ -15,6 +16,10 @@ import EventIcon from '@mui/icons-material/Event';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ChurchIcon from '@mui/icons-material/Church';
 import DescriptionIcon from '@mui/icons-material/Description';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import LinkIcon from '@mui/icons-material/Link';
 import { Event } from '@/services/domain/event.types';
 import { formatDateAndTime } from '@/common/utils/date.util';
 import {
@@ -51,12 +56,14 @@ export const EventDetailView = ({ eventData, onBackClick, onEditClick }: IEventD
         <Typography variant="h3" sx={{ ...formStyles.title, textAlign: 'left' }}>
           Detalhes do Evento
         </Typography>
-        <Box sx={{ ml: 'auto' }}>
+        <Box sx={{ ml: 'auto', width: { xs: '100%', md: 'auto' } }}>
           <Button
             variant="contained"
             color="secondary"
             startIcon={<EditIcon />}
             onClick={() => onEditClick(eventData.id)}
+            fullWidth
+            sx={{ width: { xs: '100%', md: 'auto' } }}
           >
             Editar
           </Button>
@@ -96,7 +103,7 @@ export const EventDetailView = ({ eventData, onBackClick, onEditClick }: IEventD
               />
             </Box>
 
-            <Box>
+            <Box sx={{ width: { xs: '100%', md: 'auto' } }}>
               <Box display="flex" alignItems="center" gap={1} mb={1}>
                 <Typography variant="h6" fontWeight={600}>
                   Valor do ingresso
@@ -131,22 +138,19 @@ export const EventDetailView = ({ eventData, onBackClick, onEditClick }: IEventD
                   </Typography>
                 </Box>
 
-                <Box>
-                  <Box display="flex" alignItems="center" gap={1} mb={1}>
-                    <EventIcon sx={{ color: 'text.primary' }} />
-                    <Typography variant="h6" fontWeight={600}>
-                      Data e Hora
+                {eventData.content && (
+                  <Box>
+                    <Box display="flex" alignItems="center" gap={1} mb={1}>
+                      <DescriptionIcon sx={{ color: 'text.primary' }} />
+                      <Typography variant="h6" fontWeight={600}>
+                        Conteúdo ou Mais Informações
+                      </Typography>
+                    </Box>
+                    <Typography variant="body1" color="text.primary">
+                      {eventData.content}
                     </Typography>
                   </Box>
-                  <Typography variant="body1" color="text.primary">
-                    <strong>Início:</strong> {formatDateAndTime(new Date(eventData.startDate))}
-                  </Typography>
-                  {eventData.endDate && (
-                    <Typography variant="body1" color="text.primary">
-                      <strong>Fim:</strong> {formatDateAndTime(new Date(eventData.endDate))}
-                    </Typography>
-                  )}
-                </Box>
+                )}
               </Stack>
             </Box>
 
@@ -175,11 +179,116 @@ export const EventDetailView = ({ eventData, onBackClick, onEditClick }: IEventD
                     {eventData.addressName}
                   </Typography>
                 </Box>
+
+                <Box>
+                  <Box display="flex" alignItems="center" gap={1} mb={1}>
+                    <EventIcon sx={{ color: 'text.primary' }} />
+                    <Typography variant="h6" fontWeight={600}>
+                      Data e Hora
+                    </Typography>
+                  </Box>
+                  <Typography variant="body1" color="text.primary">
+                    <strong>Início:</strong> {formatDateAndTime(new Date(eventData.startDate))}
+                  </Typography>
+                  {eventData.endDate && (
+                    <Typography variant="body1" color="text.primary">
+                      <strong>Fim:</strong> {formatDateAndTime(new Date(eventData.endDate))}
+                    </Typography>
+                  )}
+                </Box>
               </Stack>
             </Box>
           </Box>
         </CardContent>
       </Card>
+
+      {/* Social Media and Links Card */}
+      {(eventData.customLink ||
+        eventData.facebookLink ||
+        eventData.instagramLink ||
+        eventData.youtubeLink) && (
+        <Card sx={{ boxShadow: 3 }}>
+          <CardContent sx={{ p: 2 }}>
+            <Typography variant="h6" mb={3} sx={{ ...formStyles.title, textAlign: 'left' }}>
+              Divulgação e Compartilhamento
+            </Typography>
+            <Stack spacing={{ xs: 2, md: 3 }} direction={{ xs: 'column', sm: 'row' }}>
+              {eventData.customLink && (
+                <Box>
+                  <Box display="flex" alignItems="center" gap={1} mb={1}>
+                    <LinkIcon sx={{ color: 'text.primary' }} />
+                    <Typography variant="h6" fontWeight={600}>
+                      Link Personalizado
+                    </Typography>
+                  </Box>
+                  <Link
+                    href={eventData.customLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    sx={{ color: 'primary.main', textDecoration: 'underline' }}
+                  >
+                    {eventData.customLink}
+                  </Link>
+                </Box>
+              )}
+              {eventData.facebookLink && (
+                <Box>
+                  <Box display="flex" alignItems="center" gap={1} mb={1}>
+                    <FacebookIcon sx={{ color: '#1877F2' }} />
+                    <Typography variant="h6" fontWeight={600}>
+                      Facebook
+                    </Typography>
+                  </Box>
+                  <Link
+                    href={eventData.facebookLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    sx={{ color: 'primary.main', textDecoration: 'underline' }}
+                  >
+                    {eventData.facebookLink}
+                  </Link>
+                </Box>
+              )}
+              {eventData.instagramLink && (
+                <Box>
+                  <Box display="flex" alignItems="center" gap={1} mb={1}>
+                    <InstagramIcon sx={{ color: '#E4405F' }} />
+                    <Typography variant="h6" fontWeight={600}>
+                      Instagram
+                    </Typography>
+                  </Box>
+                  <Link
+                    href={eventData.instagramLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    sx={{ color: 'primary.main', textDecoration: 'underline' }}
+                  >
+                    {eventData.instagramLink}
+                  </Link>
+                </Box>
+              )}
+              {eventData.youtubeLink && (
+                <Box>
+                  <Box display="flex" alignItems="center" gap={1} mb={1}>
+                    <YouTubeIcon sx={{ color: '#FF0000' }} />
+                    <Typography variant="h6" fontWeight={600}>
+                      YouTube
+                    </Typography>
+                  </Box>
+                  <Link
+                    href={eventData.youtubeLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    sx={{ color: 'primary.main', textDecoration: 'underline' }}
+                  >
+                    {eventData.youtubeLink}
+                  </Link>
+                </Box>
+              )}
+            </Stack>
+          </CardContent>
+        </Card>
+      )}
     </Box>
   );
 };

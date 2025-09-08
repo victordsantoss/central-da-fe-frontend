@@ -14,6 +14,11 @@ export namespace Event {
     category: EventCategory;
     isPaid?: boolean | undefined;
     price?: number | undefined;
+    content?: string;
+    customLink?: string;
+    instagramLink?: string;
+    facebookLink?: string;
+    youtubeLink?: string;
     startDate: Date | Dayjs;
     endDate?: Date | Dayjs;
     address: AddressModel;

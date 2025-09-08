@@ -4,6 +4,7 @@ export type EventModel = {
   id: string;
   name: string;
   description: string;
+  content?: string;
   image: string;
   startDate: Date;
   endDate: Date;
@@ -15,6 +16,10 @@ export type EventModel = {
   churchId: string;
   churchName: string;
   addressName: string;
+  customLink?: string;
+  instagramLink?: string;
+  facebookLink?: string;
+  youtubeLink?: string;
   createdAt: string;
   updatedAt: string;
   deletedAt: string;
