@@ -19,7 +19,7 @@ export const authFormStyles: {
     justifyContent: 'center',
     gap: { xs: 2, md: 3 },
     border: `2px solid ${defaultTheme.palette.line.secondary}`,
-    color: defaultTheme.palette.secondary.contrastText,
+    color: defaultTheme.palette.text.primary,
     boxShadow: '10px 10px 10px 0px rgba(0, 0, 0, 0.1)',
   },
 
@@ -30,7 +30,7 @@ export const authFormStyles: {
       gap: { xs: 2, md: 3 },
     },
     action: {
-      color: defaultTheme.palette.secondary.contrastText,
+      color: defaultTheme.palette.text.primary,
       textDecoration: 'underline',
       cursor: 'pointer',
     },

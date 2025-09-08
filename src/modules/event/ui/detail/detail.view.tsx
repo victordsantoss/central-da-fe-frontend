@@ -121,7 +121,7 @@ export const EventDetailView = ({ eventData, onBackClick, onEditClick }: IEventD
               <Stack spacing={3}>
                 <Box>
                   <Box display="flex" alignItems="center" gap={1} mb={1}>
-                    <DescriptionIcon sx={{ color: 'text.secondary' }} />
+                    <DescriptionIcon sx={{ color: 'text.primary' }} />
                     <Typography variant="h6" fontWeight={600}>
                       Descrição
                     </Typography>
@@ -133,7 +133,7 @@ export const EventDetailView = ({ eventData, onBackClick, onEditClick }: IEventD
 
                 <Box>
                   <Box display="flex" alignItems="center" gap={1} mb={1}>
-                    <EventIcon sx={{ color: 'text.secondary' }} />
+                    <EventIcon sx={{ color: 'text.primary' }} />
                     <Typography variant="h6" fontWeight={600}>
                       Data e Hora
                     </Typography>
@@ -154,7 +154,7 @@ export const EventDetailView = ({ eventData, onBackClick, onEditClick }: IEventD
               <Stack spacing={3}>
                 <Box>
                   <Box display="flex" alignItems="center" gap={1} mb={1}>
-                    <ChurchIcon sx={{ color: 'text.secondary' }} />
+                    <ChurchIcon sx={{ color: 'text.primary' }} />
                     <Typography variant="h6" fontWeight={600}>
                       Igreja
                     </Typography>
@@ -166,7 +166,7 @@ export const EventDetailView = ({ eventData, onBackClick, onEditClick }: IEventD
 
                 <Box>
                   <Box display="flex" alignItems="center" gap={1} mb={1}>
-                    <LocationOnIcon sx={{ color: 'text.secondary' }} />
+                    <LocationOnIcon sx={{ color: 'text.primary' }} />
                     <Typography variant="h6" fontWeight={600}>
                       Localização
                     </Typography>
