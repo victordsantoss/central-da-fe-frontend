@@ -9,7 +9,8 @@ export const apiFetch = async <T, Q extends QueryParams = QueryParams>(
   queryParams?: Q
 ): Promise<T> => {
   const { body, ...rest } = options;
-  const url = new URL(`${process.env.NEXT_PUBLIC_API_URL}${endpoint}`);
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'https://central-da-fe-backend.vercel.app/';
+  const url = new URL(`${baseUrl}${endpoint}`);
 
   if (queryParams) {
     Object.entries(queryParams).forEach(([key, value]) => {
