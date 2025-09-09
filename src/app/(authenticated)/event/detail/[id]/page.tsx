@@ -1,11 +1,12 @@
 import EventDetailPage from '@/modules/event/pages/event/detail.page';
 
 interface IPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export default async function Page({ params }: IPageProps) {
-  return <EventDetailPage params={params} />;
+  const resolvedParams = await params;
+  return <EventDetailPage params={resolvedParams} />;
 }
