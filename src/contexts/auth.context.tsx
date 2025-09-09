@@ -15,6 +15,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [user, setUser] = useState<User.IAuthenticatedUserResponse | undefined>(undefined);
 
   const persistUser = async (token: string) => {
+    console.log('token', token);
     const user = await UserService.getAuthenticatedUser();
     if (user) {
       UserStorage.setUser(user);

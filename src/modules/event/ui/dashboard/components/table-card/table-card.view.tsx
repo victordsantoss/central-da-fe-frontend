@@ -14,7 +14,6 @@ import EventIcon from '@mui/icons-material/Event';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ChurchIcon from '@mui/icons-material/Church';
 import { EventModel } from '@/common/models/event.model';
-import CategoryIcon from '@mui/icons-material/Category';
 import { EventTableCardPopover } from './popover';
 import { formatDateAndTime } from '@/common/utils/date.util';
 import {

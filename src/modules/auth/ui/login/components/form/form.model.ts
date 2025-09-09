@@ -30,7 +30,6 @@ export const useLoginFormModel = () => {
   };
 
   const handleForgotPassword = () => {
-    // TODO: Implementar funcionalidade de recuperação de senha
     showAlert('Funcionalidade de recuperação de senha será implementada em breve!', 'info');
   };
 
@@ -40,7 +39,6 @@ export const useLoginFormModel = () => {
       if (isAxiosError(error)) showAlert(error.response?.data.message, 'error');
     },
     onSuccess: async (token: string) => {
-      // Se rememberMe estiver marcado, salvar token por mais tempo
       const tokenExpiration = methods.getValues('rememberMe') ? 365 : 30;
       AuthCookie.setToken(token, tokenExpiration);
       persistUser(token);
