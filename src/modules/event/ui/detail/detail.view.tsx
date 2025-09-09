@@ -8,7 +8,9 @@ import {
   IconButton,
   Divider,
   Button,
-  Link,
+  Tooltip,
+  Snackbar,
+  Alert,
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import EditIcon from '@mui/icons-material/Edit';
@@ -20,6 +22,8 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import LinkIcon from '@mui/icons-material/Link';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import { useState } from 'react';
 import { Event } from '@/services/domain/event.types';
 import { formatDateAndTime } from '@/common/utils/date.util';
 import {
@@ -37,6 +41,25 @@ interface IEventDetailViewProps {
 }
 
 export const EventDetailView = ({ eventData, onBackClick, onEditClick }: IEventDetailViewProps) => {
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+
+  const handleCopyLink = async (link: string | undefined, platform: string) => {
+    if (!link) return;
+
+    try {
+      await navigator.clipboard.writeText(link);
+      setSnackbarMessage(`${platform} copiado para a área de transferência!`);
+      setSnackbarOpen(true);
+    } catch {
+      setSnackbarMessage('Erro ao copiar link');
+      setSnackbarOpen(true);
+    }
+  };
+
+  const handleCloseSnackbar = () => {
+    setSnackbarOpen(false);
+  };
   return (
     <Box display="flex" flexDirection="column" gap={2}>
       <Stack
@@ -203,92 +226,241 @@ export const EventDetailView = ({ eventData, onBackClick, onEditClick }: IEventD
       </Card>
 
       {/* Social Media and Links Card */}
-      {(eventData.customLink ||
-        eventData.facebookLink ||
-        eventData.instagramLink ||
-        eventData.youtubeLink) && (
-        <Card sx={{ boxShadow: 3 }}>
-          <CardContent sx={{ p: 2 }}>
-            <Typography variant="h6" mb={3} sx={{ ...formStyles.title, textAlign: 'left' }}>
-              Divulgação e Compartilhamento
-            </Typography>
-            <Stack spacing={{ xs: 2, md: 3 }} direction={{ xs: 'column', sm: 'row' }}>
+      <Card sx={{ boxShadow: 3 }}>
+        <CardContent sx={{ p: 3 }}>
+          <Typography variant="h5" mb={3} sx={{ ...formStyles.title, textAlign: 'left' }}>
+            Redes Sociais e Links
+          </Typography>
+          {(eventData.customLink ||
+            eventData.facebookLink ||
+            eventData.instagramLink ||
+            eventData.youtubeLink) ? (
+            <Stack spacing={{ xs: 1, md: 2 }} direction={{ xs: 'column', md: 'row' }} divider={<Divider orientation="vertical" flexItem />}>
               {eventData.customLink && (
-                <Box>
-                  <Box display="flex" alignItems="center" gap={1} mb={1}>
-                    <LinkIcon sx={{ color: 'text.primary' }} />
-                    <Typography variant="h6" fontWeight={600}>
+                <Box sx={{ flex: 1, minWidth: 0 }}>
+                  <Box display="flex" alignItems="center" gap={1.5} mb={2}>
+                    <LinkIcon sx={{ color: 'primary.main', fontSize: 24 }} />
+                    <Typography variant="h6" fontWeight={600} color="text.primary">
                       Link Personalizado
                     </Typography>
                   </Box>
-                  <Link
-                    href={eventData.customLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    sx={{ color: 'primary.main', textDecoration: 'underline' }}
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      p: 1.5,
+                      borderRadius: 1,
+                      backgroundColor: 'action.hover',
+                      border: '1px solid',
+                      borderColor: 'divider',
+                      gap: 1,
+                    }}
                   >
-                    {eventData.customLink}
-                  </Link>
+                    <Typography
+                      sx={{
+                        color: 'primary.main',
+                        flex: 1,
+                        wordBreak: 'break-all',
+                        fontSize: '0.875rem',
+                      }}
+                    >
+                      {eventData.customLink}
+                    </Typography>
+                    <Tooltip title="Copiar link" placement="top" arrow>
+                      <IconButton
+                        size="small"
+                        onClick={() => handleCopyLink(eventData.customLink, 'Link personalizado')}
+                        sx={{
+                          color: 'primary.main',
+                          '&:hover': {
+                            backgroundColor: 'primary.light',
+                            color: 'primary.contrastText',
+                          },
+                        }}
+                      >
+                        <ContentCopyIcon fontSize="small" />
+                      </IconButton>
+                    </Tooltip>
+                  </Box>
                 </Box>
               )}
               {eventData.facebookLink && (
-                <Box>
-                  <Box display="flex" alignItems="center" gap={1} mb={1}>
-                    <FacebookIcon sx={{ color: '#1877F2' }} />
-                    <Typography variant="h6" fontWeight={600}>
+                <Box sx={{ flex: 1, minWidth: 0 }}>
+                  <Box display="flex" alignItems="center" gap={1.5} mb={2}>
+                    <FacebookIcon sx={{ color: '#1877F2', fontSize: 24 }} />
+                    <Typography variant="h6" fontWeight={600} color="text.primary">
                       Facebook
                     </Typography>
                   </Box>
-                  <Link
-                    href={eventData.facebookLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    sx={{ color: 'primary.main', textDecoration: 'underline' }}
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      p: 1.5,
+                      borderRadius: 1,
+                      backgroundColor: 'rgba(24, 119, 242, 0.08)',
+                      border: '1px solid',
+                      borderColor: 'rgba(24, 119, 242, 0.2)',
+                      gap: 1,
+                    }}
                   >
-                    {eventData.facebookLink}
-                  </Link>
+                    <Typography
+                      sx={{
+                        color: '#1877F2',
+                        flex: 1,
+                        wordBreak: 'break-all',
+                        fontSize: '0.875rem',
+                      }}
+                    >
+                      {eventData.facebookLink}
+                    </Typography>
+                    <Tooltip title="Copiar link" placement="top" arrow>
+                      <IconButton
+                        size="small"
+                        onClick={() => handleCopyLink(eventData.facebookLink, 'Facebook')}
+                        sx={{
+                          color: '#1877F2',
+                          '&:hover': {
+                            backgroundColor: '#1877F2',
+                            color: 'white',
+                          },
+                        }}
+                      >
+                        <ContentCopyIcon fontSize="small" />
+                      </IconButton>
+                    </Tooltip>
+                  </Box>
                 </Box>
               )}
               {eventData.instagramLink && (
-                <Box>
-                  <Box display="flex" alignItems="center" gap={1} mb={1}>
-                    <InstagramIcon sx={{ color: '#E4405F' }} />
-                    <Typography variant="h6" fontWeight={600}>
+                <Box sx={{ flex: 1, minWidth: 0 }}>
+                  <Box display="flex" alignItems="center" gap={1.5} mb={2}>
+                    <InstagramIcon sx={{ color: '#E4405F', fontSize: 24 }} />
+                    <Typography variant="h6" fontWeight={600} color="text.primary">
                       Instagram
                     </Typography>
                   </Box>
-                  <Link
-                    href={eventData.instagramLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    sx={{ color: 'primary.main', textDecoration: 'underline' }}
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      p: 1.5,
+                      borderRadius: 1,
+                      backgroundColor: 'rgba(228, 64, 95, 0.08)',
+                      border: '1px solid',
+                      borderColor: 'rgba(228, 64, 95, 0.2)',
+                      gap: 1,
+                    }}
                   >
-                    {eventData.instagramLink}
-                  </Link>
+                    <Typography
+                      sx={{
+                        color: '#E4405F',
+                        flex: 1,
+                        wordBreak: 'break-all',
+                        fontSize: '0.875rem',
+                      }}
+                    >
+                      {eventData.instagramLink}
+                    </Typography>
+                    <Tooltip title="Copiar link" placement="top" arrow>
+                      <IconButton
+                        size="small"
+                        onClick={() => handleCopyLink(eventData.instagramLink, 'Instagram')}
+                        sx={{
+                          color: '#E4405F',
+                          '&:hover': {
+                            backgroundColor: '#E4405F',
+                            color: 'white',
+                          },
+                        }}
+                      >
+                        <ContentCopyIcon fontSize="small" />
+                      </IconButton>
+                    </Tooltip>
+                  </Box>
                 </Box>
               )}
               {eventData.youtubeLink && (
-                <Box>
-                  <Box display="flex" alignItems="center" gap={1} mb={1}>
-                    <YouTubeIcon sx={{ color: '#FF0000' }} />
-                    <Typography variant="h6" fontWeight={600}>
+                <Box sx={{ flex: 1, minWidth: 0 }}>
+                  <Box display="flex" alignItems="center" gap={1.5} mb={2}>
+                    <YouTubeIcon sx={{ color: '#FF0000', fontSize: 24 }} />
+                    <Typography variant="h6" fontWeight={600} color="text.primary">
                       YouTube
                     </Typography>
                   </Box>
-                  <Link
-                    href={eventData.youtubeLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    sx={{ color: 'primary.main', textDecoration: 'underline' }}
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      p: 1.5,
+                      borderRadius: 1,
+                      backgroundColor: 'rgba(255, 0, 0, 0.08)',
+                      border: '1px solid',
+                      borderColor: 'rgba(255, 0, 0, 0.2)',
+                      gap: 1,
+                    }}
                   >
-                    {eventData.youtubeLink}
-                  </Link>
+                    <Typography
+                      sx={{
+                        color: '#FF0000',
+                        flex: 1,
+                        wordBreak: 'break-all',
+                        fontSize: '0.875rem',
+                      }}
+                    >
+                      {eventData.youtubeLink}
+                    </Typography>
+                    <Tooltip title="Copiar link" placement="top" arrow>
+                      <IconButton
+                        size="small"
+                        onClick={() => handleCopyLink(eventData.youtubeLink, 'YouTube')}
+                        sx={{
+                          color: '#FF0000',
+                          '&:hover': {
+                            backgroundColor: '#FF0000',
+                            color: 'white',
+                          },
+                        }}
+                      >
+                        <ContentCopyIcon fontSize="small" />
+                      </IconButton>
+                    </Tooltip>
+                  </Box>
                 </Box>
               )}
             </Stack>
-          </CardContent>
-        </Card>
-      )}
+          ) : (
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                py: 4,
+                px: 2,
+                backgroundColor: 'action.hover',
+                borderRadius: 1,
+                border: '1px dashed',
+                borderColor: 'divider',
+              }}
+            >
+              <Typography variant="body1" color="text.secondary" sx={{ fontStyle: 'italic' }}>
+                Não registrado
+              </Typography>
+            </Box>
+          )}
+        </CardContent>
+      </Card>
+
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={3000}
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: '100%' }}>
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 };
