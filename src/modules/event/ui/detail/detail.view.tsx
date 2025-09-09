@@ -93,7 +93,7 @@ export const EventDetailView = ({ eventData, onBackClick, onEditClick }: IEventD
         </Box>
       </Stack>
       <Card sx={{ boxShadow: 3 }}>
-        <CardContent sx={{ p: 2 }}>
+        <CardContent sx={{ p: 3 }}>
           <Box
             display="flex"
             flexDirection={{ xs: 'column', md: 'row' }}
@@ -228,226 +228,212 @@ export const EventDetailView = ({ eventData, onBackClick, onEditClick }: IEventD
       {/* Social Media and Links Card */}
       <Card sx={{ boxShadow: 3 }}>
         <CardContent sx={{ p: 3 }}>
-          <Typography variant="h5" mb={3} sx={{ ...formStyles.title, textAlign: 'left' }}>
+          <Typography
+            variant="h5"
+            fontWeight={600}
+            sx={{
+              mb: 3,
+              color: 'primary.main',
+              textAlign: 'left'
+            }}
+          >
             Redes Sociais e Links
           </Typography>
-          {(eventData.customLink ||
-            eventData.facebookLink ||
-            eventData.instagramLink ||
-            eventData.youtubeLink) ? (
-            <Stack spacing={{ xs: 1, md: 2 }} direction={{ xs: 'column', md: 'row' }} divider={<Divider orientation="vertical" flexItem />}>
-              {eventData.customLink && (
-                <Box sx={{ flex: 1, minWidth: 0 }}>
-                  <Box display="flex" alignItems="center" gap={1.5} mb={2}>
-                    <LinkIcon sx={{ color: 'primary.main', fontSize: 24 }} />
-                    <Typography variant="h6" fontWeight={600} color="text.primary">
-                      Link Personalizado
-                    </Typography>
-                  </Box>
-                  <Box
+
+          <Stack spacing={{ xs: 1, md: 2 }} direction={{ xs: 'column', md: 'row' }} divider={<Divider orientation="vertical" flexItem />}>
+            {eventData.customLink && (
+              <Box sx={{ flex: 1, minWidth: 0 }}>
+                <Box display="flex" alignItems="center" gap={1.5} mb={2}>
+                  <LinkIcon sx={{ color: 'primary.main', fontSize: 24 }} />
+                  <Typography variant="h6" fontWeight={600} color="text.primary">
+                    Link Personalizado
+                  </Typography>
+                </Box>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    p: 1.5,
+                    borderRadius: 1,
+                    backgroundColor: 'action.hover',
+                    border: '1px solid',
+                    borderColor: 'divider',
+                    gap: 1,
+                  }}
+                >
+                  <Typography
                     sx={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      p: 1.5,
-                      borderRadius: 1,
-                      backgroundColor: 'action.hover',
-                      border: '1px solid',
-                      borderColor: 'divider',
-                      gap: 1,
+                      color: 'primary.main',
+                      flex: 1,
+                      wordBreak: 'break-all',
+                      fontSize: '0.875rem',
                     }}
                   >
-                    <Typography
+                    {eventData.customLink || 'Não registrado'}
+                  </Typography>
+                  <Tooltip title="Copiar link" placement="top" arrow>
+                    <IconButton
+                      size="small"
+                      onClick={() => handleCopyLink(eventData.customLink, 'Link personalizado')}
                       sx={{
                         color: 'primary.main',
-                        flex: 1,
-                        wordBreak: 'break-all',
-                        fontSize: '0.875rem',
+                        '&:hover': {
+                          backgroundColor: 'primary.light',
+                          color: 'primary.contrastText',
+                        },
                       }}
                     >
-                      {eventData.customLink}
-                    </Typography>
-                    <Tooltip title="Copiar link" placement="top" arrow>
-                      <IconButton
-                        size="small"
-                        onClick={() => handleCopyLink(eventData.customLink, 'Link personalizado')}
-                        sx={{
-                          color: 'primary.main',
-                          '&:hover': {
-                            backgroundColor: 'primary.light',
-                            color: 'primary.contrastText',
-                          },
-                        }}
-                      >
-                        <ContentCopyIcon fontSize="small" />
-                      </IconButton>
-                    </Tooltip>
-                  </Box>
+                      <ContentCopyIcon fontSize="small" />
+                    </IconButton>
+                  </Tooltip>
                 </Box>
-              )}
-              {eventData.facebookLink && (
-                <Box sx={{ flex: 1, minWidth: 0 }}>
-                  <Box display="flex" alignItems="center" gap={1.5} mb={2}>
-                    <FacebookIcon sx={{ color: '#1877F2', fontSize: 24 }} />
-                    <Typography variant="h6" fontWeight={600} color="text.primary">
-                      Facebook
-                    </Typography>
-                  </Box>
-                  <Box
+              </Box>
+            )}
+            {eventData.facebookLink && (
+              <Box sx={{ flex: 1, minWidth: 0 }}>
+                <Box display="flex" alignItems="center" gap={1.5} mb={2}>
+                  <FacebookIcon sx={{ color: '#1877F2', fontSize: 24 }} />
+                  <Typography variant="h6" fontWeight={600} color="text.primary">
+                    Facebook
+                  </Typography>
+                </Box>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    p: 1.5,
+                    borderRadius: 1,
+                    backgroundColor: 'rgba(24, 119, 242, 0.08)',
+                    border: '1px solid',
+                    borderColor: 'rgba(24, 119, 242, 0.2)',
+                    gap: 1,
+                  }}
+                >
+                  <Typography
                     sx={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      p: 1.5,
-                      borderRadius: 1,
-                      backgroundColor: 'rgba(24, 119, 242, 0.08)',
-                      border: '1px solid',
-                      borderColor: 'rgba(24, 119, 242, 0.2)',
-                      gap: 1,
+                      color: '#1877F2',
+                      flex: 1,
+                      wordBreak: 'break-all',
+                      fontSize: '0.875rem',
                     }}
                   >
-                    <Typography
+                    {eventData.facebookLink || 'Não registrado'}
+                  </Typography>
+                  <Tooltip title="Copiar link" placement="top" arrow>
+                    <IconButton
+                      size="small"
+                      onClick={() => handleCopyLink(eventData.facebookLink, 'Facebook')}
                       sx={{
                         color: '#1877F2',
-                        flex: 1,
-                        wordBreak: 'break-all',
-                        fontSize: '0.875rem',
+                        '&:hover': {
+                          backgroundColor: '#1877F2',
+                          color: 'white',
+                        },
                       }}
                     >
-                      {eventData.facebookLink}
-                    </Typography>
-                    <Tooltip title="Copiar link" placement="top" arrow>
-                      <IconButton
-                        size="small"
-                        onClick={() => handleCopyLink(eventData.facebookLink, 'Facebook')}
-                        sx={{
-                          color: '#1877F2',
-                          '&:hover': {
-                            backgroundColor: '#1877F2',
-                            color: 'white',
-                          },
-                        }}
-                      >
-                        <ContentCopyIcon fontSize="small" />
-                      </IconButton>
-                    </Tooltip>
-                  </Box>
+                      <ContentCopyIcon fontSize="small" />
+                    </IconButton>
+                  </Tooltip>
                 </Box>
-              )}
-              {eventData.instagramLink && (
-                <Box sx={{ flex: 1, minWidth: 0 }}>
-                  <Box display="flex" alignItems="center" gap={1.5} mb={2}>
-                    <InstagramIcon sx={{ color: '#E4405F', fontSize: 24 }} />
-                    <Typography variant="h6" fontWeight={600} color="text.primary">
-                      Instagram
-                    </Typography>
-                  </Box>
-                  <Box
+              </Box>
+            )}
+            {eventData.instagramLink && (
+              <Box sx={{ flex: 1, minWidth: 0 }}>
+                <Box display="flex" alignItems="center" gap={1.5} mb={2}>
+                  <InstagramIcon sx={{ color: '#E4405F', fontSize: 24 }} />
+                  <Typography variant="h6" fontWeight={600} color="text.primary">
+                    Instagram
+                  </Typography>
+                </Box>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    p: 1.5,
+                    borderRadius: 1,
+                    backgroundColor: 'rgba(228, 64, 95, 0.08)',
+                    border: '1px solid',
+                    borderColor: 'rgba(228, 64, 95, 0.2)',
+                    gap: 1,
+                  }}
+                >
+                  <Typography
                     sx={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      p: 1.5,
-                      borderRadius: 1,
-                      backgroundColor: 'rgba(228, 64, 95, 0.08)',
-                      border: '1px solid',
-                      borderColor: 'rgba(228, 64, 95, 0.2)',
-                      gap: 1,
+                      color: '#E4405F',
+                      flex: 1,
+                      wordBreak: 'break-all',
+                      fontSize: '0.875rem',
                     }}
                   >
-                    <Typography
+                    {eventData.instagramLink || 'Não registrado'}
+                  </Typography>
+                  <Tooltip title="Copiar link" placement="top" arrow>
+                    <IconButton
+                      size="small"
+                      onClick={() => handleCopyLink(eventData.instagramLink, 'Instagram')}
                       sx={{
                         color: '#E4405F',
-                        flex: 1,
-                        wordBreak: 'break-all',
-                        fontSize: '0.875rem',
+                        '&:hover': {
+                          backgroundColor: '#E4405F',
+                          color: 'white',
+                        },
                       }}
                     >
-                      {eventData.instagramLink}
-                    </Typography>
-                    <Tooltip title="Copiar link" placement="top" arrow>
-                      <IconButton
-                        size="small"
-                        onClick={() => handleCopyLink(eventData.instagramLink, 'Instagram')}
-                        sx={{
-                          color: '#E4405F',
-                          '&:hover': {
-                            backgroundColor: '#E4405F',
-                            color: 'white',
-                          },
-                        }}
-                      >
-                        <ContentCopyIcon fontSize="small" />
-                      </IconButton>
-                    </Tooltip>
-                  </Box>
+                      <ContentCopyIcon fontSize="small" />
+                    </IconButton>
+                  </Tooltip>
                 </Box>
-              )}
-              {eventData.youtubeLink && (
-                <Box sx={{ flex: 1, minWidth: 0 }}>
-                  <Box display="flex" alignItems="center" gap={1.5} mb={2}>
-                    <YouTubeIcon sx={{ color: '#FF0000', fontSize: 24 }} />
-                    <Typography variant="h6" fontWeight={600} color="text.primary">
-                      YouTube
-                    </Typography>
-                  </Box>
-                  <Box
+              </Box>
+            )}
+            {eventData.youtubeLink && (
+              <Box sx={{ flex: 1, minWidth: 0 }}>
+                <Box display="flex" alignItems="center" gap={1.5} mb={2}>
+                  <YouTubeIcon sx={{ color: '#FF0000', fontSize: 24 }} />
+                  <Typography variant="h6" fontWeight={600} color="text.primary">
+                    YouTube
+                  </Typography>
+                </Box>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    p: 1.5,
+                    borderRadius: 1,
+                    backgroundColor: 'rgba(255, 0, 0, 0.08)',
+                    border: '1px solid',
+                    borderColor: 'rgba(255, 0, 0, 0.2)',
+                    gap: 1,
+                  }}
+                >
+                  <Typography
                     sx={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      p: 1.5,
-                      borderRadius: 1,
-                      backgroundColor: 'rgba(255, 0, 0, 0.08)',
-                      border: '1px solid',
-                      borderColor: 'rgba(255, 0, 0, 0.2)',
-                      gap: 1,
+                      color: '#FF0000',
+                      flex: 1,
+                      wordBreak: 'break-all',
+                      fontSize: '0.875rem',
                     }}
                   >
-                    <Typography
+                    {eventData.youtubeLink || 'Não registrado'}
+                  </Typography>
+                  <Tooltip title="Copiar link" placement="top" arrow>
+                    <IconButton
+                      size="small"
+                      onClick={() => handleCopyLink(eventData.youtubeLink, 'YouTube')}
                       sx={{
                         color: '#FF0000',
-                        flex: 1,
-                        wordBreak: 'break-all',
-                        fontSize: '0.875rem',
+                        '&:hover': {
+                          backgroundColor: '#FF0000',
+                          color: 'white',
+                        },
                       }}
                     >
-                      {eventData.youtubeLink}
-                    </Typography>
-                    <Tooltip title="Copiar link" placement="top" arrow>
-                      <IconButton
-                        size="small"
-                        onClick={() => handleCopyLink(eventData.youtubeLink, 'YouTube')}
-                        sx={{
-                          color: '#FF0000',
-                          '&:hover': {
-                            backgroundColor: '#FF0000',
-                            color: 'white',
-                          },
-                        }}
-                      >
-                        <ContentCopyIcon fontSize="small" />
-                      </IconButton>
-                    </Tooltip>
-                  </Box>
+                      <ContentCopyIcon fontSize="small" />
+                    </IconButton>
+                  </Tooltip>
                 </Box>
-              )}
-            </Stack>
-          ) : (
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                py: 4,
-                px: 2,
-                backgroundColor: 'action.hover',
-                borderRadius: 1,
-                border: '1px dashed',
-                borderColor: 'divider',
-              }}
-            >
-              <Typography variant="body1" color="text.secondary" sx={{ fontStyle: 'italic' }}>
-                Não registrado
-              </Typography>
-            </Box>
-          )}
+              </Box>
+            )}
+          </Stack>
         </CardContent>
       </Card>
 

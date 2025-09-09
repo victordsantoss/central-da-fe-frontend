@@ -52,7 +52,20 @@ const EventTableCardView = ({
           justifyContent={{ xs: 'flex-start', md: 'space-between' }}
           alignItems="flex-start"
         >
-          <Box>
+          <Box
+            sx={{
+              flex: 1,
+              cursor: 'pointer',
+              '&:hover': {
+                backgroundColor: 'action.hover',
+                borderRadius: 1,
+              },
+              p: 1,
+              m: -1,
+              transition: 'background-color 0.2s ease-in-out'
+            }}
+            onClick={() => onView(item.id)}
+          >
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
               <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 1 }}>
                 <Typography variant="h6" fontWeight={700}>
@@ -67,7 +80,10 @@ const EventTableCardView = ({
               <IconButton
                 color="inherit"
                 aria-label="opções"
-                onClick={handleOpenPopover}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleOpenPopover(e);
+                }}
                 sx={{
                   '&:hover': {
                     backgroundColor: 'action.hover',
