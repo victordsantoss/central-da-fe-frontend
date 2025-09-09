@@ -20,6 +20,9 @@ const RegisterEventSchema = z
     category: z.nativeEnum(EventCategory, {
       message: 'A categoria é obrigatória',
     }),
+    mode: z.enum(['PRESENCIAL', 'VIRTUAL'], {
+      message: 'O tipo do evento é obrigatório',
+    }),
     isPaid: z.boolean().optional(),
     price: z.number().min(0, 'O preço deve ser maior ou igual a zero').optional(),
     availableTickets: z

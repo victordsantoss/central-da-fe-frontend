@@ -146,82 +146,139 @@ export const EventDetailView = ({ eventData, onBackClick, onEditClick }: IEventD
 
           <Divider sx={{ mb: 3 }} />
 
-          <Box display="flex" flexDirection={{ xs: 'column', md: 'row' }} gap={4}>
-            <Box flex={1}>
-              <Stack spacing={3}>
-                <Box>
-                  <Box display="flex" alignItems="center" gap={1} mb={1}>
-                    <DescriptionIcon sx={{ color: 'text.primary' }} />
-                    <Typography variant="h6" fontWeight={600}>
-                      Descrição
-                    </Typography>
-                  </Box>
-                  <Typography variant="body1" color="text.primary">
-                    {eventData.description}
-                  </Typography>
+          <Stack spacing={4}>
+            {/* Description */}
+            <Box>
+              <Box display="flex" alignItems="center" gap={1} mb={1}>
+                <Box
+                  sx={{
+                    p: 1,
+                    borderRadius: 1,
+                    backgroundColor: 'primary.light',
+                    color: 'primary.contrastText',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                >
+                  <DescriptionIcon fontSize="small" />
                 </Box>
-
-                {eventData.content && (
-                  <Box>
-                    <Box display="flex" alignItems="center" gap={1} mb={1}>
-                      <DescriptionIcon sx={{ color: 'text.primary' }} />
-                      <Typography variant="h6" fontWeight={600}>
-                        Conteúdo ou Mais Informações
-                      </Typography>
-                    </Box>
-                    <Typography variant="body1" color="text.primary">
-                      {eventData.content}
-                    </Typography>
-                  </Box>
-                )}
-              </Stack>
+                <Typography variant="h6" fontWeight={600}>
+                  Descrição
+                </Typography>
+              </Box>
+              <Typography variant="body1" color="text.primary">
+                {eventData.description}
+              </Typography>
             </Box>
 
-            <Box flex={1}>
-              <Stack spacing={3}>
-                <Box>
-                  <Box display="flex" alignItems="center" gap={1} mb={1}>
-                    <ChurchIcon sx={{ color: 'text.primary' }} />
-                    <Typography variant="h6" fontWeight={600}>
-                      Igreja
-                    </Typography>
+            {/* Content */}
+            {eventData.content && (
+              <Box>
+                <Box display="flex" alignItems="center" gap={1} mb={1}>
+                  <Box
+                    sx={{
+                      p: 1,
+                      borderRadius: 1,
+                      backgroundColor: 'secondary.light',
+                      color: 'secondary.contrastText',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}
+                  >
+                    <DescriptionIcon fontSize="small" />
                   </Box>
-                  <Typography variant="body1" color="text.primary">
-                    {eventData.churchName}
+                  <Typography variant="h6" fontWeight={600}>
+                    Mais Detalhes
                   </Typography>
                 </Box>
+                <Typography variant="body1" color="text.primary">
+                  {eventData.content}
+                </Typography>
+              </Box>
+            )}
 
-                <Box>
-                  <Box display="flex" alignItems="center" gap={1} mb={1}>
-                    <LocationOnIcon sx={{ color: 'text.primary' }} />
-                    <Typography variant="h6" fontWeight={600}>
-                      Localização
-                    </Typography>
+            {/* Church and Location - Side by Side */}
+            <Box display="flex" flexDirection={{ xs: 'column', md: 'row' }} gap={4}>
+              {/* Church */}
+              <Box flex={1}>
+                <Box display="flex" alignItems="center" gap={1} mb={1}>
+                  <Box
+                    sx={{
+                      p: 1,
+                      borderRadius: 1,
+                      backgroundColor: 'primary.light',
+                      color: 'primary.contrastText',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}
+                  >
+                    <ChurchIcon fontSize="small" />
                   </Box>
-                  <Typography variant="body1" color="text.primary">
-                    {eventData.addressName}
+                  <Typography variant="h6" fontWeight={600}>
+                    Igreja
                   </Typography>
                 </Box>
+                <Typography variant="body1" color="text.primary">
+                  {eventData.churchName}
+                </Typography>
+              </Box>
 
-                <Box>
-                  <Box display="flex" alignItems="center" gap={1} mb={1}>
-                    <EventIcon sx={{ color: 'text.primary' }} />
-                    <Typography variant="h6" fontWeight={600}>
-                      Data e Hora
-                    </Typography>
+              {/* Location */}
+              <Box flex={1}>
+                <Box display="flex" alignItems="center" gap={1} mb={1}>
+                  <Box
+                    sx={{
+                      p: 1,
+                      borderRadius: 1,
+                      backgroundColor: 'secondary.light',
+                      color: 'secondary.contrastText',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}
+                  >
+                    <LocationOnIcon fontSize="small" />
                   </Box>
-                  <Typography variant="body1" color="text.primary">
-                    <strong>Início:</strong> {formatDateAndTime(new Date(eventData.startDate))}
+                  <Typography variant="h6" fontWeight={600}>
+                    Localização
                   </Typography>
-                  {eventData.endDate && (
-                    <Typography variant="body1" color="text.primary">
-                      <strong>Fim:</strong> {formatDateAndTime(new Date(eventData.endDate))}
-                    </Typography>
-                  )}
                 </Box>
-              </Stack>
+                <Typography variant="body1" color="text.primary">
+                  {eventData.addressName}
+                </Typography>
+              </Box>
             </Box>
-          </Box>
+
+            {/* Date and Time */}
+            <Box>
+              <Box display="flex" alignItems="center" gap={1} mb={1}>
+                <Box
+                  sx={{
+                    p: 1,
+                    borderRadius: 1,
+                    backgroundColor: 'success.light',
+                    color: 'success.contrastText',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                >
+                  <EventIcon fontSize="small" />
+                </Box>
+                <Typography variant="h6" fontWeight={600}>
+                  Data e Hora
+                </Typography>
+              </Box>
+              <Typography variant="body1" color="text.primary">
+                <strong>Início:</strong> {formatDateAndTime(new Date(eventData.startDate))}  {eventData.endDate && <>e <strong>Fim:</strong> {formatDateAndTime(new Date(eventData.endDate))}</>}
+
+              </Typography>
+
+            </Box>
+          </Stack>
         </CardContent>
       </Card>
 
@@ -234,9 +291,13 @@ export const EventDetailView = ({ eventData, onBackClick, onEditClick }: IEventD
             sx={{
               mb: 3,
               color: 'primary.main',
-              textAlign: 'left'
+              textAlign: 'left',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 1.5
             }}
           >
+
             Redes Sociais e Links
           </Typography>
 

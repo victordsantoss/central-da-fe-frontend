@@ -12,6 +12,7 @@ export type EventModel = {
   status: EventStatus;
   type: EventType;
   category: EventCategory;
+  mode?: 'PRESENCIAL' | 'VIRTUAL';
   price?: number;
   churchId: string;
   churchName: string;

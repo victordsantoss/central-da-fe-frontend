@@ -21,6 +21,10 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import LinkIcon from '@mui/icons-material/Link';
+import DescriptionIcon from '@mui/icons-material/Description';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import ScheduleIcon from '@mui/icons-material/Schedule';
+import ShareIcon from '@mui/icons-material/Share';
 import { Controller, FormProvider, UseFormReturn } from 'react-hook-form';
 import { RegisterEventFormValues } from './form.schema';
 import { EventCategory } from '@/common/enums/event.enum';
@@ -67,8 +71,27 @@ const RegisterEventFormView: React.FC<IRegisterEventFormProps> = ({
                 <Typography
                   variant="h6"
                   mb={{ xs: 2, md: 3 }}
-                  sx={{ ...formStyles.title, textAlign: 'left' }}
+                  sx={{
+                    ...formStyles.title,
+                    textAlign: 'left',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 1.5
+                  }}
                 >
+                  <Box
+                    sx={{
+                      p: 1,
+                      borderRadius: 1,
+                      backgroundColor: 'primary.light',
+                      color: 'primary.contrastText',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}
+                  >
+                    <DescriptionIcon fontSize="small" />
+                  </Box>
                   Dados Básicos
                 </Typography>
                 <Stack spacing={{ xs: 2, md: 3 }}>
@@ -137,6 +160,23 @@ const RegisterEventFormView: React.FC<IRegisterEventFormProps> = ({
                       )}
                     />
                     <Controller
+                      name="mode"
+                      control={methods.control}
+                      render={({ field, fieldState }) => (
+                        <TextField
+                          {...field}
+                          select
+                          label="Tipo do Evento *"
+                          fullWidth
+                          error={!!fieldState.error}
+                          helperText={fieldState.error?.message}
+                        >
+                          <MenuItem value="PRESENCIAL">Presencial</MenuItem>
+                          <MenuItem value="VIRTUAL">Virtual</MenuItem>
+                        </TextField>
+                      )}
+                    />
+                    <Controller
                       name="churchId"
                       control={methods.control}
                       render={({ field, fieldState }) => (
@@ -163,7 +203,30 @@ const RegisterEventFormView: React.FC<IRegisterEventFormProps> = ({
 
             <Card>
               <CardContent>
-                <Typography variant="h6" mb={3} sx={{ ...formStyles.title, textAlign: 'left' }}>
+                <Typography
+                  variant="h6"
+                  mb={3}
+                  sx={{
+                    ...formStyles.title,
+                    textAlign: 'left',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 1.5
+                  }}
+                >
+                  <Box
+                    sx={{
+                      p: 1,
+                      borderRadius: 1,
+                      backgroundColor: 'success.light',
+                      color: 'success.contrastText',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}
+                  >
+                    <AttachMoneyIcon fontSize="small" />
+                  </Box>
                   Detalhes Financeiros
                 </Typography>
                 <Stack spacing={{ xs: 2, md: 3 }}>
@@ -243,7 +306,30 @@ const RegisterEventFormView: React.FC<IRegisterEventFormProps> = ({
             <Card>
               <CardContent>
                 <Stack spacing={{ xs: 2, md: 3 }}>
-                  <Typography variant="h6" mb={3} sx={{ ...formStyles.title, textAlign: 'left' }}>
+                  <Typography
+                    variant="h6"
+                    mb={3}
+                    sx={{
+                      ...formStyles.title,
+                      textAlign: 'left',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 1.5
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        p: 1,
+                        borderRadius: 1,
+                        backgroundColor: 'secondary.light',
+                        color: 'secondary.contrastText',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                      }}
+                    >
+                      <ScheduleIcon fontSize="small" />
+                    </Box>
                     Horários e Localização
                   </Typography>
                   <Stack spacing={{ xs: 2, md: 3 }}>
@@ -399,7 +485,30 @@ const RegisterEventFormView: React.FC<IRegisterEventFormProps> = ({
             {/* Social Media and Sharing Card */}
             <Card>
               <CardContent>
-                <Typography variant="h6" mb={3} sx={{ ...formStyles.title, textAlign: 'left' }}>
+                <Typography
+                  variant="h6"
+                  mb={3}
+                  sx={{
+                    ...formStyles.title,
+                    textAlign: 'left',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 1.5
+                  }}
+                >
+                  <Box
+                    sx={{
+                      p: 1,
+                      borderRadius: 1,
+                      backgroundColor: 'primary.main',
+                      color: 'primary.contrastText',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}
+                  >
+                    <ShareIcon fontSize="small" />
+                  </Box>
                   Divulgação e Compartilhamento
                 </Typography>
                 <Stack spacing={{ xs: 2, md: 3 }}>
