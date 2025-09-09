@@ -97,7 +97,7 @@ export default function MiniDrawer({ children }: Readonly<{ children: React.Reac
           </Typography>
 
           <Box display="flex" alignItems="center" gap={2}>
-            <Typography variant="h6" noWrap component="div" fontSize={12}>
+            <Typography variant="h6" noWrap component="div" fontSize={12} display={{ xs: 'none', md: 'block' }}>
               Igreja Assembléia de Deus Central da Fé - CDMOR
             </Typography>
             <Image
@@ -110,7 +110,14 @@ export default function MiniDrawer({ children }: Readonly<{ children: React.Reac
           </Box>
         </Toolbar>
       </AppBar>
-      <Drawer variant="permanent" open={open} drawerWidth={drawerWidth}>
+      <Drawer
+        variant="permanent"
+        open={open}
+        drawerWidth={drawerWidth}
+        sx={{
+          display: { xs: open ? 'block' : 'none', md: 'block' }
+        }}
+      >
         <Box sx={miniDrawerStyles.drawerHeader(theme)}>
           <Box sx={miniDrawerStyles.userInfoContainer}>
             <AccountCircleIcon
@@ -139,6 +146,7 @@ export default function MiniDrawer({ children }: Readonly<{ children: React.Reac
           </Box>
         </Tooltip>
       </Drawer>
+
       <Box component="main" sx={miniDrawerStyles.main}>
         <Box sx={miniDrawerStyles.drawerHeader(theme)} />
         {children}

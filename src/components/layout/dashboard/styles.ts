@@ -71,5 +71,6 @@ export const miniDrawerStyles: {
     flexGrow: 1,
     mt: { xs: 1, md: 0 },
     p: { xs: 1.5, md: 3 },
+    transition: 'margin-left 0.3s ease',
   },
 };
