@@ -2,16 +2,16 @@ import { EventCategory, EventStatus, EventType } from '@/common/enums/event.enum
 
 export const getEventStatusColor = (
   status: EventStatus
-): 'success' | 'error' | 'warning' | 'default' => {
+): 'success' | 'error' | 'warning' | 'default' | 'info' => {
   switch (status) {
     case EventStatus.ACTIVE:
-      return 'success';
+      return 'success'; // verde → ativo
     case EventStatus.INACTIVE:
-      return 'error';
+      return 'default'; // cinza → inativo
     case EventStatus.CANCELLED:
-      return 'warning';
+      return 'error'; // vermelho → cancelado
     case EventStatus.COMPLETED:
-      return 'default';
+      return 'info'; // azul → concluído
     default:
       return 'default';
   }
@@ -22,36 +22,36 @@ export const getEventCategoryColor = (
 ): 'primary' | 'secondary' | 'success' | 'error' | 'warning' | 'info' => {
   switch (category) {
     case EventCategory.CONFERENCE:
-      return 'success';
+      return 'primary'; // azul principal
     case EventCategory.WORKSHOP:
-      return 'success';
+      return 'secondary'; // roxo
     case EventCategory.CONGRESS:
-      return 'success';
+      return 'warning'; // amarelo
     case EventCategory.MEETING:
-      return 'success';
+      return 'success'; // verde
     case EventCategory.EVENT:
     default:
-      return 'info';
+      return 'info'; // azul claro
   }
 };
 
 export const getEventTypeColor = (type: EventType): 'success' | 'warning' | 'info' => {
   switch (type) {
     case EventType.FREE:
-      return 'success';
+      return 'success'; // verde → gratuito
     case EventType.PAID:
-      return 'warning';
+      return 'warning'; // vermelho → pago
     default:
-      return 'success';
+      return 'info';
   }
 };
 
 export const getEventTypeIcon = (type: EventType): string => {
   switch (type) {
     case EventType.FREE:
-      return '🎉';
+      return '🎉'; // evento gratuito
     case EventType.PAID:
-      return '💰';
+      return '💰'; // evento pago
     default:
       return '🎉';
   }

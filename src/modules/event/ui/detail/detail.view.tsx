@@ -3,44 +3,37 @@ import {
   Card,
   CardContent,
   Typography,
-  Chip,
   Stack,
   IconButton,
-  Divider,
-  Button,
   Tooltip,
   Snackbar,
   Alert,
+  TextField,
+  Switch,
+  FormControlLabel,
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import EditIcon from '@mui/icons-material/Edit';
-import EventIcon from '@mui/icons-material/Event';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import ChurchIcon from '@mui/icons-material/Church';
 import DescriptionIcon from '@mui/icons-material/Description';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import LinkIcon from '@mui/icons-material/Link';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import ScheduleIcon from '@mui/icons-material/Schedule';
+import ShareIcon from '@mui/icons-material/Share';
 import { useState } from 'react';
 import { Event } from '@/services/domain/event.types';
 import { formatDateAndTime } from '@/common/utils/date.util';
-import {
-  getEventCategoryColor,
-  getEventStatusColor,
-  getEventTypeColor,
-} from '@/modules/event/mappers/event.mapper';
 import { EventCategory, EventType } from '@/common/enums/event.enum';
 import { formStyles } from '@/common/utils/styles';
 
 interface IEventDetailViewProps {
   eventData: Event.IGetEventResponse;
   onBackClick: () => void;
-  onEditClick: (id: string) => void;
 }
 
-export const EventDetailView = ({ eventData, onBackClick, onEditClick }: IEventDetailViewProps) => {
+export const EventDetailView = ({ eventData, onBackClick }: IEventDetailViewProps) => {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
 
@@ -60,6 +53,7 @@ export const EventDetailView = ({ eventData, onBackClick, onEditClick }: IEventD
   const handleCloseSnackbar = () => {
     setSnackbarOpen(false);
   };
+
   return (
     <Box display="flex" flexDirection="column" gap={2}>
       <Stack
@@ -79,205 +73,206 @@ export const EventDetailView = ({ eventData, onBackClick, onEditClick }: IEventD
         <Typography variant="h3" sx={{ ...formStyles.title, textAlign: 'left' }}>
           Detalhes do Evento
         </Typography>
-        <Box sx={{ ml: 'auto', width: { xs: '100%', md: 'auto' } }}>
-          <Button
-            variant="contained"
-            color="secondary"
-            startIcon={<EditIcon />}
-            onClick={() => onEditClick(eventData.id)}
-            fullWidth
-            sx={{ width: { xs: '100%', md: 'auto' } }}
-          >
-            Editar
-          </Button>
-        </Box>
       </Stack>
+
+      {/* Basic Data Card */}
       <Card sx={{ boxShadow: 3 }}>
         <CardContent sx={{ p: 3 }}>
-          <Box
-            display="flex"
-            flexDirection={{ xs: 'column', md: 'row' }}
-            gap={2}
-            mb={2}
-            alignItems="center"
-            justifyContent={{ xs: 'flex-start', md: 'space-between' }}
+          <Typography
+            variant="h6"
+            mb={3}
+            sx={{
+              ...formStyles.title,
+              textAlign: 'left',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 1.5,
+            }}
           >
-            <Box display="flex" alignItems="center" gap={2} flexWrap="wrap">
-              <Typography variant="h5" fontWeight={600}>
-                {eventData.name}
-              </Typography>
-              <Chip
-                label={eventData.category || EventCategory.EVENT}
-                color={getEventCategoryColor(eventData.category || EventCategory.EVENT)}
-                variant="outlined"
-                size="small"
+            <Box
+              sx={{
+                p: 1,
+                borderRadius: 1,
+                backgroundColor: 'primary.light',
+                color: 'primary.contrastText',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <DescriptionIcon fontSize="small" />
+            </Box>
+            Dados Básicos
+          </Typography>
+
+          <Stack spacing={3}>
+            <TextField
+              label="Nome do Evento"
+              value={eventData.name || ''}
+              fullWidth
+              disabled
+              slotProps={{ input: { readOnly: true } }}
+            />
+
+            <TextField
+              label="Descrição"
+              value={eventData.description || ''}
+              fullWidth
+              multiline
+              rows={4}
+              disabled
+              slotProps={{ input: { readOnly: true } }}
+            />
+
+            <TextField
+              label="Conteúdo ou Mais Informações"
+              value={eventData.content || ''}
+              fullWidth
+              multiline
+              rows={4}
+              disabled
+              slotProps={{ input: { readOnly: true } }}
+            />
+
+            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 2, md: 3 }}>
+              <TextField
+                label="Categoria"
+                value={eventData.category || EventCategory.EVENT}
+                fullWidth
+                disabled
+                slotProps={{ input: { readOnly: true } }}
               />
-              <Chip
-                label={eventData.type || EventType.FREE}
-                color={getEventTypeColor(eventData.type || EventType.FREE)}
-                variant="filled"
-                size="small"
+              <TextField
+                label="Tipo do Evento"
+                value={eventData.type || EventType.FREE}
+                fullWidth
+                disabled
+                slotProps={{ input: { readOnly: true } }}
               />
-              <Chip
-                label={eventData.status}
-                color={getEventStatusColor(eventData.status)}
-                variant="filled"
-                size="small"
+              <TextField
+                label="Igreja"
+                value={eventData.churchName || ''}
+                fullWidth
+                disabled
+                slotProps={{ input: { readOnly: true } }}
               />
+            </Stack>
+          </Stack>
+        </CardContent>
+      </Card>
+
+      {/* Financial Details Card */}
+      <Card sx={{ boxShadow: 3 }}>
+        <CardContent sx={{ p: 3 }}>
+          <Typography
+            variant="h6"
+            mb={3}
+            sx={{
+              ...formStyles.title,
+              textAlign: 'left',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 1.5,
+            }}
+          >
+            <Box
+              sx={{
+                p: 1,
+                borderRadius: 1,
+                backgroundColor: 'success.light',
+                color: 'success.contrastText',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <AttachMoneyIcon fontSize="small" />
             </Box>
+            Detalhes Financeiros
+          </Typography>
 
-            <Box sx={{ width: { xs: '100%', md: 'auto' } }}>
-              <Box display="flex" alignItems="center" gap={1} mb={1}>
-                <Typography variant="h6" fontWeight={600}>
-                  Valor do ingresso
-                </Typography>
-              </Box>
-              <Typography
-                variant="body1"
-                color="text.primary"
-                textAlign={{ xs: 'left', md: 'center' }}
-              >
-                {eventData.price && eventData.price > 0
-                  ? `R$ ${eventData.price.toFixed(2)}`
-                  : 'Gratuito'}
-              </Typography>
+          <Stack spacing={3}>
+            <FormControlLabel
+              control={<Switch checked={Boolean(eventData.price && eventData.price > 0)} />}
+              label={`Evento ${eventData.price && eventData.price > 0 ? 'Pago' : 'Gratuito'}`}
+            />
+
+            <TextField
+              label="Preço do Ingresso"
+              value={`R$ ${eventData.price?.toFixed(2) || 0}`}
+              fullWidth
+              disabled
+            />
+
+            <TextField
+              label="Quantidade de vagas Disponíveis"
+              value={eventData.availableTickets || 'Não informado'}
+              fullWidth
+              disabled
+            />
+          </Stack>
+        </CardContent>
+      </Card>
+
+      {/* Schedules and Location Card */}
+      <Card sx={{ boxShadow: 3 }}>
+        <CardContent sx={{ p: 3 }}>
+          <Typography
+            variant="h6"
+            mb={3}
+            sx={{
+              ...formStyles.title,
+              textAlign: 'left',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 1.5,
+            }}
+          >
+            <Box
+              sx={{
+                p: 1,
+                borderRadius: 1,
+                backgroundColor: 'secondary.light',
+                color: 'secondary.contrastText',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <ScheduleIcon fontSize="small" />
             </Box>
-          </Box>
+            Horários e Localização
+          </Typography>
 
-          <Divider sx={{ mb: 3 }} />
+          <Stack spacing={3}>
+            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 2, md: 3 }}>
+              <TextField
+                label="Data de Início"
+                value={formatDateAndTime(new Date(eventData.startDate))}
+                fullWidth
+                disabled
+                slotProps={{ input: { readOnly: true } }}
+              />
+              <TextField
+                label="Data de Término"
+                value={
+                  eventData.endDate
+                    ? formatDateAndTime(new Date(eventData.endDate))
+                    : 'Não informado'
+                }
+                fullWidth
+                disabled
+                slotProps={{ input: { readOnly: true } }}
+              />
+            </Stack>
 
-          <Stack spacing={4}>
-            {/* Description */}
-            <Box>
-              <Box display="flex" alignItems="center" gap={1} mb={1}>
-                <Box
-                  sx={{
-                    p: 1,
-                    borderRadius: 1,
-                    backgroundColor: 'primary.light',
-                    color: 'primary.contrastText',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                  }}
-                >
-                  <DescriptionIcon fontSize="small" />
-                </Box>
-                <Typography variant="h6" fontWeight={600}>
-                  Descrição
-                </Typography>
-              </Box>
-              <Typography variant="body1" color="text.primary">
-                {eventData.description}
-              </Typography>
-            </Box>
-
-            {/* Content */}
-            {eventData.content && (
-              <Box>
-                <Box display="flex" alignItems="center" gap={1} mb={1}>
-                  <Box
-                    sx={{
-                      p: 1,
-                      borderRadius: 1,
-                      backgroundColor: 'secondary.light',
-                      color: 'secondary.contrastText',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center'
-                    }}
-                  >
-                    <DescriptionIcon fontSize="small" />
-                  </Box>
-                  <Typography variant="h6" fontWeight={600}>
-                    Mais Detalhes
-                  </Typography>
-                </Box>
-                <Typography variant="body1" color="text.primary">
-                  {eventData.content}
-                </Typography>
-              </Box>
-            )}
-
-            {/* Church and Location - Side by Side */}
-            <Box display="flex" flexDirection={{ xs: 'column', md: 'row' }} gap={4}>
-              {/* Church */}
-              <Box flex={1}>
-                <Box display="flex" alignItems="center" gap={1} mb={1}>
-                  <Box
-                    sx={{
-                      p: 1,
-                      borderRadius: 1,
-                      backgroundColor: 'primary.light',
-                      color: 'primary.contrastText',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center'
-                    }}
-                  >
-                    <ChurchIcon fontSize="small" />
-                  </Box>
-                  <Typography variant="h6" fontWeight={600}>
-                    Igreja
-                  </Typography>
-                </Box>
-                <Typography variant="body1" color="text.primary">
-                  {eventData.churchName}
-                </Typography>
-              </Box>
-
-              {/* Location */}
-              <Box flex={1}>
-                <Box display="flex" alignItems="center" gap={1} mb={1}>
-                  <Box
-                    sx={{
-                      p: 1,
-                      borderRadius: 1,
-                      backgroundColor: 'secondary.light',
-                      color: 'secondary.contrastText',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center'
-                    }}
-                  >
-                    <LocationOnIcon fontSize="small" />
-                  </Box>
-                  <Typography variant="h6" fontWeight={600}>
-                    Localização
-                  </Typography>
-                </Box>
-                <Typography variant="body1" color="text.primary">
-                  {eventData.addressName}
-                </Typography>
-              </Box>
-            </Box>
-
-            {/* Date and Time */}
-            <Box>
-              <Box display="flex" alignItems="center" gap={1} mb={1}>
-                <Box
-                  sx={{
-                    p: 1,
-                    borderRadius: 1,
-                    backgroundColor: 'success.light',
-                    color: 'success.contrastText',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                  }}
-                >
-                  <EventIcon fontSize="small" />
-                </Box>
-                <Typography variant="h6" fontWeight={600}>
-                  Data e Hora
-                </Typography>
-              </Box>
-              <Typography variant="body1" color="text.primary">
-                <strong>Início:</strong> {formatDateAndTime(new Date(eventData.startDate))}  {eventData.endDate && <>e <strong>Fim:</strong> {formatDateAndTime(new Date(eventData.endDate))}</>}
-
-              </Typography>
-
-            </Box>
+            <TextField
+              label="Endereço"
+              value={eventData.addressName || 'Não informado'}
+              fullWidth
+              disabled
+              slotProps={{ input: { readOnly: true } }}
+            />
           </Stack>
         </CardContent>
       </Card>
@@ -286,214 +281,178 @@ export const EventDetailView = ({ eventData, onBackClick, onEditClick }: IEventD
       <Card sx={{ boxShadow: 3 }}>
         <CardContent sx={{ p: 3 }}>
           <Typography
-            variant="h5"
-            fontWeight={600}
+            variant="h6"
+            mb={3}
             sx={{
-              mb: 3,
-              color: 'primary.main',
+              ...formStyles.title,
               textAlign: 'left',
               display: 'flex',
               alignItems: 'center',
-              gap: 1.5
+              gap: 1.5,
             }}
           >
-
-            Redes Sociais e Links
+            <Box
+              sx={{
+                p: 1,
+                borderRadius: 1,
+                backgroundColor: 'primary.main',
+                color: 'primary.contrastText',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <ShareIcon fontSize="small" />
+            </Box>
+            Divulgação e Compartilhamento
           </Typography>
 
-          <Stack spacing={{ xs: 1, md: 2 }} direction={{ xs: 'column', md: 'row' }} divider={<Divider orientation="vertical" flexItem />}>
-            {eventData.customLink && (
-              <Box sx={{ flex: 1, minWidth: 0 }}>
-                <Box display="flex" alignItems="center" gap={1.5} mb={2}>
-                  <LinkIcon sx={{ color: 'primary.main', fontSize: 24 }} />
-                  <Typography variant="h6" fontWeight={600} color="text.primary">
-                    Link Personalizado
-                  </Typography>
-                </Box>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    p: 1.5,
-                    borderRadius: 1,
-                    backgroundColor: 'action.hover',
-                    border: '1px solid',
-                    borderColor: 'divider',
-                    gap: 1,
-                  }}
-                >
-                  <Typography
-                    sx={{
-                      color: 'primary.main',
-                      flex: 1,
-                      wordBreak: 'break-all',
-                      fontSize: '0.875rem',
-                    }}
-                  >
-                    {eventData.customLink || 'Não registrado'}
-                  </Typography>
-                  <Tooltip title="Copiar link" placement="top" arrow>
-                    <IconButton
-                      size="small"
-                      onClick={() => handleCopyLink(eventData.customLink, 'Link personalizado')}
-                      sx={{
-                        color: 'primary.main',
-                        '&:hover': {
-                          backgroundColor: 'primary.light',
-                          color: 'primary.contrastText',
-                        },
-                      }}
-                    >
-                      <ContentCopyIcon fontSize="small" />
-                    </IconButton>
-                  </Tooltip>
-                </Box>
-              </Box>
-            )}
-            {eventData.facebookLink && (
-              <Box sx={{ flex: 1, minWidth: 0 }}>
-                <Box display="flex" alignItems="center" gap={1.5} mb={2}>
-                  <FacebookIcon sx={{ color: '#1877F2', fontSize: 24 }} />
-                  <Typography variant="h6" fontWeight={600} color="text.primary">
-                    Facebook
-                  </Typography>
-                </Box>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    p: 1.5,
-                    borderRadius: 1,
+          <Stack spacing={3}>
+            <TextField
+              label="Link Personalizado"
+              value={eventData.customLink || 'Não informado'}
+              fullWidth
+              disabled
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  backgroundColor: 'action.hover',
+                  borderColor: 'divider',
+                },
+              }}
+              slotProps={{
+                input: {
+                  readOnly: true,
+                  startAdornment: <LinkIcon sx={{ mr: 1, color: 'primary.main' }} />,
+                  endAdornment: (
+                    <Tooltip title="Copiar link" placement="top" arrow>
+                      <IconButton
+                        size="small"
+                        onClick={() => handleCopyLink(eventData.customLink, 'Link personalizado')}
+                        sx={{
+                          color: 'primary.main',
+                          '&:hover': {
+                            backgroundColor: 'primary.light',
+                            color: 'primary.contrastText',
+                          },
+                        }}
+                      >
+                        <ContentCopyIcon fontSize="small" />
+                      </IconButton>
+                    </Tooltip>
+                  ),
+                },
+              }}
+            />
+
+            <Stack direction={{ xs: 'column', sm: 'row' }} spacing={{ xs: 2, md: 3 }}>
+              <TextField
+                label="Facebook"
+                value={eventData.facebookLink || 'Não informado'}
+                fullWidth
+                disabled
+                sx={{
+                  '& .MuiOutlinedInput-root': {
                     backgroundColor: 'rgba(24, 119, 242, 0.08)',
-                    border: '1px solid',
                     borderColor: 'rgba(24, 119, 242, 0.2)',
-                    gap: 1,
-                  }}
-                >
-                  <Typography
-                    sx={{
-                      color: '#1877F2',
-                      flex: 1,
-                      wordBreak: 'break-all',
-                      fontSize: '0.875rem',
-                    }}
-                  >
-                    {eventData.facebookLink || 'Não registrado'}
-                  </Typography>
-                  <Tooltip title="Copiar link" placement="top" arrow>
-                    <IconButton
-                      size="small"
-                      onClick={() => handleCopyLink(eventData.facebookLink, 'Facebook')}
-                      sx={{
-                        color: '#1877F2',
-                        '&:hover': {
-                          backgroundColor: '#1877F2',
-                          color: 'white',
-                        },
-                      }}
-                    >
-                      <ContentCopyIcon fontSize="small" />
-                    </IconButton>
-                  </Tooltip>
-                </Box>
-              </Box>
-            )}
-            {eventData.instagramLink && (
-              <Box sx={{ flex: 1, minWidth: 0 }}>
-                <Box display="flex" alignItems="center" gap={1.5} mb={2}>
-                  <InstagramIcon sx={{ color: '#E4405F', fontSize: 24 }} />
-                  <Typography variant="h6" fontWeight={600} color="text.primary">
-                    Instagram
-                  </Typography>
-                </Box>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    p: 1.5,
-                    borderRadius: 1,
+                  },
+                }}
+                slotProps={{
+                  input: {
+                    readOnly: true,
+                    startAdornment: <FacebookIcon sx={{ mr: 1, color: '#1877F2' }} />,
+                    endAdornment: (
+                      <Tooltip title="Copiar link" placement="top" arrow>
+                        <IconButton
+                          size="small"
+                          onClick={() => handleCopyLink(eventData.facebookLink, 'Facebook')}
+                          sx={{
+                            color: '#1877F2',
+                            '&:hover': {
+                              backgroundColor: '#1877F2',
+                              color: 'white',
+                            },
+                          }}
+                        >
+                          <ContentCopyIcon fontSize="small" />
+                        </IconButton>
+                      </Tooltip>
+                    ),
+                  },
+                }}
+              />
+
+              <TextField
+                label="Instagram"
+                value={eventData.instagramLink || 'Não informado'}
+                fullWidth
+                disabled
+                sx={{
+                  '& .MuiOutlinedInput-root': {
                     backgroundColor: 'rgba(228, 64, 95, 0.08)',
-                    border: '1px solid',
                     borderColor: 'rgba(228, 64, 95, 0.2)',
-                    gap: 1,
-                  }}
-                >
-                  <Typography
-                    sx={{
-                      color: '#E4405F',
-                      flex: 1,
-                      wordBreak: 'break-all',
-                      fontSize: '0.875rem',
-                    }}
-                  >
-                    {eventData.instagramLink || 'Não registrado'}
-                  </Typography>
-                  <Tooltip title="Copiar link" placement="top" arrow>
-                    <IconButton
-                      size="small"
-                      onClick={() => handleCopyLink(eventData.instagramLink, 'Instagram')}
-                      sx={{
-                        color: '#E4405F',
-                        '&:hover': {
-                          backgroundColor: '#E4405F',
-                          color: 'white',
-                        },
-                      }}
-                    >
-                      <ContentCopyIcon fontSize="small" />
-                    </IconButton>
-                  </Tooltip>
-                </Box>
-              </Box>
-            )}
-            {eventData.youtubeLink && (
-              <Box sx={{ flex: 1, minWidth: 0 }}>
-                <Box display="flex" alignItems="center" gap={1.5} mb={2}>
-                  <YouTubeIcon sx={{ color: '#FF0000', fontSize: 24 }} />
-                  <Typography variant="h6" fontWeight={600} color="text.primary">
-                    YouTube
-                  </Typography>
-                </Box>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    p: 1.5,
-                    borderRadius: 1,
-                    backgroundColor: 'rgba(255, 0, 0, 0.08)',
-                    border: '1px solid',
-                    borderColor: 'rgba(255, 0, 0, 0.2)',
-                    gap: 1,
-                  }}
-                >
-                  <Typography
-                    sx={{
-                      color: '#FF0000',
-                      flex: 1,
-                      wordBreak: 'break-all',
-                      fontSize: '0.875rem',
-                    }}
-                  >
-                    {eventData.youtubeLink || 'Não registrado'}
-                  </Typography>
-                  <Tooltip title="Copiar link" placement="top" arrow>
-                    <IconButton
-                      size="small"
-                      onClick={() => handleCopyLink(eventData.youtubeLink, 'YouTube')}
-                      sx={{
-                        color: '#FF0000',
-                        '&:hover': {
-                          backgroundColor: '#FF0000',
-                          color: 'white',
-                        },
-                      }}
-                    >
-                      <ContentCopyIcon fontSize="small" />
-                    </IconButton>
-                  </Tooltip>
-                </Box>
-              </Box>
-            )}
+                  },
+                }}
+                slotProps={{
+                  input: {
+                    readOnly: true,
+                    startAdornment: <InstagramIcon sx={{ mr: 1, color: '#E4405F' }} />,
+                    endAdornment: (
+                      <Tooltip title="Copiar link" placement="top" arrow>
+                        <IconButton
+                          size="small"
+                          onClick={() => handleCopyLink(eventData.instagramLink, 'Instagram')}
+                          sx={{
+                            color: '#E4405F',
+                            '&:hover': {
+                              backgroundColor: '#E4405F',
+                              color: 'white',
+                            },
+                          }}
+                        >
+                          <ContentCopyIcon fontSize="small" />
+                        </IconButton>
+                      </Tooltip>
+                    ),
+                  },
+                }}
+              />
+            </Stack>
+
+            <TextField
+              label="YouTube"
+              value={eventData.youtubeLink || 'Não informado'}
+              fullWidth
+              disabled
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  backgroundColor: 'rgba(255, 0, 0, 0.08)',
+                  borderColor: 'rgba(255, 0, 0, 0.2)',
+                },
+              }}
+              slotProps={{
+                input: {
+                  readOnly: true,
+                  startAdornment: <YouTubeIcon sx={{ mr: 1, color: '#FF0000' }} />,
+                  endAdornment: (
+                    <Tooltip title="Copiar link" placement="top" arrow>
+                      <IconButton
+                        size="small"
+                        onClick={() => handleCopyLink(eventData.youtubeLink, 'YouTube')}
+                        sx={{
+                          color: '#FF0000',
+                          '&:hover': {
+                            backgroundColor: '#FF0000',
+                            color: 'white',
+                          },
+                        }}
+                      >
+                        <ContentCopyIcon fontSize="small" />
+                      </IconButton>
+                    </Tooltip>
+                  ),
+                },
+              }}
+            />
           </Stack>
         </CardContent>
       </Card>
@@ -502,7 +461,7 @@ export const EventDetailView = ({ eventData, onBackClick, onEditClick }: IEventD
         open={snackbarOpen}
         autoHideDuration={3000}
         onClose={handleCloseSnackbar}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       >
         <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: '100%' }}>
           {snackbarMessage}

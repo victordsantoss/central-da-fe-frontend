@@ -11,6 +11,7 @@ export type EventModel = {
   time: string;
   status: EventStatus;
   type: EventType;
+  availableTickets: number;
   category: EventCategory;
   mode?: 'PRESENCIAL' | 'VIRTUAL';
   price?: number;

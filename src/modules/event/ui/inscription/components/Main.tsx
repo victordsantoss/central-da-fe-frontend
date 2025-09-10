@@ -68,11 +68,8 @@ export function Main({ eventData }: IMainProps) {
             </Typography>
           </Box>
           <Box display="flex" justifyContent="center">
-            <Tooltip title={expandedContent ? "Ver menos" : "Ver mais"} placement="top" arrow>
-              <IconButton
-                color="primary"
-                onClick={() => setExpandedContent(!expandedContent)}
-              >
+            <Tooltip title={expandedContent ? 'Ver menos' : 'Ver mais'} placement="top" arrow>
+              <IconButton color="primary" onClick={() => setExpandedContent(!expandedContent)}>
                 {expandedContent ? <ExpandLessIcon /> : <ExpandMoreIcon />}
               </IconButton>
             </Tooltip>

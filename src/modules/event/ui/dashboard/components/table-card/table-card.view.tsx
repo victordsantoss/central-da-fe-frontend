@@ -30,8 +30,6 @@ interface IEventTableCardViewProps {
   handleClosePopover: () => void;
   open: boolean;
   onView: (id: string) => void;
-  onEdit: (id: string) => void;
-  onDelete: (id: string) => void;
 }
 
 const EventTableCardView = ({
@@ -41,8 +39,6 @@ const EventTableCardView = ({
   handleClosePopover,
   open,
   onView,
-  onEdit,
-  onDelete,
 }: IEventTableCardViewProps) => {
   return (
     <Card>
@@ -62,7 +58,7 @@ const EventTableCardView = ({
               },
               p: 1,
               m: -1,
-              transition: 'background-color 0.2s ease-in-out'
+              transition: 'background-color 0.2s ease-in-out',
             }}
             onClick={() => onView(item.id)}
           >
@@ -80,7 +76,7 @@ const EventTableCardView = ({
               <IconButton
                 color="inherit"
                 aria-label="opções"
-                onClick={(e) => {
+                onClick={e => {
                   e.stopPropagation();
                   handleOpenPopover(e);
                 }}
@@ -149,8 +145,6 @@ const EventTableCardView = ({
         anchorEl={anchorEl}
         handleClosePopover={handleClosePopover}
         onView={onView}
-        onEdit={onEdit}
-        onDelete={onDelete}
       />
     </Card>
   );

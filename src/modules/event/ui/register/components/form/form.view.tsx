@@ -76,7 +76,7 @@ const RegisterEventFormView: React.FC<IRegisterEventFormProps> = ({
                     textAlign: 'left',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: 1.5
+                    gap: 1.5,
                   }}
                 >
                   <Box
@@ -87,7 +87,7 @@ const RegisterEventFormView: React.FC<IRegisterEventFormProps> = ({
                       color: 'primary.contrastText',
                       display: 'flex',
                       alignItems: 'center',
-                      justifyContent: 'center'
+                      justifyContent: 'center',
                     }}
                   >
                     <DescriptionIcon fontSize="small" />
@@ -211,7 +211,7 @@ const RegisterEventFormView: React.FC<IRegisterEventFormProps> = ({
                     textAlign: 'left',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: 1.5
+                    gap: 1.5,
                   }}
                 >
                   <Box
@@ -222,7 +222,7 @@ const RegisterEventFormView: React.FC<IRegisterEventFormProps> = ({
                       color: 'success.contrastText',
                       display: 'flex',
                       alignItems: 'center',
-                      justifyContent: 'center'
+                      justifyContent: 'center',
                     }}
                   >
                     <AttachMoneyIcon fontSize="small" />
@@ -314,7 +314,7 @@ const RegisterEventFormView: React.FC<IRegisterEventFormProps> = ({
                       textAlign: 'left',
                       display: 'flex',
                       alignItems: 'center',
-                      gap: 1.5
+                      gap: 1.5,
                     }}
                   >
                     <Box
@@ -325,7 +325,7 @@ const RegisterEventFormView: React.FC<IRegisterEventFormProps> = ({
                         color: 'secondary.contrastText',
                         display: 'flex',
                         alignItems: 'center',
-                        justifyContent: 'center'
+                        justifyContent: 'center',
                       }}
                     >
                       <ScheduleIcon fontSize="small" />
@@ -493,7 +493,7 @@ const RegisterEventFormView: React.FC<IRegisterEventFormProps> = ({
                     textAlign: 'left',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: 1.5
+                    gap: 1.5,
                   }}
                 >
                   <Box
@@ -504,7 +504,7 @@ const RegisterEventFormView: React.FC<IRegisterEventFormProps> = ({
                       color: 'primary.contrastText',
                       display: 'flex',
                       alignItems: 'center',
-                      justifyContent: 'center'
+                      justifyContent: 'center',
                     }}
                   >
                     <ShareIcon fontSize="small" />

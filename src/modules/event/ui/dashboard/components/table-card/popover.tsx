@@ -1,7 +1,5 @@
 import { Popover, List, ListItemButton, ListItemIcon, ListItemText, alpha } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
 import { EventModel } from '@/common/models/event.model';
 
 interface IEventTableCardPopoverProps {
@@ -10,8 +8,6 @@ interface IEventTableCardPopoverProps {
   anchorEl: HTMLElement | null;
   handleClosePopover: () => void;
   onView: (id: string) => void;
-  onEdit: (id: string) => void;
-  onDelete: (id: string) => void;
 }
 
 export const EventTableCardPopover = ({
@@ -20,8 +16,6 @@ export const EventTableCardPopover = ({
   anchorEl,
   handleClosePopover,
   onView,
-  onEdit,
-  onDelete,
 }: IEventTableCardPopoverProps) => {
   return (
     <Popover
@@ -63,44 +57,6 @@ export const EventTableCardPopover = ({
           </ListItemIcon>
           <ListItemText
             primary="Visualizar"
-            sx={{
-              color: 'text.primary',
-            }}
-          />
-        </ListItemButton>
-        <ListItemButton
-          onClick={() => onEdit(item.id)}
-          disabled
-          sx={{
-            '&:hover': {
-              backgroundColor: theme => alpha(theme.palette.secondary.main, 0.5),
-            },
-          }}
-        >
-          <ListItemIcon>
-            <EditIcon sx={{ color: 'text.primary' }} />
-          </ListItemIcon>
-          <ListItemText
-            primary="Editar"
-            sx={{
-              color: 'text.primary',
-            }}
-          />
-        </ListItemButton>
-        <ListItemButton
-          onClick={() => onDelete(item.id)}
-          disabled
-          sx={{
-            '&:hover': {
-              backgroundColor: theme => alpha(theme.palette.secondary.main, 0.5),
-            },
-          }}
-        >
-          <ListItemIcon>
-            <DeleteIcon sx={{ color: 'text.primary' }} />
-          </ListItemIcon>
-          <ListItemText
-            primary="Excluir"
             sx={{
               color: 'text.primary',
             }}

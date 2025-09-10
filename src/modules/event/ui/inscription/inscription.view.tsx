@@ -9,7 +9,6 @@ interface IEventInscriptionViewProps {
 }
 
 export function EventInscriptionView({ eventData }: IEventInscriptionViewProps) {
-
   return (
     <Box sx={{ maxWidth: '1200px', margin: '0 auto' }}>
       <Banner eventData={eventData} />
