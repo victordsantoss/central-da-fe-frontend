@@ -11,7 +11,16 @@ import {
 import { RegisterFormValues } from './form.schema';
 import { formStyles } from '@/common/utils/styles';
 import { Controller, FormProvider, UseFormReturn } from 'react-hook-form';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
+import {
+  Visibility,
+  VisibilityOff,
+  Email,
+  Person,
+  Badge,
+  Church as ChurchIcon,
+  Work,
+  Lock,
+} from '@mui/icons-material';
 import InfoIcon from '@mui/icons-material/Info';
 import { formatCPF } from '@/common/utils/document';
 import { Church } from '@/services/domain/church.types';
@@ -49,7 +58,7 @@ export const RegisterFormView = (props: IRegisterFormViewProps) => {
     <Box
       component="form"
       onSubmit={methods.handleSubmit(onSubmit)}
-      sx={{ ...formStyles.container, maxWidth: { xs: '100%', md: '600px' } }}
+      sx={{ ...formStyles.container }}
     >
       <FormProvider {...methods}>
         <Box sx={formStyles.formContainer}>
@@ -66,6 +75,15 @@ export const RegisterFormView = (props: IRegisterFormViewProps) => {
                 helperText={fieldState.error?.message}
                 variant="outlined"
                 onBlur={e => field.onChange(e.target.value.trim())}
+                slotProps={{
+                  input: {
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Email sx={{ color: 'text.primary' }} />
+                      </InputAdornment>
+                    ),
+                  },
+                }}
               />
             )}
           />
@@ -82,6 +100,15 @@ export const RegisterFormView = (props: IRegisterFormViewProps) => {
                 helperText={fieldState.error?.message}
                 variant="outlined"
                 onBlur={e => field.onChange(e.target.value.trim())}
+                slotProps={{
+                  input: {
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Person sx={{ color: 'text.primary' }} />
+                      </InputAdornment>
+                    ),
+                  },
+                }}
               />
             )}
           />
@@ -100,6 +127,15 @@ export const RegisterFormView = (props: IRegisterFormViewProps) => {
                 onChange={e => {
                   const formatted = formatCPF(e.target.value);
                   field.onChange(formatted);
+                }}
+                slotProps={{
+                  input: {
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Badge sx={{ color: 'text.primary' }} />
+                      </InputAdornment>
+                    ),
+                  },
                 }}
               />
             )}
@@ -125,6 +161,14 @@ export const RegisterFormView = (props: IRegisterFormViewProps) => {
                       label="Congregação *"
                       error={!!fieldState.error}
                       helperText={fieldState.error?.message}
+                      InputProps={{
+                        ...params.InputProps,
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <ChurchIcon sx={{ color: 'text.primary' }} />
+                          </InputAdornment>
+                        ),
+                      }}
                     />
                   )}
                 />
@@ -164,6 +208,14 @@ export const RegisterFormView = (props: IRegisterFormViewProps) => {
                       label="Cargo(s) *"
                       error={!!fieldState.error}
                       helperText={fieldState.error?.message}
+                      InputProps={{
+                        ...params.InputProps,
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <Work sx={{ color: 'text.primary' }} />
+                          </InputAdornment>
+                        ),
+                      }}
                     />
                   )}
                 />
@@ -192,6 +244,11 @@ export const RegisterFormView = (props: IRegisterFormViewProps) => {
                   variant="outlined"
                   slotProps={{
                     input: {
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <Lock sx={{ color: 'text.primary' }} />
+                        </InputAdornment>
+                      ),
                       endAdornment: (
                         <InputAdornment position="end">
                           <IconButton
@@ -225,6 +282,11 @@ export const RegisterFormView = (props: IRegisterFormViewProps) => {
                   variant="outlined"
                   slotProps={{
                     input: {
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <Lock sx={{ color: 'text.primary' }} />
+                        </InputAdornment>
+                      ),
                       endAdornment: (
                         <InputAdornment position="end">
                           <IconButton
