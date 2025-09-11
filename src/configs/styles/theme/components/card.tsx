@@ -14,6 +14,7 @@ export const CardStyles: MyCardOverrides = {
         backgroundColor: defaultTheme.palette.background.default,
         transition: 'all 0.2s ease-in-out',
         color: defaultTheme.palette.text.primary,
+        border: `1px solid ${defaultTheme.palette.primary.light}`,
         boxShadow: '0px 0px 20px 0px rgba(0, 0, 0, 0.1)',
         '&:hover': {
           transform: 'translateY(-2px)',

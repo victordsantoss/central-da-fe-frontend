@@ -6,7 +6,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
 import { IMenuItem, menuItems } from '../../items';
-import { Tooltip } from '@mui/material';
+import { alpha, Tooltip } from '@mui/material';
 import { customListStyles } from './styles';
 import { useMenu } from '@/contexts/menu.context';
 import { usePathname, useRouter } from 'next/navigation';
@@ -66,9 +66,10 @@ const CustomList: React.FC<ICustomListProps> = ({ open, setOpen }) => {
                 sx={{
                   ...customListStyles.listItemButton(open),
                   color: theme => theme.palette.primary.contrastText,
-                  bgcolor: theme => (hasActiveItem ? theme.palette.primary.dark : 'transparent'),
+                  bgcolor: theme =>
+                    hasActiveItem ? alpha(theme.palette.primary.dark, 0.3) : 'transparent',
                   '&:hover': {
-                    backgroundColor: theme => theme.palette.primary.dark,
+                    backgroundColor: theme => alpha(theme.palette.primary.dark, 0.3),
                   },
                 }}
               >
@@ -82,7 +83,7 @@ const CustomList: React.FC<ICustomListProps> = ({ open, setOpen }) => {
               </ListItemButton>
             </ListItem>
             <Collapse in={expandedCategory === category.text} timeout="auto" unmountOnExit>
-              <List component="div" sx={{ paddingX: 2 }}>
+              <List component="div">
                 {category?.items?.map((item, index) => (
                   <ListItem
                     key={`${item.text}-${index}`}
@@ -90,14 +91,16 @@ const CustomList: React.FC<ICustomListProps> = ({ open, setOpen }) => {
                     sx={{
                       ...customListStyles.listItem,
                       bgcolor: theme =>
-                        getActive(item.url) ? theme.palette.primary.dark : 'transparent',
+                        getActive(item.url)
+                          ? alpha(theme.palette.primary.dark, 0.3)
+                          : 'transparent',
                       '&:hover': {
-                        backgroundColor: theme => theme.palette.primary.dark,
+                        backgroundColor: theme => alpha(theme.palette.primary.dark, 0.3),
                       },
                     }}
                     onClick={() => handleToggleItem(item)}
                   >
-                    <ListItemButton sx={customListStyles.nestedListItemButton(open)}>
+                    <ListItemButton sx={{ ...customListStyles.nestedListItemButton(open), pl: 5 }}>
                       <ListItemText primary={item.text} sx={customListStyles.listItemText(open)} />
                     </ListItemButton>
                   </ListItem>

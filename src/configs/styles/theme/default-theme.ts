@@ -9,9 +9,9 @@ import { CardStyles } from './components/card';
 const defaultTheme = createTheme({
   palette: {
     primary: {
-      light: '#3D7068',
-      main: '#14453D',
-      dark: '#132E29',
+      light: '#D9DAE1',
+      main: '#2D82B7',
+      dark: '#13293D',
       contrastText: '#FAFAFA',
     },
     secondary: {
@@ -22,7 +22,7 @@ const defaultTheme = createTheme({
     },
     background: {
       default: '#FFFFFF',
-      paper: '#E5E5E5',
+      paper: '#FAFAFA',
     },
     text: {
       primary: '#1D2433',

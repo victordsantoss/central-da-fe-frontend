@@ -6,7 +6,7 @@ export const useFooterModel = () => {
 
   const contactInfo = {
     phone: '(11) 99999-9999',
-    email: 'contato@cdmadmor.org.br',
+    email: 'sec.centraldafe@gmail.com',
   };
 
   const handlePhoneClick = useCallback(() => {
@@ -17,11 +17,22 @@ export const useFooterModel = () => {
     window.open(`mailto:${contactInfo.email}`, '_self');
   }, [contactInfo.email]);
 
+  const handleSocialClick = useCallback((platform: 'facebook' | 'instagram' | 'whatsapp') => {
+    if (platform === 'facebook') {
+      window.open('https://www.facebook.com/centraldafe', '_self');
+    } else if (platform === 'instagram') {
+      window.open('https://www.instagram.com/centraldafe', '_self');
+    } else if (platform === 'whatsapp') {
+      window.open('https://wa.me/5511999999999', '_self');
+    }
+  }, []);
+
   return {
     currentYear,
     organizationName,
     contactInfo,
     handlePhoneClick,
     handleEmailClick,
+    handleSocialClick,
   };
 };

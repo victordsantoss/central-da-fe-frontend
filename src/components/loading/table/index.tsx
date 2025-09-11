@@ -1,7 +1,7 @@
 import { Stack, Skeleton } from '@mui/material';
 
 const skeletonBase = {
-  bgcolor: 'background.paper',
+  bgcolor: 'primary.light',
 } as const;
 
 export default function TableSkeleton() {

@@ -13,7 +13,7 @@ import {
   Checkbox,
   Typography,
 } from '@mui/material';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { Visibility, VisibilityOff, Email, Lock } from '@mui/icons-material';
 import { Controller, FormProvider, UseFormReturn } from 'react-hook-form';
 import { LoginFormValues } from './form.schema';
 import { formStyles } from '@/common/utils/styles';
@@ -48,9 +48,19 @@ const LoginFormView: React.FC<ILoginFormProps> = ({
                 label="Email *"
                 fullWidth
                 error={!!fieldState.error}
+                placeholder="exemplo@email.com"
                 helperText={fieldState.error?.message}
                 variant="outlined"
                 onBlur={e => field.onChange(e.target.value.trim())}
+                slotProps={{
+                  input: {
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Email sx={{ color: 'text.primary' }} />
+                      </InputAdornment>
+                    ),
+                  },
+                }}
               />
             )}
           />
@@ -69,6 +79,11 @@ const LoginFormView: React.FC<ILoginFormProps> = ({
                   variant="outlined"
                   slotProps={{
                     input: {
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <Lock sx={{ color: 'text.primary' }} />
+                        </InputAdornment>
+                      ),
                       endAdornment: (
                         <InputAdornment position="end">
                           <IconButton

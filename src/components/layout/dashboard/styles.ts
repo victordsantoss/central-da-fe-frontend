@@ -1,31 +1,32 @@
 import { SxProps, Theme } from '@mui/material';
 
 export const miniDrawerStyles: {
-  root: SxProps<Theme>;
+  root: (open: boolean) => SxProps<Theme>;
   menuButton: (open: boolean) => SxProps<Theme>;
-  drawerHeader: (theme: Theme) => SxProps<Theme>;
+  drawerHeader: (theme: Theme, open: boolean) => SxProps<Theme>;
   userInfoContainer: SxProps<Theme>;
   logoutButton: (open: boolean) => SxProps<Theme>;
   logoutText: (open: boolean) => SxProps<Theme>;
   main: SxProps<Theme>;
 } = {
-  root: {
+  root: (open: boolean) => ({
     display: 'flex',
-    backgroundColor: theme => theme.palette.background.paper,
     minHeight: '100vh',
     paddingBottom: '50px',
-  },
-
+    minWidth: { xs: open ? '130vw' : '100vw', md: '100vw' },
+    backgroundColor: theme => theme.palette.background.default,
+  }),
   menuButton: (open: boolean) => ({
     marginRight: 5,
     display: open ? 'none' : 'block',
   }),
 
-  drawerHeader: (theme: Theme) => ({
+  drawerHeader: (theme: Theme, open: boolean) => ({
     color: theme.palette.primary.contrastText,
-    pl: 2.5,
+    width: '100%',
     display: 'flex',
-    justifyContent: 'space-between',
+    marginLeft: open ? theme.spacing(2) : 0,
+    justifyContent: open ? 'space-between' : 'center',
     alignItems: 'center',
     ...theme.mixins.toolbar,
   }),
@@ -69,7 +70,7 @@ export const miniDrawerStyles: {
 
   main: {
     flexGrow: 1,
-    mt: { xs: 1, md: 0 },
+    mt: { xs: 2, md: 1 },
     p: { xs: 1.5, md: 3 },
     transition: 'margin-left 0.3s ease',
   },

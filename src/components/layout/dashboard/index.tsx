@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { useMemo } from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -28,8 +29,6 @@ import { useMenu } from '@/contexts/menu.context';
 import { AuthCookie } from '@/storages/cookies/auth.cookies';
 import Image from 'next/image';
 
-const drawerWidth = 240;
-
 export default function MiniDrawer({ children }: Readonly<{ children: React.ReactNode }>) {
   const { current } = useMenu();
   const { push } = useRouter();
@@ -45,6 +44,10 @@ export default function MiniDrawer({ children }: Readonly<{ children: React.Reac
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const drawerWidth = useMemo(() => {
+    return open ? 240 : 90;
+  }, [open]);
 
   const getFirstAndLastName = (fullName: string): string => {
     const [firstName = '', ...rest] = fullName.trim().split(' ');
@@ -68,7 +71,7 @@ export default function MiniDrawer({ children }: Readonly<{ children: React.Reac
   });
 
   return (
-    <Box sx={miniDrawerStyles.root}>
+    <Box sx={miniDrawerStyles.root(open)}>
       <CssBaseline />
       <AppBar open={open} drawerWidth={drawerWidth}>
         <Toolbar>
@@ -124,12 +127,20 @@ export default function MiniDrawer({ children }: Readonly<{ children: React.Reac
           display: { xs: open ? 'block' : 'none', md: 'block' },
         }}
       >
-        <Box sx={miniDrawerStyles.drawerHeader(theme)}>
+        <Box sx={miniDrawerStyles.drawerHeader(theme, open)}>
           <Box sx={miniDrawerStyles.userInfoContainer}>
             <AccountCircleIcon
-              sx={theme => ({ fontSize: 40, color: theme.palette.primary.contrastText })}
+              sx={theme => ({
+                fontSize: 40,
+                color: theme.palette.primary.contrastText,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '100%',
+                ...(open && { width: 'auto', justifyContent: 'flex-start' }),
+              })}
             />
-            <Box>
+            <Box sx={{ display: !open ? 'none' : 'block' }}>
               <Typography variant="h6" fontWeight="bold">
                 {user && getFirstAndLastName(user.user.name)}
               </Typography>
@@ -137,7 +148,6 @@ export default function MiniDrawer({ children }: Readonly<{ children: React.Reac
             </Box>
           </Box>
         </Box>
-        <Divider />
         <CustomList open={open} setOpen={setOpen} />
         <Divider />
         <Tooltip title={`${!open ? 'Sair' : ''}`} placement="right">
@@ -154,7 +164,7 @@ export default function MiniDrawer({ children }: Readonly<{ children: React.Reac
       </Drawer>
 
       <Box component="main" sx={miniDrawerStyles.main}>
-        <Box sx={miniDrawerStyles.drawerHeader(theme)} />
+        <Box sx={miniDrawerStyles.drawerHeader(theme, open)} />
         {children}
       </Box>
     </Box>
