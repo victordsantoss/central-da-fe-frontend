@@ -137,7 +137,7 @@ export default function MiniDrawer({ children }: Readonly<{ children: React.Reac
                 alignItems: 'center',
                 justifyContent: 'center',
                 width: '100%',
-                ...(open && { width: 'auto', justifyContent: 'flex-start' })
+                ...(open && { width: 'auto', justifyContent: 'flex-start' }),
               })}
             />
             <Box sx={{ display: !open ? 'none' : 'block' }}>
