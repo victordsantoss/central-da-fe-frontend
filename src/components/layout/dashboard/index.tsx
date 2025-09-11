@@ -127,12 +127,20 @@ export default function MiniDrawer({ children }: Readonly<{ children: React.Reac
           display: { xs: open ? 'block' : 'none', md: 'block' },
         }}
       >
-        <Box sx={miniDrawerStyles.drawerHeader(theme)}>
+        <Box sx={miniDrawerStyles.drawerHeader(theme, open)}>
           <Box sx={miniDrawerStyles.userInfoContainer}>
             <AccountCircleIcon
-              sx={theme => ({ fontSize: 40, color: theme.palette.primary.contrastText })}
+              sx={theme => ({
+                fontSize: 40,
+                color: theme.palette.primary.contrastText,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '100%',
+                ...(open && { width: 'auto', justifyContent: 'flex-start' })
+              })}
             />
-            <Box>
+            <Box sx={{ display: !open ? 'none' : 'block' }}>
               <Typography variant="h6" fontWeight="bold">
                 {user && getFirstAndLastName(user.user.name)}
               </Typography>
@@ -140,7 +148,6 @@ export default function MiniDrawer({ children }: Readonly<{ children: React.Reac
             </Box>
           </Box>
         </Box>
-        <Divider />
         <CustomList open={open} setOpen={setOpen} />
         <Divider />
         <Tooltip title={`${!open ? 'Sair' : ''}`} placement="right">
@@ -157,7 +164,7 @@ export default function MiniDrawer({ children }: Readonly<{ children: React.Reac
       </Drawer>
 
       <Box component="main" sx={miniDrawerStyles.main}>
-        <Box sx={miniDrawerStyles.drawerHeader(theme)} />
+        <Box sx={miniDrawerStyles.drawerHeader(theme, open)} />
         {children}
       </Box>
     </Box>
