@@ -292,6 +292,11 @@ export function UserSearchStep({ onNext }: Readonly<IUserSearchStepProps>) {
                       variant="contained"
                       color="primary"
                       disabled={!methods.formState.isValid}
+                      fullWidth
+                      sx={{ 
+                        width: { xs: '100%', sm: 'auto' },
+                        minWidth: { sm: 120 }
+                      }}
                     >
                       {createUserMutation.isPending ? (
                         <CircularProgress

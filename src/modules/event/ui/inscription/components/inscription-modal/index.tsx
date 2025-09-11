@@ -14,7 +14,9 @@ import {
 import CloseIcon from '@mui/icons-material/Close';
 import { Event } from '@/services/domain/event.types';
 import { UserSearchStep } from './steps/user-step';
+import { ConfirmationStep } from './steps/confirmation-step';
 import { PaymentStep } from './steps/payment-step';
+import { SuccessStep } from './steps/success-step';
 import { InscriptionModalProvider, useInscriptionModal } from './inscription-modal.context';
 
 interface IInscriptionModalProps {
@@ -23,14 +25,21 @@ interface IInscriptionModalProps {
   readonly eventData: Event.IGetEventResponse;
 }
 
-const steps = ['Dados do Usuário', 'Pagamento'];
-
 export const InscriptionModalContent = ({ open, onClose, eventData }: IInscriptionModalProps) => {
   const [activeStep, setActiveStep] = useState(0);
   const { resetData } = useInscriptionModal();
 
+  const isPaidEvent = eventData.price && eventData.price > 0;
+  const steps = isPaidEvent 
+    ? ['Dados do Usuário', 'Confirmar Inscrição', 'Pagamento']
+    : ['Dados do Usuário', 'Confirmar Inscrição', 'Sucesso'];
+
   const handleNext = async () => {
     setActiveStep(prevActiveStep => prevActiveStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep(prevActiveStep => prevActiveStep - 1);
   };
 
   const handleClose = () => {
@@ -43,8 +52,20 @@ export const InscriptionModalContent = ({ open, onClose, eventData }: IInscripti
     switch (step) {
       case 0:
         return <UserSearchStep onNext={handleNext} />;
+      case 1:
+        return (
+          <ConfirmationStep 
+            onNext={handleNext} 
+            onBack={handleBack} 
+            eventData={eventData} 
+          />
+        );
       case 2:
-        return <PaymentStep eventData={eventData} />;
+        return isPaidEvent ? (
+          <PaymentStep eventData={eventData} />
+        ) : (
+          <SuccessStep onClose={handleClose} eventData={eventData} />
+        );
       default:
         return null;
     }

@@ -1,14 +1,18 @@
 import { Box, Container, Stack, Divider, Button } from '@mui/material';
+import { useState } from 'react';
 import { Event } from '@/services/domain/event.types';
 import { Banner } from './components/Banner';
 import { Main } from './components/Main';
 import { Links } from './components/Links';
+import { InscriptionModal } from './components/inscription-modal';
 
 interface IEventInscriptionViewProps {
   readonly eventData: Event.IGetEventResponse;
 }
 
 export function EventInscriptionView({ eventData }: IEventInscriptionViewProps) {
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
     <Box sx={{ maxWidth: '1200px', margin: '0 auto' }}>
       <Banner eventData={eventData} />
@@ -44,12 +48,18 @@ export function EventInscriptionView({ eventData }: IEventInscriptionViewProps) 
             color="primary"
             size="large"
             fullWidth
-            onClick={() => console.log('OnClick')}
+            onClick={() => setModalOpen(true)}
           >
             Inscrever-se Agora
           </Button>
         </Box>
       </Container>
+
+      <InscriptionModal
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
+        eventData={eventData}
+      />
     </Box>
   );
 }
