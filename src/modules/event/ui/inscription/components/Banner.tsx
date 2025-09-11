@@ -1,4 +1,5 @@
-import { Box, Container, Typography, Chip, Stack, useTheme } from '@mui/material';
+'use client';
+import { Box, Container, Typography, Chip, Stack } from '@mui/material';
 import Image from 'next/image';
 import EventIcon from '@mui/icons-material/Event';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -11,8 +12,6 @@ interface IBannerProps {
 }
 
 export function Banner({ eventData }: IBannerProps) {
-  const theme = useTheme();
-
   return (
     <>
       {/* Banner para Desktop */}
@@ -41,7 +40,7 @@ export function Banner({ eventData }: IBannerProps) {
             backgroundImage: `url(${eventData.image || '/assets/default-event-banner.jpg'})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            filter: 'blur(12px) brightness(0.5)',
+            filter: 'blur(15px) brightness(0.5)',
             zIndex: 0,
           },
         }}
@@ -75,7 +74,7 @@ export function Banner({ eventData }: IBannerProps) {
                   fontWeight: 700,
                   mb: 3,
                   textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
-                  color: theme.palette.background.paper,
+                  color: theme => theme.palette.background.paper,
                 }}
               >
                 {eventData.name}
@@ -91,7 +90,7 @@ export function Banner({ eventData }: IBannerProps) {
                   <EventIcon
                     sx={{
                       fontSize: 24,
-                      color: theme.palette.background.paper,
+                      color: theme => theme.palette.background.paper,
                       filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.8))',
                     }}
                   />
@@ -101,7 +100,7 @@ export function Banner({ eventData }: IBannerProps) {
                       fontWeight={600}
                       sx={{
                         textShadow: '1px 1px 2px rgba(0,0,0,0.8)',
-                        color: theme.palette.background.paper,
+                        color: theme => theme.palette.background.paper,
                       }}
                     >
                       {formatDateAndTime(new Date(eventData.startDate))}
@@ -112,7 +111,7 @@ export function Banner({ eventData }: IBannerProps) {
                         fontWeight={600}
                         sx={{
                           textShadow: '1px 1px 2px rgba(0,0,0,0.8)',
-                          color: theme.palette.background.paper,
+                          color: theme => theme.palette.background.paper,
                         }}
                       >
                         até {formatDateAndTime(new Date(eventData.endDate))}
@@ -130,7 +129,7 @@ export function Banner({ eventData }: IBannerProps) {
                   <LocationOnIcon
                     sx={{
                       fontSize: 24,
-                      color: theme.palette.background.paper,
+                      color: theme => theme.palette.background.paper,
                       filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.8))',
                     }}
                   />
@@ -139,7 +138,7 @@ export function Banner({ eventData }: IBannerProps) {
                     fontWeight={500}
                     sx={{
                       textShadow: '1px 1px 2px rgba(0,0,0,0.8)',
-                      color: theme.palette.background.paper,
+                      color: theme => theme.palette.background.paper,
                       flex: 1,
                       wordBreak: 'break-word',
                     }}
@@ -157,7 +156,7 @@ export function Banner({ eventData }: IBannerProps) {
                   <ChurchIcon
                     sx={{
                       fontSize: 24,
-                      color: theme.palette.background.paper,
+                      color: theme => theme.palette.background.paper,
                       filter: 'drop-shadow(2px 2px 4px rgba(0,0,0,0.8))',
                     }}
                   />
@@ -166,7 +165,7 @@ export function Banner({ eventData }: IBannerProps) {
                     fontWeight={500}
                     sx={{
                       textShadow: '1px 1px 2px rgba(0,0,0,0.8)',
-                      color: theme.palette.background.paper,
+                      color: theme => theme.palette.background.paper,
                     }}
                   >
                     {eventData.churchName}
@@ -190,7 +189,7 @@ export function Banner({ eventData }: IBannerProps) {
                     backgroundColor:
                       eventData.price && eventData.price > 0
                         ? 'success'
-                        : `${theme.palette.auxiliares.free}`,
+                        : theme => theme.palette.auxiliares.free,
                     color: 'white',
                   }}
                 />
@@ -201,11 +200,12 @@ export function Banner({ eventData }: IBannerProps) {
               <Box
                 sx={{
                   position: 'relative',
-                  width: { sm: '200px', md: '250px', lg: '300px' },
+                  width: { sm: '200px', md: '350px', lg: '500px' },
                   height: { sm: '200px', md: '250px', lg: '300px' },
                   borderRadius: 3,
                   overflow: 'hidden',
                   boxShadow: '0 15px 30px rgba(0,0,0,0.6)',
+                  border: '3px solid #FFFFFF',
                 }}
               >
                 <Image
@@ -217,6 +217,7 @@ export function Banner({ eventData }: IBannerProps) {
                     width: '100%',
                     height: '100%',
                     objectFit: 'cover',
+                    borderRadius: '3px',
                   }}
                   priority
                   quality={90}
@@ -334,7 +335,7 @@ export function Banner({ eventData }: IBannerProps) {
                   backgroundColor:
                     eventData.price && eventData.price > 0
                       ? 'success'
-                      : `${theme.palette.auxiliares.free}`,
+                      : theme => theme.palette.auxiliares.free,
                   color: 'white',
                 }}
               />

@@ -1,7 +1,5 @@
-import { Box, Typography, Button, useTheme, IconButton, Tooltip } from '@mui/material';
+import { Box, Typography, Button, useTheme } from '@mui/material';
 import { useState } from 'react';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { Event } from '@/services/domain/event.types';
 import { InscriptionModal } from './inscription-modal';
 
@@ -11,10 +9,7 @@ interface IMainProps {
 
 export function Main({ eventData }: IMainProps) {
   const theme = useTheme();
-  const [expandedContent, setExpandedContent] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-
-  const shouldShowExpandButton = eventData.content && eventData.content.length > 300;
 
   return (
     <>
@@ -49,8 +44,8 @@ export function Main({ eventData }: IMainProps) {
             sx={{
               overflow: 'hidden',
               transition: 'max-height 1s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s ease-in-out',
-              maxHeight: expandedContent ? '1000px' : '5.4em',
-              opacity: expandedContent ? 1 : 0.95,
+              maxHeight: '5.4em',
+              opacity: 0.95,
             }}
           >
             <Typography
@@ -61,9 +56,9 @@ export function Main({ eventData }: IMainProps) {
                 lineHeight: 1.8,
                 textAlign: 'justify',
                 margin: 0,
-                display: expandedContent ? 'block' : '-webkit-box',
-                WebkitLineClamp: expandedContent ? 'unset' : 3,
-                WebkitBoxOrient: expandedContent ? 'unset' : 'vertical',
+                display: '-webkit-box',
+                WebkitLineClamp: 3,
+                WebkitBoxOrient: 'vertical',
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
               }}
@@ -71,15 +66,6 @@ export function Main({ eventData }: IMainProps) {
               {eventData.content}
             </Typography>
           </Box>
-          {shouldShowExpandButton && (
-            <Box display="flex" justifyContent="center">
-              <Tooltip title={expandedContent ? 'Ver menos' : 'Ver mais'} placement="top" arrow>
-                <IconButton color="primary" onClick={() => setExpandedContent(!expandedContent)}>
-                  {expandedContent ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-                </IconButton>
-              </Tooltip>
-            </Box>
-          )}
         </Box>
       )}
 

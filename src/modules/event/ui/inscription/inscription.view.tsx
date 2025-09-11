@@ -1,3 +1,5 @@
+'use client';
+
 import { Box, Container, Stack, Divider, Button } from '@mui/material';
 import { useState } from 'react';
 import { Event } from '@/services/domain/event.types';

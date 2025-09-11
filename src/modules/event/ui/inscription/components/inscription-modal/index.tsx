@@ -30,7 +30,7 @@ export const InscriptionModalContent = ({ open, onClose, eventData }: IInscripti
   const { resetData } = useInscriptionModal();
 
   const isPaidEvent = eventData.price && eventData.price > 0;
-  const steps = isPaidEvent 
+  const steps = isPaidEvent
     ? ['Dados do Usuário', 'Confirmar Inscrição', 'Pagamento']
     : ['Dados do Usuário', 'Confirmar Inscrição', 'Sucesso'];
 
@@ -53,18 +53,12 @@ export const InscriptionModalContent = ({ open, onClose, eventData }: IInscripti
       case 0:
         return <UserSearchStep onNext={handleNext} />;
       case 1:
-        return (
-          <ConfirmationStep 
-            onNext={handleNext} 
-            onBack={handleBack} 
-            eventData={eventData} 
-          />
-        );
+        return <ConfirmationStep onNext={handleNext} onBack={handleBack} eventData={eventData} />;
       case 2:
         return isPaidEvent ? (
           <PaymentStep eventData={eventData} />
         ) : (
-          <SuccessStep onClose={handleClose} eventData={eventData} />
+          <SuccessStep eventData={eventData} />
         );
       default:
         return null;
@@ -80,6 +74,7 @@ export const InscriptionModalContent = ({ open, onClose, eventData }: IInscripti
         sx: {
           borderRadius: 2,
           minHeight: '500px',
+          backgroundColor: 'white !important',
           minWidth: { xs: '95%', sm: 'auto' },
           maxWidth: { xs: '95%', md: '800px' },
         },
@@ -115,7 +110,7 @@ export const InscriptionModalContent = ({ open, onClose, eventData }: IInscripti
           </Stepper>
         </Box>
 
-        <Box sx={{ minHeight: '300px' }}>{renderStepContent(activeStep)}</Box>
+        <Box>{renderStepContent(activeStep)}</Box>
       </DialogContent>
     </Dialog>
   );

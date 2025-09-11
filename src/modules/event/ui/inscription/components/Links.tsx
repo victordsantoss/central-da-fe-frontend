@@ -3,7 +3,6 @@ import Image from 'next/image';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import YouTubeIcon from '@mui/icons-material/YouTube';
-import LinkIcon from '@mui/icons-material/Link';
 import MessageIcon from '@mui/icons-material/Message';
 import { Event } from '@/services/domain/event.types';
 
@@ -43,8 +42,8 @@ export function Links({ eventData }: ILinksProps) {
             <Image
               src="/pix.png"
               alt="PIX"
-              width={120}
-              height={43}
+              width={96}
+              height={34.4}
               style={{
                 borderRadius: '4px',
                 objectFit: 'contain',
@@ -54,32 +53,11 @@ export function Links({ eventData }: ILinksProps) {
         </Box>
 
         {hasSocialLinks && (
-          <Box sx={{ textAlign: 'left', flex: 1 }}>
+          <Box sx={{ textAlign: 'center', flex: 1 }}>
             <Typography variant="h6" fontWeight={600} color="text.primary" mb={1}>
               Acompanhe nas Redes Sociais
             </Typography>
-            <Stack direction="row" spacing={1} justifyContent="flex-start" flexWrap="wrap">
-              {eventData.customLink && (
-                <Tooltip title="Link Personalizado" placement="top" arrow>
-                  <IconButton
-                    component="a"
-                    href={eventData.customLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    sx={{
-                      color: 'text.primary',
-                      '&:hover': {
-                        backgroundColor: 'rgba(0, 0, 0, 0.04)',
-                        transform: 'scale(1.1)',
-                      },
-                      transition: 'all 0.2s ease-in-out',
-                    }}
-                  >
-                    <LinkIcon sx={{ fontSize: 28 }} />
-                  </IconButton>
-                </Tooltip>
-              )}
-
+            <Stack direction="row" spacing={1} justifyContent="center" flexWrap="wrap">
               {eventData.facebookLink && (
                 <Tooltip title="Facebook" placement="top" arrow>
                   <IconButton

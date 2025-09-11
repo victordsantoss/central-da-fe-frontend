@@ -16,6 +16,7 @@ import {
 import SearchIcon from '@mui/icons-material/Search';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import EmailIcon from '@mui/icons-material/Email';
+import BadgeIcon from '@mui/icons-material/Badge';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { UserService } from '@/services/client/user.services';
 import { useInscriptionModal } from '../inscription-modal.context';
@@ -27,7 +28,6 @@ import { UserRegistrationSchema, UserRegistrationFormValues } from './user-step.
 import { useAlert } from '@/contexts/alert.context';
 import { formatCPF } from '@/common/utils/document';
 import { PositionModel } from '@/common/models/position.model';
-import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import { Auth } from '@/services/domain/auth.types';
 import { AuthService } from '@/services/client/auth.services';
 import { User } from '@/services/domain/user.types';
@@ -112,9 +112,12 @@ export function UserSearchStep({ onNext }: Readonly<IUserSearchStepProps>) {
     },
   });
 
+  console.log('userData', userData);
+  console.log('searchUserMutation.data', searchUserMutation.data);
+
   const handleRegistrationSubmit = useCallback(
     async (data: UserRegistrationFormValues) => {
-      if (!searchUserMutation.data) {
+      if (!userData) {
         await createUserMutation.mutateAsync(data);
         setShowRegistrationForm(false);
       } else {
@@ -122,9 +125,8 @@ export function UserSearchStep({ onNext }: Readonly<IUserSearchStepProps>) {
         onNext();
       }
     },
-    [createUserMutation, onNext, searchUserMutation.data]
+    [createUserMutation, onNext, userData]
   );
-  console.log('methods', methods.getValues());
 
   useEffect(() => {
     if (!cpf || cpf.length < 14) {
@@ -134,7 +136,7 @@ export function UserSearchStep({ onNext }: Readonly<IUserSearchStepProps>) {
 
   return (
     <Box>
-      <Stack spacing={3}>
+      <Stack spacing={2}>
         <TextField
           label="CPF"
           value={cpf}
@@ -154,6 +156,11 @@ export function UserSearchStep({ onNext }: Readonly<IUserSearchStepProps>) {
           disabled={searchUserMutation.isPending}
           slotProps={{
             input: {
+              startAdornment: (
+                <InputAdornment position="start">
+                  <BadgeIcon color="primary" />
+                </InputAdornment>
+              ),
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton
@@ -172,23 +179,46 @@ export function UserSearchStep({ onNext }: Readonly<IUserSearchStepProps>) {
 
         {!searchUserMutation.data && !showRegistrationForm && (
           <Box
-            sx={{ textAlign: 'center', py: 4, display: 'flex', flexDirection: 'column', gap: 2 }}
+            sx={{
+              textAlign: 'center',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 2,
+              backgroundColor: 'white',
+              borderRadius: 3,
+              p: { xs: 2, sm: 3 },
+              border: 'none',
+              maxWidth: '100%',
+            }}
           >
-            <Box display="flex" justifyContent="center" alignItems="center">
-              <PersonAddAltIcon sx={{ fontSize: 64, color: 'secondary.main' }} />
-            </Box>
-            <Typography variant="h5" color="text.primary" sx={{ fontWeight: 600 }}>
+            <Typography variant="h5" color="info.main" fontWeight={600}>
               Inscrição no Evento
             </Typography>
-            <Typography variant="body1" color="secondary.main" sx={{ maxWidth: 400, mx: 'auto' }}>
+            <Typography variant="body1" color="text.primary">
               Digite o CPF para buscar e inscrever-se no evento. Se você não estiver cadastrado,
               você poderá preencher os dados manualmente.
+            </Typography>
+            <Typography
+              variant="body2"
+              color="text.primary"
+              sx={{
+                maxWidth: 400,
+                mx: 'auto',
+                p: 2,
+                backgroundColor: 'grey.50',
+                borderRadius: 2,
+                border: 1,
+                borderColor: 'grey.200',
+              }}
+            >
+              💡 <strong>Dica:</strong> Se você já possui cadastro na igreja, digite seu CPF acima.
+              Caso contrário, preencha os dados do formulário que aparecerá após a busca.
             </Typography>
           </Box>
         )}
 
         {showRegistrationForm && (
-          <Box sx={{ mt: 3 }}>
+          <Box>
             <FormProvider {...methods}>
               <Box component="form" onSubmit={methods.handleSubmit(handleRegistrationSubmit)}>
                 <Stack spacing={2}>
@@ -286,23 +316,22 @@ export function UserSearchStep({ onNext }: Readonly<IUserSearchStepProps>) {
                       <InfoIcon sx={{ fontSize: 24, color: 'info.main', cursor: 'pointer' }} />
                     </Tooltip>
                   </Box>
-                  <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      width: { xs: '100%', sm: 'auto' },
+                    }}
+                  >
                     <Button
                       type="submit"
                       variant="contained"
                       color="primary"
-                      disabled={!methods.formState.isValid}
                       fullWidth
-                      sx={{ 
-                        width: { xs: '100%', sm: 'auto' },
-                        minWidth: { sm: 120 }
-                      }}
+                      sx={{ width: { xs: '100%', sm: 'auto' } }}
                     >
                       {createUserMutation.isPending ? (
-                        <CircularProgress
-                          size={20}
-                          sx={theme => ({ color: theme.palette.primary.contrastText })}
-                        />
+                        <CircularProgress size={20} color="primary" />
                       ) : (
                         'Prosseguir'
                       )}
