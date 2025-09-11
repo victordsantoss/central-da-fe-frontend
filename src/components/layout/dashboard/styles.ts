@@ -1,7 +1,7 @@
 import { SxProps, Theme } from '@mui/material';
 
 export const miniDrawerStyles: {
-  root: SxProps<Theme>;
+  root: (open: boolean) => SxProps<Theme>;
   menuButton: (open: boolean) => SxProps<Theme>;
   drawerHeader: (theme: Theme) => SxProps<Theme>;
   userInfoContainer: SxProps<Theme>;
@@ -9,13 +9,13 @@ export const miniDrawerStyles: {
   logoutText: (open: boolean) => SxProps<Theme>;
   main: SxProps<Theme>;
 } = {
-  root: {
+  root: (open: boolean) => ({
     display: 'flex',
-    backgroundColor: theme => theme.palette.background.paper,
     minHeight: '100vh',
     paddingBottom: '50px',
-  },
-
+    minWidth: { xs: open ? '130vw' : '100vw', md: '100vw' },
+    backgroundColor: theme => theme.palette.background.default,
+  }),
   menuButton: (open: boolean) => ({
     marginRight: 5,
     display: open ? 'none' : 'block',
@@ -69,7 +69,7 @@ export const miniDrawerStyles: {
 
   main: {
     flexGrow: 1,
-    mt: { xs: 1, md: 0 },
+    mt: 1,
     p: { xs: 1.5, md: 3 },
     transition: 'margin-left 0.3s ease',
   },
