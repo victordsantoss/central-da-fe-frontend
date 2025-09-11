@@ -4,8 +4,8 @@ import CssBaseline from '@mui/material/CssBaseline';
 import defaultTheme from '@/configs/styles/theme/default-theme';
 
 export const metadata = {
-  title: 'Central da Fé',
-  description: 'Igreja Central da Fé - Ministério Oriente',
+  title: 'Igreja Assembléia de Deus Central da Fé - CDMOR',
+  description: 'Igreja Assembléia de Deus Central da Fé - CDMOR',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

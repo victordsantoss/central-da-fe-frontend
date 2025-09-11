@@ -3,6 +3,7 @@ import { useState } from 'react';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { Event } from '@/services/domain/event.types';
+import { InscriptionModal } from './inscription-modal';
 
 interface IMainProps {
   readonly eventData: Event.IGetEventResponse;
@@ -11,6 +12,9 @@ interface IMainProps {
 export function Main({ eventData }: IMainProps) {
   const theme = useTheme();
   const [expandedContent, setExpandedContent] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const shouldShowExpandButton = eventData.content && eventData.content.length > 300;
 
   return (
     <>
@@ -67,13 +71,15 @@ export function Main({ eventData }: IMainProps) {
               {eventData.content}
             </Typography>
           </Box>
-          <Box display="flex" justifyContent="center">
-            <Tooltip title={expandedContent ? 'Ver menos' : 'Ver mais'} placement="top" arrow>
-              <IconButton color="primary" onClick={() => setExpandedContent(!expandedContent)}>
-                {expandedContent ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-              </IconButton>
-            </Tooltip>
-          </Box>
+          {shouldShowExpandButton && (
+            <Box display="flex" justifyContent="center">
+              <Tooltip title={expandedContent ? 'Ver menos' : 'Ver mais'} placement="top" arrow>
+                <IconButton color="primary" onClick={() => setExpandedContent(!expandedContent)}>
+                  {expandedContent ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                </IconButton>
+              </Tooltip>
+            </Box>
+          )}
         </Box>
       )}
 
@@ -84,11 +90,17 @@ export function Main({ eventData }: IMainProps) {
           fullWidth
           size="large"
           sx={{ width: { xs: '100%', md: 'auto' } }}
-          onClick={() => console.log('OnClick')}
+          onClick={() => setModalOpen(true)}
         >
           Inscrever-se Agora
         </Button>
       </Box>
+
+      <InscriptionModal
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
+        eventData={eventData}
+      />
     </>
   );
 }

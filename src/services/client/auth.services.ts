@@ -6,6 +6,12 @@ export const AuthService = {
     const { data } = await api.post('/user', payload);
     return data;
   },
+  createUserWithRandomPassword: async (
+    payload: Auth.ICreateUserWithRandomPasswordRequest
+  ): Promise<Auth.IRegisterResponse> => {
+    const { data } = await api.post(`/user/random-password`, payload);
+    return data;
+  },
   login: async ({ email, password }: Auth.ILoginRequest): Promise<string> => {
     const { data } = await api.post('/auth/login', { email, password });
     return data;

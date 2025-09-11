@@ -9,4 +9,5 @@ export namespace User {
     endDate: Date | null;
     user: UserModel;
   };
+  export type IUserByCpfResponse = UserModel;
 }

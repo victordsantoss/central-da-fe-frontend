@@ -6,4 +6,8 @@ export const UserService = {
     const { data } = await api.get('/user');
     return data;
   },
+  getUserByCpf: async (cpf: string): Promise<User.IUserByCpfResponse> => {
+    const { data } = await api.get(`/user/cpf/${cpf}`);
+    return data;
+  },
 };

@@ -13,5 +13,11 @@ export namespace Auth {
     churchId: string;
     positionIds: string[];
   };
+  export type ICreateUserWithRandomPasswordRequest = {
+    name: string;
+    email: string;
+    cpf: string;
+    positionIds: string[];
+  };
   export type IRegisterResponse = UserModel & {};
 }
