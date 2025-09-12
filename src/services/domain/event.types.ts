@@ -30,4 +30,12 @@ export namespace Event {
     name: string;
     description: string;
   };
+  export type ISubscribeEventRequest = {
+    userId: string;
+    eventId: string;
+  };
+  export type ISubscribeEventResponse = {
+    success: boolean;
+    message: string;
+  };
 }

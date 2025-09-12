@@ -1,19 +1,26 @@
 'use client';
 
-import React from 'react';
-import { Box, Typography, Stack, Button } from '@mui/material';
+import React, { useState } from 'react';
+import { Box, Typography, Stack, Button, CircularProgress, Alert } from '@mui/material';
 import { CalendarToday, LocationOn, Event as EventIcon } from '@mui/icons-material';
 import { Event } from '@/services/domain/event.types';
 import { formatDate } from '@/common/utils/date.util';
+import { EventService } from '@/services/client/event.services';
+import { useInscriptionModal } from '../inscription-modal.context';
+import { getErrorMessage } from '@/common/utils/error.util';
 import dayjs from 'dayjs';
 
 interface IConfirmationStepProps {
   onNext: () => void;
   onBack: () => void;
   eventData: Event.IGetEventResponse;
+  onSuccess?: () => void;
 }
 
-export function ConfirmationStep({ onNext, onBack, eventData }: Readonly<IConfirmationStepProps>) {
+export function ConfirmationStep({ onNext, onBack, eventData, onSuccess }: Readonly<IConfirmationStepProps>) {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const { userData } = useInscriptionModal();
   const isPaidEvent = eventData.price && eventData.price > 0;
 
   const formatDateRange = () => {
@@ -23,6 +30,34 @@ export function ConfirmationStep({ onNext, onBack, eventData }: Readonly<IConfir
       return `${startDate} - ${endDate}`;
     }
     return startDate;
+  };
+
+  const handleSubscribeToEvent = async () => {
+    if (!userData?.id) {
+      setError('Dados do usuário não encontrados. Por favor, volte e preencha os dados novamente.');
+      return;
+    }
+
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      await EventService.subscribeEvent(eventData.id, {
+        userId: userData.id,
+        eventId: eventData.id,
+      });
+      
+      if (onSuccess) {
+        onSuccess();
+      } else {
+        onNext();
+      }
+    } catch (err: unknown) {
+      console.error('Erro ao inscrever no evento:', err);
+      setError(getErrorMessage(err, 'Erro ao realizar a inscrição. Tente novamente.'));
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -158,17 +193,39 @@ export function ConfirmationStep({ onNext, onBack, eventData }: Readonly<IConfir
           </Box>
         )}
 
+        {error && (
+          <Alert severity="error" sx={{ mb: 2 }}>
+            {error}
+          </Alert>
+        )}
+
         <Box
           display="flex"
           justifyContent="space-between"
           flexDirection={{ xs: 'column-reverse', sm: 'row' }}
           gap={1}
         >
-          <Button variant="outlined" color="primary" onClick={onBack}>
+          <Button 
+            variant="outlined" 
+            color="primary" 
+            onClick={onBack}
+            disabled={isLoading}
+          >
             Voltar
           </Button>
-          <Button variant="contained" color="primary" onClick={onNext}>
-            {isPaidEvent ? 'Ir para Pagamento' : 'Confirmar Inscrição'}
+          <Button 
+            variant="contained" 
+            color="primary" 
+            onClick={isPaidEvent ? onNext : handleSubscribeToEvent}
+            disabled={isLoading}
+            startIcon={isLoading ? <CircularProgress size={20} color="inherit" /> : undefined}
+          >
+            {isLoading 
+              ? 'Processando...' 
+              : isPaidEvent 
+                ? 'Ir para Pagamento' 
+                : 'Confirmar Inscrição'
+            }
           </Button>
         </Box>
       </Stack>

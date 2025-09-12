@@ -8,4 +8,11 @@ export const EventService = {
     const { data } = await api.post('/event', payload);
     return data;
   },
+  subscribeEvent: async (
+    eventId: string,
+    payload: Event.ISubscribeEventRequest
+  ): Promise<Event.ISubscribeEventResponse> => {
+    const { data } = await api.post(`/event/${eventId}/subscribe`, payload);
+    return data;
+  },
 };

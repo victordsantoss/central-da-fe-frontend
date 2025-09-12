@@ -12,6 +12,7 @@ import { Event } from '@/services/domain/event.types';
 
 interface ISuccessStepProps {
   eventData: Event.IGetEventResponse;
+  onClose?: () => void;
 }
 
 const SOCIAL_MEDIA_STYLES = {
