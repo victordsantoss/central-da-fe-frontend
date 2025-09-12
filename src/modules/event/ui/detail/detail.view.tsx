@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Event } from '@/services/domain/event.types';
 import { formStyles } from '@/common/utils/styles';
 import { BasicData } from './components/basic-data';
-import { InscriptionData } from './components/inscription-data';
+import { InscriptionData } from './components/reports';
 
 interface IEventDetailViewProps {
   eventData: Event.IGetEventResponse;
@@ -85,7 +85,7 @@ export const EventDetailView = ({ eventData, onBackClick }: IEventDetailViewProp
           }}
         >
           <Tab label="Detalhes do Evento" />
-          <Tab label="Andamento e Inscrições" />
+          <Tab label="Relatórios" />
         </Tabs>
       </Box>
 
