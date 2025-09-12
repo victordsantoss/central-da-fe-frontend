@@ -7,10 +7,11 @@ interface IApiError {
   message?: string;
 }
 
-export const getErrorMessage = (error: unknown, fallback = 'Erro inesperado. Tente novamente.'): string => {
+export const getErrorMessage = (
+  error: unknown,
+  fallback = 'Erro inesperado. Tente novamente.'
+): string => {
   const apiError = error as IApiError;
-  
-  return apiError?.response?.data?.message || 
-         apiError?.message || 
-         fallback;
+
+  return apiError?.response?.data?.message || apiError?.message || fallback;
 };

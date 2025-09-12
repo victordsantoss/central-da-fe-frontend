@@ -20,7 +20,6 @@ export function EventInscriptionView({ eventData }: IEventInscriptionViewProps) 
     updateMetadata(`Inscrição em ${eventData.name} - CDMOR`, 'Inscrição em evento');
   }, [eventData, updateMetadata]);
 
-
   return (
     <Box sx={{ maxWidth: '1200px', margin: '0 auto' }}>
       <Banner eventData={eventData} />

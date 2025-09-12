@@ -33,12 +33,15 @@ export const MetadataProvider = ({ children }: IMetadataProviderProps) => {
     }
   }, []);
 
-  const updateMetadata = useCallback((newTitle: string, newDescription?: string) => {
-    updateTitle(newTitle);
-    if (newDescription) {
-      updateDescription(newDescription);
-    }
-  }, [updateTitle, updateDescription]);
+  const updateMetadata = useCallback(
+    (newTitle: string, newDescription?: string) => {
+      updateTitle(newTitle);
+      if (newDescription) {
+        updateDescription(newDescription);
+      }
+    },
+    [updateTitle, updateDescription]
+  );
 
   const contextValue = useMemo(
     () => ({
@@ -51,11 +54,7 @@ export const MetadataProvider = ({ children }: IMetadataProviderProps) => {
     [title, description, updateTitle, updateDescription, updateMetadata]
   );
 
-  return (
-    <MetadataContext.Provider value={contextValue}>
-      {children}
-    </MetadataContext.Provider>
-  );
+  return <MetadataContext.Provider value={contextValue}>{children}</MetadataContext.Provider>;
 };
 
 export const useMetadata = () => {

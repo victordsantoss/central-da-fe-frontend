@@ -15,9 +15,7 @@ export default function RootLayout({ children }: { readonly children: React.Reac
       <body>
         <ThemeProvider theme={defaultTheme}>
           <CssBaseline />
-          <MetadataProvider>
-            {children}
-          </MetadataProvider>
+          <MetadataProvider>{children}</MetadataProvider>
         </ThemeProvider>
       </body>
     </html>
