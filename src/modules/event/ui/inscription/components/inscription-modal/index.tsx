@@ -48,12 +48,23 @@ export const InscriptionModalContent = ({ open, onClose, eventData }: IInscripti
     onClose();
   };
 
+  const handleSuccess = () => {
+    setActiveStep(2);
+  };
+
   const renderStepContent = (step: number) => {
     switch (step) {
       case 0:
         return <UserSearchStep onNext={handleNext} />;
       case 1:
-        return <ConfirmationStep onNext={handleNext} onBack={handleBack} eventData={eventData} />;
+        return (
+          <ConfirmationStep 
+            onNext={handleNext} 
+            onBack={handleBack} 
+            eventData={eventData} 
+            onSuccess={handleSuccess}
+          />
+        );
       case 2:
         return isPaidEvent ? (
           <PaymentStep eventData={eventData} />
