@@ -37,10 +37,10 @@ export function Banner({ eventData }: IBannerProps) {
             left: '-20px',
             right: '-20px',
             bottom: '-20px',
-            backgroundImage: `url(${eventData.image || '/assets/default-event-banner.jpg'})`,
+            backgroundImage: `url(${eventData.image || '/assets/church-background-image.jpeg'})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            filter: 'blur(15px) brightness(0.5)',
+            filter: 'blur(5px) brightness(0.9)',
             zIndex: 0,
           },
         }}
