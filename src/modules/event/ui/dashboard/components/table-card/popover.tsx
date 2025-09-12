@@ -1,4 +1,4 @@
-import { Popover, List, ListItemButton, ListItemIcon, ListItemText, alpha } from '@mui/material';
+import { Popover, List, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { EventModel } from '@/common/models/event.model';
 
@@ -48,7 +48,7 @@ export const EventTableCardPopover = ({
           onClick={() => onView(item.id)}
           sx={{
             '&:hover': {
-              backgroundColor: theme => alpha(theme.palette.secondary.main, 0.5),
+              backgroundColor: theme => theme.palette.primary.light,
             },
           }}
         >

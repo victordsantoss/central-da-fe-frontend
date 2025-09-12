@@ -152,7 +152,13 @@ const LoginFormView: React.FC<ILoginFormProps> = ({
             placement="top"
           >
             <span style={{ width: '100%' }}>
-              <Button type="submit" variant="contained" fullWidth color="primary">
+              <Button
+                type="submit"
+                variant="contained"
+                fullWidth
+                color="primary"
+                disabled={isPending}
+              >
                 {isPending ? (
                   <CircularProgress
                     size={20}
