@@ -1,10 +1,11 @@
 import { Box, Typography, Stack, IconButton, Snackbar, Alert, Tabs, Tab } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Event } from '@/services/domain/event.types';
 import { formStyles } from '@/common/utils/styles';
 import { BasicData } from './components/basic-data';
 import { InscriptionData } from './components/reports';
+import { useMetadata } from '@/contexts/metadata.context';
 
 interface IEventDetailViewProps {
   eventData: Event.IGetEventResponse;
@@ -15,6 +16,13 @@ export const EventDetailView = ({ eventData, onBackClick }: IEventDetailViewProp
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [activeTab, setActiveTab] = useState(0);
+  const { updateMetadata } = useMetadata();
+
+  useEffect(() => {
+    if (eventData?.name) {
+      updateMetadata(`${eventData.name} - CDMOR`, eventData.description || 'Detalhes do evento');
+    }
+  }, [eventData, updateMetadata]);
 
   const handleCopyLink = async (link: string | undefined, platform: string) => {
     if (!link) return;

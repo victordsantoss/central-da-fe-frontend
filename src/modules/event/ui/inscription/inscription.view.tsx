@@ -1,19 +1,25 @@
 'use client';
 
 import { Box, Container, Stack, Divider, Button } from '@mui/material';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Event } from '@/services/domain/event.types';
 import { Banner } from './components/Banner';
 import { Main } from './components/Main';
 import { Links } from './components/Links';
 import { InscriptionModal } from './components/inscription-modal';
-
+import { useMetadata } from '@/contexts/metadata.context';
 interface IEventInscriptionViewProps {
   readonly eventData: Event.IGetEventResponse;
 }
 
 export function EventInscriptionView({ eventData }: IEventInscriptionViewProps) {
   const [modalOpen, setModalOpen] = useState(false);
+  const { updateMetadata } = useMetadata();
+
+  useEffect(() => {
+    updateMetadata(`Inscrição em ${eventData.name} - CDMOR`, 'Inscrição em evento');
+  }, [eventData, updateMetadata]);
+
 
   return (
     <Box sx={{ maxWidth: '1200px', margin: '0 auto' }}>

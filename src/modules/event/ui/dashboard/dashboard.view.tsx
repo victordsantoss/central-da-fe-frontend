@@ -5,6 +5,8 @@ import FilterViewModel from '@/components/filter';
 import TableViewModel from '@/components/table';
 import EventTableCardViewModel from './components/table-card';
 import { EventModel } from '@/common/models/event.model';
+import { useMetadata } from '@/contexts/metadata.context';
+import { useEffect } from 'react';
 
 interface IEventDashboardViewProps {
   eventsData: Event.IListEventsResponse;
@@ -17,6 +19,12 @@ export const EventDashboardView = ({
   onRegisterClick,
   orderOptions,
 }: IEventDashboardViewProps) => {
+  const { updateMetadata } = useMetadata();
+
+  useEffect(() => {
+    updateMetadata('Dashboard de Eventos - CDMOR', 'Eventos');
+  }, [eventsData, updateMetadata]);
+
   return (
     <Box display={'flex'} flexDirection={'column'} gap={{ xs: 2, md: 3 }}>
       <Box display={'flex'} width={'100%'} gap={{ xs: 2, md: 3 }}>
