@@ -46,15 +46,13 @@ const getStatusColor = (status: Inscription['status']) => {
   }
 };
 
-
-
 const StatGroup = ({
   title,
   mainValue,
   mainDescription,
   icon,
   color = 'primary',
-  children
+  children,
 }: {
   title: string;
   mainValue: string | number;
@@ -87,7 +85,7 @@ const StatGroup = ({
           sx={{
             color: 'text.primary',
             fontWeight: 600,
-            fontSize: { xs: '1rem', md: '1.25rem' }
+            fontSize: { xs: '1rem', md: '1.25rem' },
           }}
         >
           {title}
@@ -102,7 +100,7 @@ const StatGroup = ({
           fontWeight="bold"
           sx={{
             mb: 1,
-            fontSize: { xs: '2rem', md: '3rem' }
+            fontSize: { xs: '2rem', md: '3rem' },
           }}
         >
           {mainValue}
@@ -126,7 +124,7 @@ const StatGroup = ({
 const StatItem = ({
   label,
   value,
-  color = 'text.secondary'
+  color = 'text.secondary',
 }: {
   label: string;
   value: string | number;
@@ -185,21 +183,19 @@ export const InscriptionData = () => {
     };
   }, [inscriptions]);
 
-
   // Dados para gráfico de inscrições por dia (simulado)
   const inscricoesPorDia = useMemo(() => {
     const dias = ['15/01', '16/01', '17/01', '18/01', '19/01', '20/01', '21/01', '22/01'];
     return dias.map((dia, index) => ({
       dia,
-      inscricoes: inscriptions.filter(i =>
-        new Date(i.dataInscricao).getDate() === 15 + index
-      ).length,
+      inscricoes: inscriptions.filter(i => new Date(i.dataInscricao).getDate() === 15 + index)
+        .length,
     }));
   }, [inscriptions]);
 
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      const newSelected = inscriptions.map((n) => n.id);
+      const newSelected = inscriptions.map(n => n.id);
       setSelected(newSelected);
       return;
     }
@@ -236,14 +232,14 @@ export const InscriptionData = () => {
   };
 
   const handlePaymentToggle = (id: string) => {
-    setInscriptions((prev) =>
-      prev.map((inscription) =>
+    setInscriptions(prev =>
+      prev.map(inscription =>
         inscription.id === id
           ? {
-            ...inscription,
-            pagamentoConfirmado: !inscription.pagamentoConfirmado,
-            status: !inscription.pagamentoConfirmado ? 'Confirmada' : 'Pendente de pagamento',
-          }
+              ...inscription,
+              pagamentoConfirmado: !inscription.pagamentoConfirmado,
+              status: !inscription.pagamentoConfirmado ? 'Confirmada' : 'Pendente de pagamento',
+            }
           : inscription
       )
     );
@@ -299,21 +295,9 @@ export const InscriptionData = () => {
                 icon={<PeopleIcon sx={{ fontSize: 24 }} />}
                 color="primary"
               >
-                <StatItem
-                  label="Confirmadas"
-                  value={statistics.confirmadas}
-                  color="success.main"
-                />
-                <StatItem
-                  label="Pendentes"
-                  value={statistics.pendentes}
-                  color="warning.main"
-                />
-                <StatItem
-                  label="Canceladas"
-                  value={statistics.canceladas}
-                  color="error.main"
-                />
+                <StatItem label="Confirmadas" value={statistics.confirmadas} color="success.main" />
+                <StatItem label="Pendentes" value={statistics.pendentes} color="warning.main" />
+                <StatItem label="Canceladas" value={statistics.canceladas} color="error.main" />
                 <StatItem
                   label="Taxa de Conversão"
                   value={`${((statistics.confirmadas / statistics.totalInscritos) * 100).toFixed(1)}%`}
@@ -378,11 +362,7 @@ export const InscriptionData = () => {
                   value={`R$ ${(statistics.totalVendas + statistics.vendasPendentes).toLocaleString('pt-BR')}`}
                   color="primary.main"
                 />
-                <StatItem
-                  label="Valor por Ticket"
-                  value="R$ 50,00"
-                  color="text.secondary"
-                />
+                <StatItem label="Valor por Ticket" value="R$ 50,00" color="text.secondary" />
               </StatGroup>
             </Box>
           </Stack>
@@ -402,16 +382,11 @@ export const InscriptionData = () => {
                 <ResponsiveContainer width="100%" height={300}>
                   <LineChart data={inscricoesPorDia}>
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis
-                      dataKey="dia"
-                      tick={{ fontSize: 12 }}
-                    />
-                    <YAxis
-                      tick={{ fontSize: 12 }}
-                    />
+                    <XAxis dataKey="dia" tick={{ fontSize: 12 }} />
+                    <YAxis tick={{ fontSize: 12 }} />
                     <Tooltip
                       contentStyle={{
-                        fontSize: '0.875rem'
+                        fontSize: '0.875rem',
                       }}
                     />
                     <Line type="monotone" dataKey="inscricoes" stroke="#1976d2" strokeWidth={2} />
@@ -420,7 +395,6 @@ export const InscriptionData = () => {
               </CardContent>
             </Card>
           </Box>
-
         </CardContent>
       </Card>
       <Card>
@@ -434,7 +408,7 @@ export const InscriptionData = () => {
               display: 'flex',
               alignItems: 'center',
               gap: { xs: 1, md: 1.5 },
-              fontSize: { xs: '1rem', md: '1.25rem' }
+              fontSize: { xs: '1rem', md: '1.25rem' },
             }}
           >
             <Box
@@ -489,24 +463,34 @@ export const InscriptionData = () => {
                     </TableCell>
                     <TableCell sx={{ fontSize: { xs: '0.75rem', md: '0.875rem' } }}>Nome</TableCell>
                     <TableCell sx={{ fontSize: { xs: '0.75rem', md: '0.875rem' } }}>CPF</TableCell>
-                    <TableCell sx={{ fontSize: { xs: '0.75rem', md: '0.875rem' } }}>Email</TableCell>
-                    <TableCell sx={{ fontSize: { xs: '0.75rem', md: '0.875rem' } }}>Telefone</TableCell>
-                    <TableCell sx={{ fontSize: { xs: '0.75rem', md: '0.875rem' } }}>Data de Inscrição</TableCell>
-                    <TableCell sx={{ fontSize: { xs: '0.75rem', md: '0.875rem' } }}>Status</TableCell>
-                    <TableCell align="center" sx={{ fontSize: { xs: '0.75rem', md: '0.875rem' } }}>Pagamento Confirmado</TableCell>
+                    <TableCell sx={{ fontSize: { xs: '0.75rem', md: '0.875rem' } }}>
+                      Email
+                    </TableCell>
+                    <TableCell sx={{ fontSize: { xs: '0.75rem', md: '0.875rem' } }}>
+                      Telefone
+                    </TableCell>
+                    <TableCell sx={{ fontSize: { xs: '0.75rem', md: '0.875rem' } }}>
+                      Data de Inscrição
+                    </TableCell>
+                    <TableCell sx={{ fontSize: { xs: '0.75rem', md: '0.875rem' } }}>
+                      Status
+                    </TableCell>
+                    <TableCell align="center" sx={{ fontSize: { xs: '0.75rem', md: '0.875rem' } }}>
+                      Pagamento Confirmado
+                    </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {inscriptions
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((inscription) => {
+                    .map(inscription => {
                       const isItemSelected = isSelected(inscription.id);
                       const labelId = `enhanced-table-checkbox-${inscription.id}`;
 
                       return (
                         <TableRow
                           hover
-                          onClick={(event) => handleClick(event, inscription.id)}
+                          onClick={event => handleClick(event, inscription.id)}
                           tabIndex={-1}
                           key={inscription.id}
                           selected={isItemSelected}
@@ -550,15 +534,19 @@ export const InscriptionData = () => {
                             />
                           </TableCell>
                           <TableCell align="center">
-                            <Box sx={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              gap: { xs: 0.5, md: 1 }
-                            }}>
+                            <Box
+                              sx={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                gap: { xs: 0.5, md: 1 },
+                              }}
+                            >
                               <Typography
                                 variant="body2"
-                                color={inscription.pagamentoConfirmado ? 'success.main' : 'text.disabled'}
+                                color={
+                                  inscription.pagamentoConfirmado ? 'success.main' : 'text.disabled'
+                                }
                                 fontWeight="medium"
                                 sx={{ fontSize: { xs: '0.625rem', md: '0.75rem' } }}
                               >
@@ -568,7 +556,7 @@ export const InscriptionData = () => {
                                 checked={inscription.pagamentoConfirmado}
                                 onChange={() => handlePaymentToggle(inscription.id)}
                                 color="primary"
-                                onClick={(e) => e.stopPropagation()}
+                                onClick={e => e.stopPropagation()}
                                 size="small"
                               />
                             </Box>

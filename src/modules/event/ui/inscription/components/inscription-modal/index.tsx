@@ -58,10 +58,10 @@ export const InscriptionModalContent = ({ open, onClose, eventData }: IInscripti
         return <UserSearchStep onNext={handleNext} />;
       case 1:
         return (
-          <ConfirmationStep 
-            onNext={handleNext} 
-            onBack={handleBack} 
-            eventData={eventData} 
+          <ConfirmationStep
+            onNext={handleNext}
+            onBack={handleBack}
+            eventData={eventData}
             onSuccess={handleSuccess}
           />
         );

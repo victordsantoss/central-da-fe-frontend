@@ -17,7 +17,12 @@ interface IConfirmationStepProps {
   onSuccess?: () => void;
 }
 
-export function ConfirmationStep({ onNext, onBack, eventData, onSuccess }: Readonly<IConfirmationStepProps>) {
+export function ConfirmationStep({
+  onNext,
+  onBack,
+  eventData,
+  onSuccess,
+}: Readonly<IConfirmationStepProps>) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { userData } = useInscriptionModal();
@@ -46,7 +51,7 @@ export function ConfirmationStep({ onNext, onBack, eventData, onSuccess }: Reado
         userId: userData.id,
         eventId: eventData.id,
       });
-      
+
       if (onSuccess) {
         onSuccess();
       } else {
@@ -205,27 +210,21 @@ export function ConfirmationStep({ onNext, onBack, eventData, onSuccess }: Reado
           flexDirection={{ xs: 'column-reverse', sm: 'row' }}
           gap={1}
         >
-          <Button 
-            variant="outlined" 
-            color="primary" 
-            onClick={onBack}
-            disabled={isLoading}
-          >
+          <Button variant="outlined" color="primary" onClick={onBack} disabled={isLoading}>
             Voltar
           </Button>
-          <Button 
-            variant="contained" 
-            color="primary" 
+          <Button
+            variant="contained"
+            color="primary"
             onClick={isPaidEvent ? onNext : handleSubscribeToEvent}
             disabled={isLoading}
             startIcon={isLoading ? <CircularProgress size={20} color="inherit" /> : undefined}
           >
-            {isLoading 
-              ? 'Processando...' 
-              : isPaidEvent 
-                ? 'Ir para Pagamento' 
-                : 'Confirmar Inscrição'
-            }
+            {isLoading
+              ? 'Processando...'
+              : isPaidEvent
+                ? 'Ir para Pagamento'
+                : 'Confirmar Inscrição'}
           </Button>
         </Box>
       </Stack>
